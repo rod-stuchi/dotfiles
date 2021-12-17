@@ -1,0 +1,114 @@
+# vim: fdm=marker:foldlevel=0:noexpandtab:ts=4:sw=4
+# to reload config use `pkill -10 sxhkd`
+# to find keyname use "xev" program
+#
+# {{{ TERMINAL
+# super + Return
+#	alacritty
+
+super + control + Return
+	alacritty
+
+super + shift + Return
+	alacritty --class infloatmode
+# }}}
+
+# {{{ AUDIO
+
+super + alt + p
+	alacritty --class infloatmode -e pulsemixer > /dev/null 2>&1
+
+super + alt + i
+	pavucontrol
+
+super + alt + o
+	easyeffects
+
+super + alt + shift + o
+	pkill -9 easyeffects; easyeffects --gapplication-service & notify-send "EasyEffects restarted"
+
+@XF86Audio{Raise,Lower}Volume
+	$HOME/.scripts/volume.zsh {up,down}
+
+{shift +,_} @XF86AudioMute
+	$HOME/.scripts/volume.zsh {mute,mute-mic}
+# }}}
+
+# {{{ SCREEN
+### SCREEN BRIGHTNESS CONTROLS ###
+
+@XF86MonBrightness{Up,Down}
+	$HOME/.scripts/brightness.zsh {+10,-10}
+shift + @XF86Audio{Raise,Lower}Volume
+	$HOME/.scripts/brightness.zsh {+5,-5}
+
+# }}}
+
+# {{{ RANGER, ROFI
+# file manager (ranger)
+super + r ; {r,f,d,v}
+	alacritty -e ranger {$HOME,/disks/Vault/Financeiro,$HOME/Downloads,$HOME/Videos}
+
+# start rofi for program launcher
+super + p
+	rofi -modi drun,run,window -show drun -width 39 \
+		-no-cycle -padding 9 -show-icons \
+		-kb-accept-entry 'Return' -kb-remove-to-eol '' \
+		-kb-row-up 'Control+k,Up' \
+		-kb-row-down 'Control+j,Down' \
+        -theme ~/.config/rofi/theme/1080p/launchers/text/style_1.rasi
+		# -theme ~/.config/rofi/theme.rasi
+
+# start rofi for window select
+super + shift + p
+	rofi -modi window -show window -width 39 \
+		-padding 9 -show-icons \
+		-kb-accept-entry 'Return' -kb-remove-to-eol '' \
+		-kb-row-up 'Control+k,Up' \
+		-kb-row-down 'Control+j,Down' \
+		-theme /usr/share/rofi/themes/Adapta-Nokto.rasi
+        # -theme ~/.config/rofi/theme/1080p/launchers/misc/row_center.rasi
+
+# # start rofi for emojis
+super + e
+	$HOME/.scripts/emoji/rofi-emoji.sh
+#}}}
+
+# {{{ SCREENSHOTS Spectacle + Ksnip
+alt + 2
+	spectacle
+alt + {3,4,5}
+	$HOME/.scripts/screenshot.zsh {rect,rect_delay,active}
+alt + shift + {3,4,5}
+	$HOME/.scripts/screenshot.zsh {rect edit,rect_delay edit, active edit}
+# }}}
+#
+# set random wallpaper
+super + alt + w
+	$HOME/.scripts/wallpaper.zsh
+# lock screen
+super + alt + l
+	loginctl lock-session
+# copy to clipboard random emoji
+super + F9
+	$HOME/.scripts/emoji/choice-clip.sh
+
+# play/pause vídeos in Browser
+alt + p
+	playerctl play-pause
+
+# Dunst Notifications
+{shift +,_} alt + n
+	$HOME/.scripts/notification.zsh {off,on}
+
+{shift +,_} ctrl + space
+	dunstctl {close-all,close}
+
+ctrl + alt + space
+	dunstctl history-pop
+
+alt + @XF86Audio{Raise,Lower}Volume
+	$HOME/.scripts/alacritty_opacity.sh {up,down}
+
+# bindsym $mod+Shift+i  exec pkill picom
+# bindsym $mod+i  exec picom --config ~/.config/picom/picom.conf &
