@@ -247,7 +247,7 @@ zle -N ctrlz
 #   Accept abbreviations after . or _ or - (ie. f.b -> foo.bar).
 #   Substring complete (ie. bar -> foobar).
 zstyle ':completion:*' matcher-list '' '+m:{[:lower:]}={[:upper:]}' '+m:{[:upper:]}={[:lower:]}' '+m:{_-}={-_}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-export LS_COLORS="$(vivid generate molokai)"
+export LS_COLORS="$(vivid generate one-dark)"
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # Categorize completion suggestions with headings:
