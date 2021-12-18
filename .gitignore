@@ -1,2 +1,4 @@
 _patch*
 mpv/.config/mpv/watch_later/
+ranger/.config/ranger/plugins/__init__.py
+ranger/.config/ranger/plugins/__pycache__

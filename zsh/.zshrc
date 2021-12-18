@@ -500,7 +500,7 @@ r.receipt() {
 }
 
 source ~/.fzf.zsh
-source ~/github/zsh/zsh-z/zsh-z.plugin.zsh
+# source ~/github/zsh/zsh-z/zsh-z.plugin.zsh
 # source ~/github/zsh/zjump/zjump.zsh
 #source ~/github/zsh/forgit/forgit.plugin.sh
 wd() {
@@ -540,3 +540,7 @@ autoload -U +X bashcompinit && bashcompinit
 # complete -o nospace -C /home/rods/Downloads/critical/vault-prd/vault vault
 # AWS-CLI
 complete -C '/home/rods/.aws/bin/v2/current/bin/aws_completer' aws
+
+# # zoxide
+eval "$(zoxide init zsh)"
+
