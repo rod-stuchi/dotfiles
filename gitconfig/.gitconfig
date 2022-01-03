@@ -1,5 +1,5 @@
 [include]
-    path = /disks/Vault/Secret_Files/./user-gitconfig
+    path = /disks/Vault/Secret_Files/user-gitconfig
 
 [core]
 	editor = nvim
