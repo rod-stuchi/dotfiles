@@ -37,7 +37,7 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --no-messages --follow --glob "!.git" --glob "!node_modules"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--bind 'ctrl-a:select-all+accept'"
-export FZF_DEFAULT_OPTS='--color fg+:190,bg+:235,hl:210,hl+:208,pointer:208,marker:202'
+export FZF_DEFAULT_OPTS='--color fg+:190,bg+:235,hl:210,hl+:208,pointer:208,marker:202 --border --margin=1 --padding=1 --info=inline'
 
 # ripgrep config
 [ -x "$(command -v rg)" ] && export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
@@ -500,6 +500,19 @@ r.receipt() {
 }
 
 source ~/.fzf.zsh
+r.fzffd() {
+  bash ~/.scripts/fzf/fzffd.sh
+}
+r.fzfrg() {
+  bash ~/.scripts/fzf/fzfrg.sh
+}
+r.fzfrg2() {
+  bash ~/.scripts/fzf/fzfrg2.sh
+}
+r.fzfrgi() {
+  bash ~/.scripts/fzf/fzfrgi.sh
+}
+
 # source ~/github/zsh/zsh-z/zsh-z.plugin.zsh
 # source ~/github/zsh/zjump/zjump.zsh
 #source ~/github/zsh/forgit/forgit.plugin.sh
