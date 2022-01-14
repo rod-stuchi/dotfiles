@@ -500,6 +500,7 @@ r.receipt() {
 }
 
 source ~/.fzf.zsh
+
 r.fzffd() {
   bash ~/.scripts/fzf/fzffd.sh
 }

@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Name=ranger
+Comment=Launches the ranger file manager
+Icon=utilities-terminal
+Terminal=false
+Exec=alacritty -e /usr/bin/zsh --login -c "source ~/.zshrc; /usr/bin/ranger --selectfile=%u"
+# Exec=alacritty -e /usr/bin/ranger --selectfile=%u
+# Exec=alacritty -e ranger --selectfile=%u
+# Exec=test -f %u && alacritty -e ranger --selectfile %u || alacritty -e ranger %u
+# Exec=alacritty -e ranger --selectfile %u
+# Exec=notify-send -u critical %u
+
+# Terminal=true
+# Exec=ranger
+Categories=ConsoleOnly;System;FileTools;FileManager
+MimeType=inode/directory;
+Keywords=File;Manager;Browser;Explorer;Launcher;Vi;Vim;Python
