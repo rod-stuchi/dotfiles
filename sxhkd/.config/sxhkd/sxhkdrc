@@ -47,7 +47,7 @@ shift + @XF86Audio{Raise,Lower}Volume
 # {{{ RANGER, ROFI
 # file manager (ranger)
 super + r ; {r,f,d,v}
-	alacritty -e ranger {$HOME,/disks/Vault/Financeiro,$HOME/Downloads,$HOME/Videos}
+	alacritty -e /usr/bin/zsh --login -c "source ~/.zshrc; /usr/bin/ranger {$HOME,/disks/Vault/Financeiro,$HOME/Downloads,$HOME/Videos}"
 
 # start rofi for program launcher
 super + p
