@@ -383,6 +383,12 @@ bind -n -r M-Right   resize-pane -R
 # move status line to top
 #set -g status-position top
 
+# PLUGINS
+run-shell ~/dotfiles/tmux/plugins/tmux-thumbs/tmux-thumbs.tmux
+set -g @thumbs-hint-fg-color 'red'
+set -g @thumbs-regexp-1 '[a-z]+@[a-z]+.[a-z]+' # match emails
+set -g @thumbs-regexp-2 '^mysql -h \w+.*$' # mysql connection string
+set -g @thumbs-regexp-3 '[a-f0-9]{8}\.\.[a-f0-9]{8}' # git hash for diff
 # -- tpm -----------------------------------------------------------------------
 
 # while I don't use tpm myself, many people requested official support so here

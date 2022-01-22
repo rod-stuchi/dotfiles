@@ -7,3 +7,6 @@
 [submodule "tmux/tmux-gpakosz"]
 	path = tmux/tmux-gpakosz
 	url = https://github.com/gpakosz/.tmux
+[submodule "tmux/plugins/tmux-thumbs"]
+	path = tmux/plugins/tmux-thumbs
+	url = https://github.com/fcsonline/tmux-thumbs
