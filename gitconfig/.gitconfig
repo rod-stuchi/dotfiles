@@ -11,6 +11,10 @@
 [log]
 	date = relative
 
+[branch]
+    autoSetupMerge=false
+    autoSetupRebase=never
+
 [pager]
 	diff = delta
 #	log = delta

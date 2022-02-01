@@ -34,7 +34,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
-export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --no-messages --follow --glob "!.git" --glob "!node_modules"'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --no-messages --follow --glob "!.git" --glob "!node_modules" --glob "!.yarn" '
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--bind 'ctrl-a:select-all+accept'"
 export FZF_DEFAULT_OPTS='--color fg+:190,bg+:235,hl:210,hl+:208,pointer:208,marker:202 --border --margin=1 --padding=1 --info=inline'
@@ -456,7 +456,7 @@ alias gdi="git diff ':(exclude)yarn.lock' ':(exclude)package-lock.json'"
 alias gdcai="git diff --cached ':(exclude)yarn.lock' ':(exclude)package-lock.json'"
 alias gp="git push"
 alias grc="git rebase --continue"
-alias gpp="git pull --prune --no-rebase"
+alias gpp="git pull --prune"
 balias gcms="git commit -m \""
 balias gcm="git commit"
 alias glb="git log --graph --oneline --branches"
@@ -536,7 +536,8 @@ lazyload nvm -- '
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 '
 
-lazyload gsutil -- 'export PATH="$PATH:/home/rods/gcloud/gsutil"'
+# TODO remove
+# lazyload gsutil -- 'export PATH="$PATH:/home/rods/gcloud/gsutil"'
 
 #}}}
 
