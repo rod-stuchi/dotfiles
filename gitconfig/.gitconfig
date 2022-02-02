@@ -11,6 +11,10 @@
 [log]
 	date = relative
 
+[pull]
+    rebase = false
+    ff = only
+
 [branch]
     autoSetupMerge=false
     autoSetupRebase=never
