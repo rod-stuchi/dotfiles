@@ -67,9 +67,14 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 # export PATH=$PATH:/$HOME/develop/criticalmass/dialog-admin/aws/dist
 
+# Cargo
+export PATH=$PATH:$HOME/.cargo/bin
+
 # AWS CLI
 [ -f $HOME/.aws/bin/v2/current/bin/aws ] && export PATH=$PATH:$HOME/.aws/bin/v2/current/bin
 
+# Golang bin
+export PATH=$PATH:$HOME/go/bin
 # }}}
 
 # {{{ INTERNALS 
@@ -536,8 +541,13 @@ lazyload nvm -- '
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 '
 
-# TODO remove
-# lazyload gsutil -- 'export PATH="$PATH:/home/rods/gcloud/gsutil"'
+# custom functions for AWS
+lazyload aws- -- '
+  [ -s "$HOME/.scripts/aws.sh" ] && source "$HOME/.scripts/aws.sh"
+'
+
+# personal exports (like zoxide)
+[ -f $HOME/.personal_exports ] && source $HOME/.personal_exports
 
 #}}}
 
@@ -551,8 +561,7 @@ fi
 #}}}
 
 autoload -U +X bashcompinit && bashcompinit
-# Vault GCP
-# complete -o nospace -C /home/rods/Downloads/critical/vault-prd/vault vault
+
 # AWS-CLI
 complete -C '/home/rods/.aws/bin/v2/current/bin/aws_completer' aws
 

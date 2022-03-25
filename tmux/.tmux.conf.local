@@ -392,6 +392,7 @@ set -g @thumbs-hint-fg-color 'red'
 set -g @thumbs-regexp-1 '[a-z]+@[a-z]+.[a-z]+' # match emails
 set -g @thumbs-regexp-2 '^mysql -h \w+.*$' # mysql connection string
 set -g @thumbs-regexp-3 '[a-f0-9]{8}\.\.[a-f0-9]{8}' # git hash for diff
+set -g @thumbs-regexp-4 'dial-(?:adm|api|pwa)-\w+-(?:prod|qa)-?(?:\w+)?' # Dialog kubernetes
 # -- tpm -----------------------------------------------------------------------
 
 # while I don't use tpm myself, many people requested official support so here
