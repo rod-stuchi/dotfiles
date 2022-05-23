@@ -324,12 +324,13 @@ function () {
   fi
 
   if [[ $EUID -eq 0 ]]; then
-    local SUFFIX='%F{yellow}%n%f'$(printf '%%F{yellow}\u276f%.0s%%f' {1..$LVL})
+    local SUFFIX='%F{yellow}%n%f'$(printf '%%F{yellow}\u275a%.0s%%f' {1..$LVL})
   else
     #for code in {000..255}; do print -P -- "$code: %F{$code}Color%f"; done
     # random colors at prompt >
     color=$(printf "%03d" $[RANDOM%255+1])
-    local SUFFIX=$(printf '%%F{$color}\u276f%.0s%%f' {1..$LVL})
+    local SUFFIX=$(printf '%%F{$color}\u275a%.0s%%f' {1..$LVL})
+    # local SUFFIX=$(printf '%%F{$color}\u276f%.0s%%f' {1..$LVL})
     # local SUFFIX=$(printf '%%F{$color}\u2771%.0s%%f' {1..$LVL})
   fi
 
@@ -448,6 +449,7 @@ ialias lla="ls -lha --color=always"
 ialias z="zshz 2>&1"
 ialias j="zjump"
 ialias {vim,vi}="nvim"
+ialias k="kubectl"
 
 alias gst="git status"
 alias ga="git add"
@@ -541,11 +543,9 @@ lazyload nvm -- '
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 '
 
-# custom functions for AWS
-lazyload aws- -- '
-  [ -s "$HOME/.scripts/aws.sh" ] && source "$HOME/.scripts/aws.sh"
+lazyload r.aws -- '
+  [ -s "$HOME/.scripts/aws.zsh" ] && source "$HOME/.scripts/aws.zsh"
 '
-
 # personal exports (like zoxide)
 [ -f $HOME/.personal_exports ] && source $HOME/.personal_exports
 
