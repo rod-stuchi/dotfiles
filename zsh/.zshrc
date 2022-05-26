@@ -29,6 +29,30 @@ export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 export LESS=-XRFiS                     # colors, do not clear on exit, exit if fits screen, ignorecase
 # }}}
 
+# {{{ jq config
+# LINK, REF: https://stackoverflow.com/a/51341700
+# COLOR Definition "1;37"
+#  - 1 (bright)
+#  - 2 (dim)
+#  - 4 (underscore)
+#  - 5 (blink)
+#  - 7 (reverse)
+#  - 8 (hidden)
+#
+#  - 30 (black)
+#  - 31 (red)
+#  - 32 (green)
+#  - 33 (yellow)
+#  - 34 (blue)
+#  - 35 (magenta)
+#  - 36 (cyan)
+#  - 37 (white)
+#
+# JQ_COLORS="null:false:true:numbers:strings:arrays:objects"
+#
+export JQ_COLORS="2;37" # (null = 2;37 => dim;white)
+# }}}
+
 export EDITOR=nvim
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -545,6 +569,11 @@ lazyload nvm -- '
 
 lazyload r.aws -- '
   [ -s "$HOME/.scripts/aws.zsh" ] && source "$HOME/.scripts/aws.zsh"
+'
+
+lazyload sqlmap.py -- '
+[ -d $HOME/github/sqlmap ] && export PATH=$PATH:$HOME/github/sqlmap
+
 '
 # personal exports (like zoxide)
 [ -f $HOME/.personal_exports ] && source $HOME/.personal_exports
