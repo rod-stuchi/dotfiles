@@ -519,6 +519,7 @@ ialias dockerps='(docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Ports}}\t{{.
 [ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
 
 source ~/.scripts/utils.zsh
+source ~/.scripts/k8s.zsh
 source ~/.scripts/git-funcs.zsh
 source ~/.scripts/docker.zsh
 source ~/.scripts/movie.zsh

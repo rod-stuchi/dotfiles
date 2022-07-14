@@ -6,3 +6,5 @@
 --glob=!.tags
 --type-add
 web:*.{html,css,js,ts,scss}*
+--type-add
+jsx:*.{jsx}*
