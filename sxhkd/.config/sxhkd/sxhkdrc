@@ -24,8 +24,8 @@ super + alt + i
 super + alt + o
 	easyeffects
 
-super + alt + shift + o
-	pkill -9 easyeffects; easyeffects --gapplication-service & notify-send "EasyEffects restarted"
+# super + alt + shift + o
+# 	pkill -9 easyeffects; easyeffects --gapplication-service & notify-send "EasyEffects restarted"
 
 @XF86Audio{Raise,Lower}Volume
 	$HOME/.scripts/volume.zsh {up,down}

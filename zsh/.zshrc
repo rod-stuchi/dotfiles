@@ -66,9 +66,6 @@ export FZF_DEFAULT_OPTS='--color fg+:190,bg+:235,hl:210,hl+:208,pointer:208,mark
 # ripgrep config
 [ -x "$(command -v rg)" ] && export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
-# python poetry
-export PATH="$HOME/.poetry/bin:$PATH"
-
 # python pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
