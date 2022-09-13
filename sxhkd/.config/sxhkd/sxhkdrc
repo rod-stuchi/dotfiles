@@ -24,14 +24,11 @@ super + alt + i
 super + alt + o
 	easyeffects
 
-# super + alt + shift + o
-# 	pkill -9 easyeffects; easyeffects --gapplication-service & notify-send "EasyEffects restarted"
+{_,ctrl +} @XF86Audio{Raise,Lower}Volume
+	$HOME/.scripts/volume.zsh {vol-up,mic-up,vol-down,mic-down}
 
-@XF86Audio{Raise,Lower}Volume
-	$HOME/.scripts/volume.zsh {up,down}
-
-{shift +,_} @XF86AudioMute
-	$HOME/.scripts/volume.zsh {mute,mute-mic}
+{_,ctrl +} @XF86AudioMute
+	$HOME/.scripts/volume.zsh {vol-mute,mic-mute}
 # }}}
 
 # {{{ SCREEN
@@ -39,6 +36,7 @@ super + alt + o
 
 @XF86MonBrightness{Up,Down}
 	$HOME/.scripts/brightness.zsh {+10,-10}
+
 shift + @XF86Audio{Raise,Lower}Volume
 	$HOME/.scripts/brightness.zsh {+5,-5}
 
@@ -86,9 +84,12 @@ alt + shift + {3,4,5}
 # set random wallpaper
 super + alt + w
 	$HOME/.scripts/wallpaper.zsh
+
 # lock screen
 super + alt + l
 	loginctl lock-session
+	# sleep 1 && xset dpms force off
+
 # copy to clipboard random emoji
 super + F9
 	$HOME/.scripts/emoji/choice-clip.sh

@@ -26,7 +26,7 @@
 #	show = delta
 
 [interactive]
-    diffFilter = delta --color-only  --features=interactive
+    ; diffFilter = delta --color-only  --features=interactive
 
 [delta "interactive"]
     keep-plus-minus-markers = false
