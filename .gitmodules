@@ -16,3 +16,15 @@
 [submodule "zsh/plugins/fzf-tab"]
 	path = zsh/plugins/fzf-tab
 	url = https://github.com/Aloxaf/fzf-tab
+[submodule "zsh/plugins/zsh-completions"]
+	path = zsh/plugins/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions.git
+[submodule "zsh/plugins/wd"]
+	path = zsh/plugins/wd
+	url = https://github.com/mfaerevaag/wd.git
+[submodule "zsh/plugins/zsh-lazyload"]
+	path = zsh/plugins/zsh-lazyload
+	url = https://github.com/qoomon/zsh-lazyload.git
+[submodule "zsh/plugins/zsh-syntax-highlighting"]
+	path = zsh/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git

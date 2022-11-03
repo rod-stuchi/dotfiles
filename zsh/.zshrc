@@ -187,10 +187,13 @@ zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-d
 zstyle ':completion:*:*:mv:*' file-sort modification
 
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --icons --color=always $realpath'
+zstyle ':fzf-tab:complete:cd:*' popup-pad 30 0
 zstyle ':fzf-tab:*' show-group
-zstyle ':fzf-tab:complete:*' fzf-bindings 'tab:toggle+down,shift-tab:toggle+up,ctrl-d:half-page-down,ctrl-u:half-page-up'
 zstyle ':fzf-tab:*' switch-group ',' '.'
+zstyle ':fzf-tab:*' fzf-pad 8
+zstyle ':fzf-tab:complete:*' fzf-bindings 'ctrl-l:toggle+down,ctrl-h:toggle+up,ctrl-d:half-page-down,ctrl-u:half-page-up'
 zstyle ':fzf-tab:*' continuous-trigger '/'
+# zstyle ':fzf-tab:*' prefix ' '
 
 # http://zsh.sourceforge.net/Doc/Release/User-Contributions.html
 # https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
@@ -353,27 +356,14 @@ source ~/VPN/CyberGhost/vpn.sh
 # echo -n ".scripts: "
 # echo "(${d2} - ${d1}) / 1000" | bc
 
-r.fzffd() {
-  bash ~/.scripts/fzf/fzffd.sh
-}
-r.fzfrg() {
-  bash ~/.scripts/fzf/fzfrg.sh
-}
-r.fzfrg2() {
-  bash ~/.scripts/fzf/fzfrg2.sh
-}
-r.fzfrgi() {
-  bash ~/.scripts/fzf/fzfrgi.sh
-}
-
 # d1=`date +%N`
 wd() {
-  source ~/github/zsh/wd/wd.sh
+  source ~/dotfiles/zsh/plugins/wd/wd.sh
 }
-source ~/github/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/github/zsh/zsh-lazyload/zsh-lazyload.zsh
+source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/dotfiles/zsh/plugins/zsh-lazyload/zsh-lazyload.zsh
 # d2=`date +%N`
-# echo -n ".oh-my-zsh: "
+# echo -n ".others: "
 # echo "(${d2} - ${d1}) / 1000" | bc
 
 lazyload rvm -- '

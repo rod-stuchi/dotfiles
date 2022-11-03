@@ -110,8 +110,12 @@ export HISTSIZE=50000
 export SAVEHIST=30000
 export HISTFILE=~/.history
 
-fpath=(/usr/share/zsh/site-functions/ $fpath)
+fpath=(~/dotfiles/zsh/plugins/zsh-completions/src/ $fpath)
 fpath=(~/github/zsh/wd/ $fpath)
 fpath=(~/.scripts/ $fpath)
 fpath=(~/.local/zsh_completion/ $fpath)
+
+# You may have to force rebuild `zcompdump`:
+#    rm -f ~/.zcompdump; compinit
+
 # }}}
