@@ -385,6 +385,7 @@ bind -n -r M-Right   resize-pane -R
 
 # Programs
 bind o neww -n 'ranger' 'ranger'
+bind u run ~/dotfiles/tmux/plugins/tmux-url-select/tmux-url-select.pl
 
 # PLUGINS
 run-shell ~/dotfiles/tmux/plugins/tmux-thumbs/tmux-thumbs.tmux

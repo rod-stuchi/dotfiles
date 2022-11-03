@@ -1,0 +1,86 @@
+# https://blog.sebastian-daschner.com/entries/zsh-aliases
+# blank aliases
+
+expand-alias() {
+  [[ $LBUFFER =~ "\<(${(j:|:)baliases})\$" ]]; insertBlank=$?
+  if [[ ! $LBUFFER =~ "\<(${(j:|:)ialiases})\$" ]]; then
+    zle _expand_alias
+  fi
+  zle self-insert
+  if [[ "$insertBlank" = "0" ]]; then
+    zle backward-delete-char
+  fi
+}
+zle -N expand-alias
+
+typeset -a baliases
+baliases=()
+
+balias() {
+  alias $@
+  args="$@"
+  args=${args%%\=*}
+  baliases+=(${args##* })
+}
+
+# ignored aliases
+typeset -a ialiases
+ialiases=()
+
+ialias() {
+  alias $@
+  args="$@"
+  args=${args%%\=*}
+  ialiases+=(${args##* })
+}
+
+# starts one or multiple args as programs in background
+background() {
+  for ((i=2;i<=$#;i++)); do
+    ${@[1]} ${@[$i]} &> /dev/null &
+  done
+}
+
+# blank aliases, without trailing whitespace
+balias clh='curl localhost:'
+
+# "ignored" aliases, not expanded
+ialias   ls="ls --color=always"
+ialias   lss="exa --icons -lh -s=Extension"
+ialias   ll="ls -lh --color=always"
+ialias   lla="ls -lha --color=always"
+ialias   z="zshz 2>&1"
+ialias   j="zjump"
+ialias   {vim,vi}="nvim"
+ialias   k="kubectl"
+
+alias    gst="git status"
+alias    ga="git add"
+alias    gau="git add -u"
+alias    gco="git checkout"
+alias    gsm="git switch master"
+alias    gsw="git switch"
+alias    gd="git diff"
+alias    gdca="git diff --cached"
+alias    gdi="git diff ':(exclude)yarn.lock' ':(exclude)package-lock.json'"
+alias    gdcai="git diff --cached ':(exclude)yarn.lock' ':(exclude)package-lock.json'"
+alias    gp="git push"
+alias    grc="git rebase --continue"
+alias    gpp="git pull --prune"
+balias   gcms="git commit -m \""
+balias   gcm="git commit"
+alias    glb="git log --graph --oneline --branches"
+alias    gll="git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
+alias    {df,DF}='df -Th'
+alias    {distro,DISTRO}='cat /etc/[A-Za-z]*[_-][rv]e[lr]* ; print "Kernel $(uname -r)"'
+
+alias -s {html,HTML}='background chromium'
+alias -s {pdf,PDF}='background zathura'
+
+alias    serviio='/disks/2TB/apps-linux/serviio/serviio-2.0/bin/serviio.sh'
+
+alias    t="trans en:pt --speak "
+alias    p="trans pt:en "
+
+alias    ss="sudo ss -tulpn"

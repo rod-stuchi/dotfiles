@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+clear;
+clear;
+diff --color=always -y -W $(tput cols) alacritty.yml base.yml
+# diff --color=always -y -W $(tput cols) new.yml base.yml
+# diff --color=always -y -W $(tput cols) new.yml alacritty.yml

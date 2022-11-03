@@ -10,3 +10,9 @@
 [submodule "tmux/plugins/tmux-thumbs"]
 	path = tmux/plugins/tmux-thumbs
 	url = https://github.com/fcsonline/tmux-thumbs
+[submodule "tmux/plugins/tmux-url-select"]
+	path = tmux/plugins/tmux-url-select
+	url = https://github.com/dequis/tmux-url-select.git
+[submodule "zsh/plugins/fzf-tab"]
+	path = zsh/plugins/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab
