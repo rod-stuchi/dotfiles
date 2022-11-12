@@ -84,3 +84,6 @@ alias    t="trans en:pt --speak "
 alias    p="trans pt:en "
 
 alias    ss="sudo ss -tulpn"
+
+balias   xc="xclip -sel clip"
+balias   xcp="xclip -sel clip -t image/png -o > xclip.\$(date --iso-8601=seconds | tr ':' '.' | cut -d'-' -f1-3).png"
