@@ -189,7 +189,7 @@ zstyle ':completion:*:*:mv:*' file-sort modification
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --icons --color=always $realpath'
 zstyle ':fzf-tab:complete:cd:*' popup-pad 30 0
 zstyle ':fzf-tab:*' show-group
-zstyle ':fzf-tab:*' switch-group ',' '.'
+zstyle ':fzf-tab:*' switch-group '[' ']'
 zstyle ':fzf-tab:*' fzf-pad 8
 zstyle ':fzf-tab:complete:*' fzf-bindings 'ctrl-l:toggle+down,ctrl-h:toggle+up,ctrl-d:half-page-down,ctrl-u:half-page-up'
 zstyle ':fzf-tab:*' continuous-trigger '/'
