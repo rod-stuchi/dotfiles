@@ -1,0 +1,25 @@
+[Added Associations]
+application/octet-stream=nvim.desktop;
+application/pdf=org.pwmt.zathura.desktop;
+application/text=firefox.desktop;
+application/x-zip=nvim.desktop;
+binary/octet-stream=firefox.desktop;vim.desktop;feh.desktop;
+inode/directory=ranger.desktop;
+video/mp4=mpv.desktop;
+video/x-matroska=vlc.desktop;mpv.desktop;
+
+[Default Applications]
+application.pdf=zathura.desktop
+application/pdf=org.pwmt.zathura.desktop;
+application/x-directory=ranger.desktop;
+inode/directory=ranger.desktop
+x-scheme-handler/http=google-chrome.desktop
+x-scheme-handler/https=google-chrome.desktop
+x-scheme-handler/insomnia=insomnia.desktop
+x-scheme-handler/mailto=brave-browser.desktop
+x-scheme-handler/msteams=teams.desktop
+x-scheme-handler/slack=Slack.desktop
+x-scheme-handler/terminal=Alacritty.desktop;
+x-scheme-handler/webcal=brave-browser.desktop
+image/jpeg=nsxiv.desktop;
+application/sql=nvim.desktop;
