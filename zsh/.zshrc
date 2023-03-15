@@ -73,8 +73,8 @@ bindkey -v
 bindkey '^x^x' edit-command-line
 bindkey -M vicmd '^x^x' edit-command-line
 
-bindkey "^P" history-beginning-search-backward-end
-bindkey "^N" history-beginning-search-forward-end
+bindkey "^p" history-beginning-search-backward-end
+bindkey "^n" history-beginning-search-forward-end
 
 bindkey -M vicmd "k" up-line-or-beginning-search
 bindkey -M vicmd "j" down-line-or-beginning-search

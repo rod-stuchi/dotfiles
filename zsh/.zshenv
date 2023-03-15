@@ -59,6 +59,10 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export JQ_COLORS="2;37" # (null = 2;37 => dim;white)
 # }}}
 
+# {{{ KUBERNETES
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+# }}}
+
 # {{{ LANGUAGE
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -104,6 +108,10 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 export PATH=$PATH:$HOME/.cargo/bin
 # }}}
 
+# {{{ ZELLIJ
+export ZELLIJ_CONFIG_DIR=$HOME/.config/zellij/
+# }}}
+
 # {{{ ZSH
 export LISTMAX=-1
 export HISTSIZE=50000
@@ -118,4 +126,8 @@ fpath=(~/.local/zsh_completion/ $fpath)
 # You may have to force rebuild `zcompdump`:
 #    rm -f ~/.zcompdump; compinit
 
+# }}}
+
+# {{{ WEZTERM
+export TERM=wezterm
 # }}}
