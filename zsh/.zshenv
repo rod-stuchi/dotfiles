@@ -17,11 +17,15 @@ export KEYTIMEOUT=1 # vi mode
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --no-messages --follow --glob "!.git" --glob "!node_modules" --glob "!.yarn" '
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--bind 'ctrl-a:select-all+accept'"
-export FZF_DEFAULT_OPTS='--color fg+:190,bg+:235,hl:210,hl+:208,pointer:208,marker:202 --border --margin=1 --padding=1 --info=inline'
+export FZF_DEFAULT_OPTS='--color fg+:190,bg+:235,hl:210,hl+:208,pointer:208,marker:202 --border --margin=1 --padding=1 --info=inline --pointer=" " --marker="→"'
 # }}}
 
 # {{{ GOLANG
 export PATH=$PATH:$HOME/go/bin
+# }}}
+
+# {{{ GPG
+export GPG_TTY=$(tty)
 # }}}
 
 # {{{ JAVA

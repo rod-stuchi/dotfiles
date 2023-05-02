@@ -340,6 +340,20 @@ fi
 # bin for python `pip install --user`
 [ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
 
+
+# https://gist.github.com/laggardkernel/f319b1baf1065e5d990f11616a1d02b0
+function cc {
+  # https://invisible-island.net/ncurses/man/clear.1.html
+  # https://unix.stackexchange.com/a/375784/246718
+  # Behavior of clear: 
+  # 1. clear scrollback if E3 cap is supported (terminal, platform specific)
+  # 2. then clear visible screen
+  # For some terminal 'e[3J' need to be sent explicitly to clear scrollback
+  # printf '\e[3J' && clear  # scrollback is kept by `clear`
+  clear && printf '\e[3J'
+}
+export cc
+
 # d1=`date +%N`
 source ~/.fzf.zsh
 source ~/dotfiles/zsh/plugins/fzf-tab/fzf-tab.zsh
@@ -407,3 +421,5 @@ complete -C '/home/rods/.aws/bin/v2/current/bin/aws_completer' aws
 # # zoxide
 eval "$(zoxide init zsh)"
 
+
+complete -o nospace -C /home/rods/.local/bin/terraform terraform

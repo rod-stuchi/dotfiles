@@ -53,6 +53,9 @@ ialias   z="zshz 2>&1"
 ialias   j="zjump"
 ialias   {vim,vi}="nvim"
 ialias   k="kubectl"
+ialias   zj="zellij --layout=no-tip"
+# https://rtyley.github.io/bfg-repo-cleaner/
+ialias   bfg="java -jar ~/.local/java/bfg-1.14.0.jar"
 
 alias    gst="git status"
 alias    ga="git add"
@@ -87,3 +90,5 @@ alias    ss="sudo ss -tulpn"
 
 balias   xc="xclip -sel clip"
 balias   xcp="xclip -sel clip -t image/png -o > xclip.\$(date --iso-8601=seconds | tr ':' '.' | cut -d'-' -f1-3).png"
+balias   pwmysql="pwgen -sBy1 -r\\\/\@\'\\\" 40"
+balias   vr="NVIM_APPNAME=nvim-rods nvim "
