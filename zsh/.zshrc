@@ -415,11 +415,14 @@ fi
 
 autoload -U +X bashcompinit && bashcompinit
 
-# AWS-CLI
-complete -C '/home/rods/.aws/bin/v2/current/bin/aws_completer' aws
-
 # # zoxide
 eval "$(zoxide init zsh)"
 
+# completion AWS-CLI
+complete -C '/home/rods/.aws/bin/v2/current/bin/aws_completer' aws
 
+# completion kubectl
+source <(kubectl completion zsh)
+
+# completion terraform
 complete -o nospace -C /home/rods/.local/bin/terraform terraform
