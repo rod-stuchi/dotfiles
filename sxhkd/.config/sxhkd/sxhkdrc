@@ -1,4 +1,4 @@
-# vim: fdm=marker:foldlevel=0:noexpandtab:ts=4:sw=4
+# vim: fdm=marker:foldlevel=0:noexpandtab!:ts=4:sw=4
 # to reload config use `pkill -10 sxhkd`
 # to find keyname use "xev" program
 #
@@ -46,13 +46,12 @@ super + r ; {r,f,d,v}
 
 # start rofi for program launcher
 super + p
-	rofi -modi drun,run,window -show drun -width 39 \
+	rofi -modi drun,run -show drun -width 39 \
 		-no-cycle -padding 9 -show-icons \
 		-kb-accept-entry 'Return' -kb-remove-to-eol '' \
 		-kb-row-up 'Control+k,Up' \
 		-kb-row-down 'Control+j,Down' \
-        -theme ~/.config/rofi/theme/1080p/launchers/text/style_1.rasi
-		# -theme ~/.config/rofi/theme.rasi
+		-theme ~/.config/rofi/launchers/type-1/style-5.rasi
 
 # start rofi for window select
 super + shift + p
@@ -61,8 +60,7 @@ super + shift + p
 		-kb-accept-entry 'Return' -kb-remove-to-eol '' \
 		-kb-row-up 'Control+k,Up' \
 		-kb-row-down 'Control+j,Down' \
-		-theme /usr/share/rofi/themes/Adapta-Nokto.rasi
-        # -theme ~/.config/rofi/theme/1080p/launchers/misc/row_center.rasi
+		-theme ~/.config/rofi/launchers/type-1/style-7.rasi
 
 # # start rofi for emojis
 super + e
@@ -99,7 +97,7 @@ alt + p
 super + alt + n
 	$HOME/.scripts/notification.zsh --toggle
 
-{shift +,_} ctrl + space
+{shift +, alt +} ctrl + space
 	dunstctl {close-all,close}
 
 ctrl + alt + space
