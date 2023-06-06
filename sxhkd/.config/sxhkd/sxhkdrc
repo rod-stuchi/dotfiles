@@ -90,8 +90,11 @@ super + F9
 	$HOME/.scripts/emoji/choice-clip.sh
 
 # play/pause vídeos in Browser
-alt + p
+ctrl + alt + p
 	playerctl play-pause
+
+ctrl + alt + {Left,Right}
+	playerctl position {10-,10+}
 
 # Dunst Notifications
 super + alt + n
@@ -100,7 +103,7 @@ super + alt + n
 {shift +, alt +} ctrl + space
 	dunstctl {close-all,close}
 
-ctrl + alt + space
+ctrl + alt + backslash
 	dunstctl history-pop
 
 alt + @XF86Audio{Raise,Lower}Volume
