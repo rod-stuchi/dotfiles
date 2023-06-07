@@ -38,6 +38,7 @@ if [ "$1" = period-changed ]; then
             ;;
         daytime)
             set_brightness $brightness_day
+            echo $brightness_day > /tmp/brightness_state
             ;;
     esac
 fi
