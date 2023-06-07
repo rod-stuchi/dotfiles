@@ -31,9 +31,11 @@ super + alt + o
 # {{{ SCREEN
 ### SCREEN BRIGHTNESS CONTROLS ###
 
+# notebook keys
 @XF86MonBrightness{Up,Down}
 	$HOME/.scripts/brightness.zsh {+10,-10}
 
+# hyperX roll button
 shift + @XF86Audio{Raise,Lower}Volume
 	$HOME/.scripts/brightness.zsh {+5,-5}
 
@@ -93,7 +95,7 @@ super + F9
 ctrl + alt + p
 	playerctl play-pause
 
-ctrl + alt + {Left,Right}
+ctrl + alt + {h,l}
 	playerctl position {10-,10+}
 
 # Dunst Notifications
