@@ -7,7 +7,7 @@
 # Range from 1 to 100 is valid
 brightness_day=100
 brightness_transition=50
-brightness_night=10
+brightness_night=5
 # Set fps for smoooooth transition
 fps=1000
 
@@ -32,9 +32,11 @@ if [ "$1" = period-changed ]; then
     case $3 in
         night)
             set_brightness $brightness_night 
+            echo $brightness_night > /tmp/brightness_state
             ;;
         transition)
             set_brightness $brightness_transition
+            echo $brightness_transition > /tmp/brightness_state
             ;;
         daytime)
             set_brightness $brightness_day
