@@ -1,0 +1,125 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = false
+
+format = """
+$directory\
+$git_branch$git_commit$git_state$git_status$git_metrics\
+$line_break\
+$username\
+$hostname\
+$cmd_duration$jobs$shlvl$sudo$character"""
+
+right_format = """
+$nodejs\
+$python\
+$terraform\
+$golang\
+$lua\
+$kubernetes\
+$rust\
+$aws"""
+
+[git_commit]
+commit_hash_length = 5
+tag_symbol = '🔖 '
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = 'gray'
+# ahead = '⇡${count}'
+# behind = '⇣${count}'
+# diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+ahead = ' ${count}'
+behind = ' ${count}'
+diverged = '\(󰹺  ${ahead_count} ${behind_count}\)'
+staged = '[\(+$count\)](green)'
+deleted = '[\(-$count\)](red)'
+untracked = ''
+up_to_date = ' [ ](green)'
+
+[git_metrics]
+format = '([+$added]($added_style) )([-$deleted]($deleted_style) )'
+disabled = true
+
+[cmd_duration]
+min_time = 500
+format = ' [$duration](bold yellow) '
+
+[directory]
+truncation_length = 6
+truncation_symbol = '…/'
+# read_only = ' 🔒'
+read_only = '󰌾 '
+read_only_style = 'green'
+
+[line_break]
+disabled = false
+
+[aws]
+format = '[$symbol$profile ]($style)'
+style = 'bold blue'
+symbol = '󰸏 '
+[aws.profile_aliases]
+default = 'PROD'
+qa = 'QA'
+
+[nodejs]
+format = '[$symbol($version )]($style)'
+detect_files = ['package.json', 'yarn.lock']
+detect_extensions = []
+style = 'green'
+
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+
+[golang]
+format = '[$symbol($version )]($style)'
+symbol = ' '
+
+[lua]
+format = '[$symbol($version )]($style)'
+
+[terraform]
+format = '[$symbol$workspace $version]($style) '
+
+[kubernetes]
+format = '[󱃾 $context](dimmed green) '
+disabled = false
+[kubernetes.context_aliases]
+'.*744894293558*.*' = 'kube:prod'
+'.*437642595153*.*' = 'kube:qa'
+
+[rust]
+format = '[$symbol($version )]($style)'
+
+[shlvl]
+disabled = false
+threshold = 4
+repeat = false
+symbol = ' '
+
+[sudo]
+format = '[$symbol]($style)'
+disabled = false
+
+[hostname]
+format = '[$ssh_symbol$hostname]($style) '
+
+[username]
+format = '[$user]($style) '
+
+[character] 
+success_symbol            = '[](bold green)'
+error_symbol              = '[](bold red)'
+vimcmd_symbol             = '[](bold green)'
+vimcmd_replace_one_symbol = '[](bold purple)'
+vimcmd_replace_symbol     = '[](bold purple)'
+vimcmd_visual_symbol      = '[](bold yellow)'
+
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true

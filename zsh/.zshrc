@@ -287,44 +287,44 @@ function () {
   fi
 }
 
-typeset -F SECONDS
-function record-start-time() {
-  emulate -L zsh
-  ZSH_START_TIME=${ZSH_START_TIME:-$SECONDS}
-}
+# typeset -F SECONDS
+# function record-start-time() {
+#   emulate -L zsh
+#   ZSH_START_TIME=${ZSH_START_TIME:-$SECONDS}
+# }
 
-add-zsh-hook preexec record-start-time
+# add-zsh-hook preexec record-start-time
 
-function report-start-time() {
-  emulate -L zsh
-  if [ $ZSH_START_TIME ]; then
-    local DELTA=$(($SECONDS - $ZSH_START_TIME))
-    local DAYS=$((~~($DELTA / 86400)))
-    local HOURS=$((~~(($DELTA - $DAYS * 86400) / 3600)))
-    local MINUTES=$((~~(($DELTA - $DAYS * 86400 - $HOURS * 3600) / 60)))
-    local SECS=$(($DELTA - $DAYS * 86400 - $HOURS * 3600 - $MINUTES * 60))
-    local ELAPSED=''
-    test "$DAYS" != '0' && ELAPSED="${DAYS}d"
-    test "$HOURS" != '0' && ELAPSED="${ELAPSED}${HOURS}h"
-    test "$MINUTES" != '0' && ELAPSED="${ELAPSED}${MINUTES}m"
-    if [ "$ELAPSED" = '' ]; then
-      SECS="$(print -f "%.2f" $SECS)s"
-    elif [ "$DAYS" != '0' ]; then
-      SECS=''
-    else
-      SECS="$((~~$SECS))s"
-    fi
-    ELAPSED="${ELAPSED}${SECS}"
-    local ITALIC_ON=$'\e[3m'
-    local ITALIC_OFF=$'\e[23m'
-    export RPS1="%F{cyan}%{$ITALIC_ON%}${ELAPSED}%{$ITALIC_OFF%}%f $RPS1_ACC"
-    unset ZSH_START_TIME
-  else
-    export RPS1=$RPS1_ACC
-  fi
-}
+# function report-start-time() {
+#   emulate -L zsh
+#   if [ $ZSH_START_TIME ]; then
+#     local DELTA=$(($SECONDS - $ZSH_START_TIME))
+#     local DAYS=$((~~($DELTA / 86400)))
+#     local HOURS=$((~~(($DELTA - $DAYS * 86400) / 3600)))
+#     local MINUTES=$((~~(($DELTA - $DAYS * 86400 - $HOURS * 3600) / 60)))
+#     local SECS=$(($DELTA - $DAYS * 86400 - $HOURS * 3600 - $MINUTES * 60))
+#     local ELAPSED=''
+#     test "$DAYS" != '0' && ELAPSED="${DAYS}d"
+#     test "$HOURS" != '0' && ELAPSED="${ELAPSED}${HOURS}h"
+#     test "$MINUTES" != '0' && ELAPSED="${ELAPSED}${MINUTES}m"
+#     if [ "$ELAPSED" = '' ]; then
+#       SECS="$(print -f "%.2f" $SECS)s"
+#     elif [ "$DAYS" != '0' ]; then
+#       SECS=''
+#     else
+#       SECS="$((~~$SECS))s"
+#     fi
+#     ELAPSED="${ELAPSED}${SECS}"
+#     local ITALIC_ON=$'\e[3m'
+#     local ITALIC_OFF=$'\e[23m'
+#     export RPS1="%F{cyan}%{$ITALIC_ON%}${ELAPSED}%{$ITALIC_OFF%}%f $RPS1_ACC"
+#     unset ZSH_START_TIME
+#   else
+#     export RPS1=$RPS1_ACC
+#   fi
+# }
 
-add-zsh-hook precmd report-start-time
+# add-zsh-hook precmd report-start-time
 
 # /etc/motd
 
@@ -426,3 +426,5 @@ source <(kubectl completion zsh)
 
 # completion terraform
 complete -o nospace -C /home/rods/.local/bin/terraform terraform
+
+eval "$(starship init zsh)"
