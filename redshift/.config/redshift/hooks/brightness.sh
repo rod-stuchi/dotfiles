@@ -27,7 +27,7 @@ set_brightness() {
     ddcutil setvcp 10 $1 & 
 }
 
-dunstify "redshift 🌆 : $1 : $3"
+dunstify "redshift 🌆 : $1 : $2 : $3"
 if [ "$1" = period-changed ]; then
     case $3 in
         night)
