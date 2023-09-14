@@ -1,0 +1,2 @@
+/usr/bin/google-chrome-stable %U
+  ^https?://github.com/.*
