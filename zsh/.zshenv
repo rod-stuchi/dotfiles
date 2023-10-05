@@ -130,6 +130,17 @@ fpath=(~/.local/zsh_completion/ $fpath)
 # You may have to force rebuild `zcompdump`:
 #    rm -f ~/.zcompdump; compinit
 
+ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red')
+ZSH_HIGHLIGHT_PATTERNS+=('kubectl delete *' 'fg=#ffffff,bg=#ff0105')
+ZSH_HIGHLIGHT_PATTERNS+=('k delete *' 'fg=#ffffff,bg=#ff0105')
+ZSH_HIGHLIGHT_PATTERNS+=('shred *' 'fg=#d86421,bold,bg=default')
+
+typeset -A ZSH_HIGHLIGHT_REGEXP
+ZSH_HIGHLIGHT_REGEXP+=('\bsudo\b' fg=123,bold,standout)
+ZSH_HIGHLIGHT_REGEXP+=('\b(vim|vi|nvim)\b' fg=#ece600,bold)
+
+# ZSH_HIGHLIGHT_STYLES[cursor]='bg=green'
+ZSH_HIGHLIGHT_HIGHLIGHTERS+=(main pattern brackets regexp)
 # }}}
 
 # {{{ WEZTERM

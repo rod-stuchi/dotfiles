@@ -376,6 +376,7 @@ wd() {
 }
 source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/dotfiles/zsh/plugins/zsh-lazyload/zsh-lazyload.zsh
+
 # d2=`date +%N`
 # echo -n ".others: "
 # echo "(${d2} - ${d1}) / 1000" | bc
