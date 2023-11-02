@@ -130,6 +130,8 @@ fpath=(~/.local/zsh_completion/ $fpath)
 # You may have to force rebuild `zcompdump`:
 #    rm -f ~/.zcompdump; compinit
 
+# https://github.com/zsh-users/zsh-syntax-highlighting/issues/464
+# https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html#Character-Highlighting
 ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red')
 ZSH_HIGHLIGHT_PATTERNS+=('kubectl delete *' 'fg=#ffffff,bg=#ff0105')
 ZSH_HIGHLIGHT_PATTERNS+=('k delete *' 'fg=#ffffff,bg=#ff0105')

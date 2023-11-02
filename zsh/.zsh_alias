@@ -49,7 +49,8 @@ ialias   ls="ls --color=always"
 ialias   lss="eza --icons -lh -s=Extension"
 ialias   ll="ls -lh --color=always"
 ialias   lla="ls -lha --color=always"
-ialias   z="zshz 2>&1"
+ialias   z="__empty 2>&1" # it just to avoid expansion of zoxide (z) command
+ialias   zi="__empty 2>&1" # it just to avoid expansion of zoxide (zi) command
 ialias   j="zjump"
 ialias   vim="nvim"
 ialias   vi="nvim"
@@ -101,3 +102,5 @@ balias   vimo="NVIM_APPNAME=nvim-old nvim "
 alias    key-intl="setxkbmap -rules evdev -model evdev -layout us -variant intl; rm ~/.__localstate"
 # no await, quote and double-quote
 alias    key-nointl="setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl; rm ~/.__localstate"
+
+alias imgcat="wezterm imgcat --height=30"

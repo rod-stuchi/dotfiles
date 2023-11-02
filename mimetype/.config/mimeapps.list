@@ -14,6 +14,7 @@ application/sql=nvim.desktop;
 application/vnd.openxmlformats-officedocument.presentationml.presentation=libreoffice-impress.desktop;
 application/x-directory=ranger.desktop;
 image/jpeg=nsxiv.desktop;
+image/png=nsxiv.desktop;
 inode/directory=ranger.desktop;
 x-scheme-handler/http=chromium.desktop;firefox.desktop;google-chrome.desktop;
 x-scheme-handler/https=chromium.desktop;firefox.desktop;google-chrome.desktop;
