@@ -13,9 +13,11 @@ import os
 import re
 import subprocess
 from collections import deque
+from shlex import quote
 from ranger.api.commands import Command
 from ranger.container.file import File
 from ranger.ext.get_executables import get_executables
+from ranger.ext.img_display import ImageDisplayer, register_image_displayer
 
 
 # Any class that is a subclass of "Command" will be integrated into ranger as a
@@ -289,3 +291,17 @@ class fd_prev(Command):
             self.fm.select_file(fd_search.SEARCH_RESULTS[0])
         elif len(fd_search.SEARCH_RESULTS) == 1:
             self.fm.select_file(fd_search.SEARCH_RESULTS[0])
+
+
+@register_image_displayer("wezterm-image-display-method")
+class WeztermImageDisplayer(ImageDisplayer):
+    def draw(self, path, start_x, start_y, width, height):
+        print("\033[%d;%dH" % (start_y, start_x+1))
+        path = quote(path)
+        draw_cmd = "wezterm imgcat {} --width {} --height {}".format(path, width, height)
+        subprocess.run(draw_cmd.split(" "))
+    def clear(self, start_x, start_y, width, height):
+        cleaner = " "*width
+        for i in range(height):
+            print("\033[%d;%dH" % (start_y+i, start_x+1))
+            print(cleaner)
