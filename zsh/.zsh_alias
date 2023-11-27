@@ -103,5 +103,5 @@ alias    key-intl="setxkbmap -rules evdev -model evdev -layout us -variant intl;
 # no await, quote and double-quote
 alias    key-nointl="setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl; rm ~/.__localstate"
 
-alias imgcat="wezterm imgcat --height=30"
-alias pipe-top='top -p $(pgrep -a pipe | cut -d" " -f1 | paste -sd ',')'
+alias imgcat="wezterm imgcat --height=20"
+alias pipe-top='top -p $(pgrep -a "pipe|plumb|pulse" | cut -d" " -f1 | paste -sd ',')'
