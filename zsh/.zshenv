@@ -60,7 +60,8 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 #
 # JQ_COLORS="null:false:true:numbers:strings:arrays:objects"
 #
-export JQ_COLORS="2;37" # (null = 2;37 => dim;white)
+# NO NEEDED in jq version 1.7 (set/2023)
+# export JQ_COLORS="2;37" # (null = 2;37 => dim;white)
 # }}}
 
 # {{{ KUBERNETES
