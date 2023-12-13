@@ -357,6 +357,8 @@ export cc
 # d1=`date +%N`
 source ~/.fzf.zsh
 source ~/dotfiles/zsh/plugins/fzf-tab/fzf-tab.zsh
+source ~/dotfiles/zsh/plugins/zsh-easy-motion/easy_motion.plugin.zsh
+bindkey -M vicmd ' ' vi-easy-motion
 source ~/.zsh_alias
 source ~/.scripts/utils.zsh
 source ~/.scripts/k8s.zsh

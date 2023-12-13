@@ -95,8 +95,8 @@ format = '[$symbol$workspace $version]($style) '
 format = '[󱃾 $context](dimmed green) '
 disabled = false
 [kubernetes.context_aliases]
-'.*744894293558*.*' = 'kube:prod'
-'.*437642595153*.*' = 'kube:qa'
+'.*744894293558.*/(?P<name>[a-z-_]+)$' = 'PRD $name'
+'.*437642595153.*/(?P<name>[a-z-_]+)$' = 'QA $name'
 
 [rust]
 format = '[$symbol($version )]($style)'
