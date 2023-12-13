@@ -28,3 +28,9 @@
 [submodule "zsh/plugins/zsh-syntax-highlighting"]
 	path = zsh/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "zsh/plugins/zsh-easy-motion"]
+	path = zsh/plugins/zsh-easy-motion
+	url = https://github.com/IngoMeyer441/zsh-easy-motion.git
+[submodule "tmux/plugins/tmux-easy-motion"]
+	path = tmux/plugins/tmux-easy-motion
+	url = https://github.com/IngoMeyer441/tmux-easy-motion.git
