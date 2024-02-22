@@ -26,3 +26,4 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$PATH:$HOME/.rvm/bin"
 
 complete -C /home/rods/.local/bin/terraform terraform
+. "$HOME/.cargo/env"

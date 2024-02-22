@@ -107,3 +107,7 @@ alias imgcat="wezterm imgcat --height=20"
 alias pipe-top='top -p $(pgrep -a "pipe|plumb|pulse" | cut -d" " -f1 | paste -sd ',')'
 # adb tcpip 5555; adb connect 192.168.0.101:5555
 alias myphone="scrcpy --shortcut-mod=lctrl -S"
+
+
+# docker
+alias docker_ps="docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}\t{{.State}}'"

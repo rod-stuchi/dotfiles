@@ -6,14 +6,15 @@ add_newline = false
 
 format = """
 $directory\
-$git_branch$git_commit$git_state$git_status$git_metrics\
+${custom.giturl}$git_branch$git_commit$git_state$git_status$git_metrics\
 $line_break\
 $username\
 $hostname\
+${custom.ranger}\
 $cmd_duration$jobs$shlvl$sudo$character"""
 
 right_format = """
-$custom\
+${custom.docker}\
 $nodejs\
 $python\
 $terraform\
@@ -92,11 +93,12 @@ format = '[$symbol($version )]($style)'
 format = '[$symbol$workspace $version]($style) '
 
 [kubernetes]
-format = '[󱃾 $context](dimmed green) '
+format = '$symbol[$context]($style) '
 disabled = false
-[kubernetes.context_aliases]
-'.*744894293558.*/(?P<name>[a-z-_]+)$' = 'PRD $name'
-'.*437642595153.*/(?P<name>[a-z-_]+)$' = 'QA $name'
+contexts = [
+  { context_pattern = ".*744894293558.*/(?P<name>[a-z-_]+)$", context_alias = "PRD $name", style = "dimmed red", symbol = "🔴 " },
+  { context_pattern = ".*437642595153.*/(?P<name>[a-z-_]+)$", context_alias = "QA $name", style = "green", symbol = "🟢 " },
+]
 
 [rust]
 format = '[$symbol($version )]($style)'
@@ -129,11 +131,49 @@ vimcmd_visual_symbol      = '[](bold yellow)'
 [package]
 disabled = true
 
-# more in
-# https://github.com/starship/starship/discussions/1252
+# from: https://github.com/starship/starship/discussions/1252
 [custom.docker]
+disabled = true
 description = "Shows the docker symbol if the current directory has Dockerfile or docker-compose.yml files"
 command = "echo 🐳"
 files = ["Dockerfile", "docker-compose.yml", "docker-compose.yaml"]
 when = """ command -v docker &> /dev/null; exit (echo $?); """
 
+[custom.ranger]
+description = "shows if you are in a Ranger shell"
+command = "echo 🤠"
+when = ''' test -n "${RANGER_LEVEL}" '''
+
+# from: https://github.com/starship/starship/discussions/1252#discussioncomment-7923685
+[custom.distrobox]
+disabled = false
+command = """
+if [[ -n $DISTROBOX_ENTER_PATH ]]; then
+ echo "$(cat /etc/os-release | grep PRETTY_NAME | cut -d '"' -f 2)"
+else
+ echo ""
+fi
+"""
+when = "test -n $(DISTROBOX_ENTRY_PATH)"
+format = " 󰆧 $output"
+
+[custom.giturl]
+disabled = true
+description = "Display symbol for remote Git server"
+command = """
+GIT_REMOTE=$(command git ls-remote --get-url 2> /dev/null)
+if [[ "$GIT_REMOTE" =~ "github" ]]; then
+    GIT_REMOTE_SYMBOL=" "
+elif [[ "$GIT_REMOTE" =~ "gitlab" ]]; then
+    GIT_REMOTE_SYMBOL=" "
+elif [[ "$GIT_REMOTE" =~ "bitbucket" ]]; then
+    GIT_REMOTE_SYMBOL=" "
+elif [[ "$GIT_REMOTE" =~ "git" ]]; then
+    GIT_REMOTE_SYMBOL=" "
+else
+    GIT_REMOTE_SYMBOL=" "
+fi
+echo "$GIT_REMOTE_SYMBOL "
+"""
+when = 'git rev-parse --is-inside-work-tree 2> /dev/null'
+format = "at $output  "

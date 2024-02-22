@@ -13,6 +13,11 @@ export KEYTIMEOUT=1 # vi mode
 
 # }}}
 
+#{{{ FLUTTER
+export PATH="$PATH:$HOME/flutter/bin"
+export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
+#}}}
+
 # FZF {{{
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --no-messages --follow --glob "!.git" --glob "!node_modules" --glob "!.yarn" '
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -30,13 +35,12 @@ export GPG_TTY=$(tty)
 
 # {{{ JAVA
 # export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
+export JAVA_HOME=/usr/lib/jvm/default
 export ANDROID_HOME=$HOME/android
 export ANDROID_SDK_ROOT=$ANDROID_HOME
 export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin/
 # }}}
 
 # {{{ JQ
@@ -65,7 +69,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # }}}
 
 # {{{ KUBERNETES
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH=$PATH:"${KREW_ROOT:-$HOME/.krew}/bin"
 # }}}
 
 # {{{ LANGUAGE
@@ -89,11 +93,11 @@ export LESS=-XRFiS                     # colors, do not clear on exit, exit if f
 
 # PYTHON {{{
 #  PYTHON poetry
-export PATH="$HOME/.poetry/bin:$PATH"
+export PATH=$PATH:"$HOME/.poetry/bin"
 
 # PYTHON pyenv
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$PATH:$PYENV_ROOT/bin"
 if command -v pyenv 1> /dev/null 2>&1; then
   # eval "$(pyenv init -)"
   # eval "$(pyenv init --path)"
@@ -110,6 +114,7 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 # }}}
 
 # {{{ RUST
+. "$HOME/.cargo/env"
 export PATH=$PATH:$HOME/.cargo/bin
 # }}}
 

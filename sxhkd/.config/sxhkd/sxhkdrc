@@ -10,6 +10,11 @@ super + shift + Return
 	wezterm start --class=infloatmode
 # }}}
 
+#{{{ TERMINAL LANGUAGE
+super + shift + {t,y}
+	wezterm start --always-new-process --class=infloatmode -- trans {en:pt,pt:en} -I
+#}}}
+
 # {{{ AUDIO
 
 super + alt + p
