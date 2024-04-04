@@ -46,7 +46,7 @@ shift + @XF86Audio{Raise,Lower}Volume
 
 # }}}
 
-# {{{ RANGER, ROFI
+# {{{ RANGER, ROFI, CopyQ
 # file manager (ranger)
 super + r ; {r,f,d,v}
 	wezterm start /usr/bin/zsh --login -c "source ~/.zshrc; /usr/bin/ranger {$HOME,/disks/Vault/Financeiro,$HOME/Downloads,$HOME/Videos}"
@@ -69,9 +69,13 @@ super + shift + p
 		-kb-row-down 'Control+j,Down' \
 		-theme ~/.config/rofi/launchers/type-1/style-7.rasi
 
-# # start rofi for emojis
+# start rofi for emojis
 super + e
 	$HOME/.scripts/emoji/rofi-emoji.sh
+
+# copyq toggle main window
+super + {_,control +} c
+	copyq {menu,show}
 #}}}
 
 # {{{ SCREENSHOTS Spectacle + Ksnip

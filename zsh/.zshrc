@@ -419,7 +419,10 @@ fi
 autoload -U +X bashcompinit && bashcompinit
 
 # # zoxide
-eval "$(zoxide init zsh)"
+# autoload -Uz compinit
+# eval "$(zoxide init zsh)"
+# version 0.9.2 is working
+source ~/.scripts/zoxide.sh
 
 # completion AWS-CLI
 complete -C '/home/rods/.aws/bin/v2/current/bin/aws_completer' aws
