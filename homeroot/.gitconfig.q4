@@ -1,0 +1,12 @@
+[user]
+        name = Rodrigo Stuchi
+        email = rodrigo.stuchi@q4inc.com
+        signingkey = /home/rods/.ssh/q4inc_ed25519.pub
+[core]
+        editor = nvim
+        pager = delta
+        autocrlf = true
+[gpg]
+        format = ssh
+[gpg "ssh"]
+        allowedSignersFile = /home/rods/.ssh/allowed_signers
