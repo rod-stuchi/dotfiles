@@ -21,5 +21,6 @@ x-scheme-handler/https=chromium.desktop;firefox.desktop;google-chrome.desktop;
 x-scheme-handler/insomnia=insomnia.desktop;
 x-scheme-handler/mailto=chromium.desktop;
 x-scheme-handler/msteams=teams.desktop;
-x-scheme-handler/terminal=Alacritty.desktop;
+x-scheme-handler/terminal=org.wezfurlong.wezterm.desktop;
 x-scheme-handler/webcal=google-chrome.desktop
+x-scheme-handler/slack=Slack.desktop;
