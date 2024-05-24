@@ -7,15 +7,15 @@ binary/octet-stream=firefox.desktop;vim.desktop;feh.desktop;
 text/javascript=nvim.desktop;
 video/mp4=mpv.desktop;
 video/x-matroska=vlc.desktop;mpv.desktop;
+
 [Default Applications]
-application.pdf=zathura.desktop;
 application/pdf=org.pwmt.zathura.desktop;
 application/sql=nvim.desktop;
 application/vnd.openxmlformats-officedocument.presentationml.presentation=libreoffice-impress.desktop;
-application/x-directory=ranger.desktop;
+application/x-directory=dolphin.desktop;
 image/jpeg=nsxiv.desktop;
 image/png=nsxiv.desktop;
-inode/directory=ranger.desktop;
+inode/directory=dolphin.desktop;
 x-scheme-handler/http=chromium.desktop;firefox.desktop;google-chrome.desktop;
 x-scheme-handler/https=chromium.desktop;firefox.desktop;google-chrome.desktop;
 x-scheme-handler/insomnia=insomnia.desktop;

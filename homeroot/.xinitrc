@@ -1,4 +1,6 @@
 # display settings
+(rm ~/.__localstate 2> /dev/null) &
+
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
 xrandr --dpi 96
@@ -7,8 +9,8 @@ xrandr --dpi 96
 # kglobalaccel5 &
 
 # turn on nulock
-sleep 5 && numlockx on &
-sleep 7 && pkill -SIGRTMIN+11 i3blocks &
+(sleep 5 && numlockx on) &
+# sleep 7 && pkill -SIGRTMIN+11 i3blocks &
 
 
 # turn off monitor in 5 minutes
@@ -16,15 +18,13 @@ xset dpms 0 300 400 &
 # disable screen saver
 xset s off &
 
-xrandr | rg --quiet "HDMI-0 connected"
+xrandr | rg --quiet "DP-0 connected"
 if [ $? = 0 ]; then
-    sleep 1 && xrandr --output eDP-1-1 --auto --right-of HDMI-0 --output HDMI-0 --primary &
+    # sleep 1 && xrandr --output eDP-1-1 --auto --right-of HDMI-0 --output HDMI-0 --primary &
+    sleep 1 && xrandr --output eDP-1-1 --auto --left-of DP-0 --output DP-0 --primary &
 else
     sleep 1 && xrandr --output eDP-1-1 --primary &
 fi
-
-# wallpapers
-(sleep 1 &&  zsh ~/.scripts/wallpaper.zsh) &
 
 # for transparency
 picom --config ~/.config/picom/picom.conf &
@@ -46,9 +46,11 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-rm ~/.__localstate &> /dev/null
 
 sxhkd &
+
+# wallpapers
+(sleep 4 && zsh ~/.scripts/wallpaper.zsh) &
 
 # exec startkde
 # exec /usr/bin/startplasma-x11

@@ -5,7 +5,7 @@ Name=ranger
 Comment=Launches the ranger file manager
 Icon=utilities-terminal
 Terminal=false
-Exec=alacritty -e /usr/bin/zsh --login -c "source ~/.zshrc; /usr/bin/ranger --selectfile=%u"
+# Exec=alacritty -e /usr/bin/zsh --login -c "source ~/.zshrc; /usr/bin/ranger --selectfile=%u"
 # Exec=alacritty -e /usr/bin/ranger --selectfile=%u
 # Exec=alacritty -e ranger --selectfile=%u
 # Exec=test -f %u && alacritty -e ranger --selectfile %u || alacritty -e ranger %u

@@ -11,6 +11,7 @@ $line_break\
 $username\
 $hostname\
 ${custom.ranger}\
+${custom.yazi}\
 $cmd_duration$jobs$shlvl$sudo$character"""
 
 right_format = """
@@ -65,6 +66,7 @@ read_only_style = 'green'
 disabled = false
 
 [aws]
+disabled = false
 format = '[$symbol$profile ]($style)'
 style = 'bold blue'
 symbol = '󰸏 '
@@ -94,7 +96,7 @@ format = '[$symbol$workspace $version]($style) '
 
 [kubernetes]
 format = '$symbol[$context]($style) '
-disabled = false
+disabled = true
 contexts = [
   { context_pattern = ".*744894293558.*/(?P<name>[a-z-_]+)$", context_alias = "PRD $name", style = "dimmed red", symbol = "🔴 " },
   { context_pattern = ".*437642595153.*/(?P<name>[a-z-_]+)$", context_alias = "QA $name", style = "green", symbol = "🟢 " },
@@ -140,9 +142,16 @@ files = ["Dockerfile", "docker-compose.yml", "docker-compose.yaml"]
 when = """ command -v docker &> /dev/null; exit (echo $?); """
 
 [custom.ranger]
+disabled = true
 description = "shows if you are in a Ranger shell"
 command = "echo 🤠"
 when = ''' test -n "${RANGER_LEVEL}" '''
+
+[custom.yazi]
+disabled = true
+description = "shows if you are in a Yazi shell"
+command = "echo 🦆"
+when = ''' test -n "${YAZI_LEVEL}" '''
 
 # from: https://github.com/starship/starship/discussions/1252#discussioncomment-7923685
 [custom.distrobox]
