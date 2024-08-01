@@ -27,7 +27,7 @@ for f in $files; do
     printf "📸  %03d / %03d >  from $c1[%5s]$nc: to " $cur $qtt $size
 
     cur=$(($cur + 1))
-    convert -resize 40% $f ${new_file}
+    magick "$f" -resize 40% "${new_file}"
     new_size=$(du -h "${new_file}" | cut -f1)
     new_size_noh=$(du "${new_file}" | cut -f1)
     percent=$(echo "scale=2; $new_size_noh / $size_noh" | bc -l)

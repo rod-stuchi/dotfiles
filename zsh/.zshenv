@@ -23,6 +23,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --no-messages --fol
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--bind 'ctrl-a:select-all+accept'"
 export FZF_DEFAULT_OPTS='--color fg+:190,bg+:235,hl:210,hl+:208,pointer:208,marker:202 --border --margin=1 --padding=1 --info=inline --pointer=" " --marker="→"'
+export FZF_ALT_C_COMMAND='fd --type=d --hidden --strip-cwd-prefix --exclude .git'
 # }}}
 
 # {{{ GOLANG

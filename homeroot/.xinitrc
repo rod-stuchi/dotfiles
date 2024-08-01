@@ -1,6 +1,14 @@
-# display settings
 (rm ~/.__localstate 2> /dev/null) &
 
+# https://github.com/dunst-project/dunst/issues/1112#issuecomment-1254645747
+systemd --user import-environment DISPLAY XAUTHORITY &
+# https://github.com/dunst-project/dunst/issues/633#issuecomment-495992147
+export $(dbus-launch)
+
+# update dbus address for interaction with AwesomeWM
+/home/rods/develop/playwright/xe.com/update_dbus_address.sh &
+
+# display settings
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
 xrandr --dpi 96
@@ -27,7 +35,7 @@ else
 fi
 
 # for transparency
-picom --config ~/.config/picom/picom.conf &
+# picom --config ~/.config/picom/picom.conf &
 
 # enable pulseaudio at start
 # sleep 5 && systemctl --user restart pulseaudio.service && notify-send -t 500 -u low "pulseaudio OK" &
@@ -54,8 +62,8 @@ sxhkd &
 
 # exec startkde
 # exec /usr/bin/startplasma-x11
-# exec i3
 # exec dwm
+# exec i3
 exec awesome
 
 # xinput disable "UNIW0001:00 093A:1336 Touchpad" # disabled via modprobe blacklist

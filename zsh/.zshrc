@@ -409,7 +409,7 @@ lazyload sqlmap.py -- '
 
 #{{{ WORKAROUND
 if [ ! -f ~/.__localstate ]; then
-  systemctl --user restart dunst.service 
+  # systemctl --user restart dunst.service 
   notify-send send -t 500 "dunst ok"
   xmodmap ~/.Xmodmap &> /dev/null
   touch .__localstate
