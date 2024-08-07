@@ -1,6 +1,6 @@
 [Added Associations]
 application/octet-stream=nvim.desktop;
-application/pdf=zathura-3.desktop;org.pwmt.zathura.desktop;
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;okularApplication_pdf.desktop;
 application/text=firefox.desktop;
 application/x-zip=nvim.desktop;
 binary/octet-stream=firefox.desktop;vim.desktop;feh.desktop;
@@ -9,7 +9,7 @@ video/mp4=mpv.desktop;
 video/x-matroska=vlc.desktop;mpv.desktop;
 
 [Default Applications]
-application/pdf=zathura-3.desktop;
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;okularApplication_pdf.desktop;
 application/sql=nvim.desktop;
 application/vnd.openxmlformats-officedocument.presentationml.presentation=libreoffice-impress.desktop;
 application/x-directory=dolphin.desktop;
@@ -23,4 +23,3 @@ x-scheme-handler/mailto=chromium.desktop;
 x-scheme-handler/msteams=teams.desktop;
 x-scheme-handler/terminal=org.wezfurlong.wezterm.desktop;
 x-scheme-handler/webcal=google-chrome.desktop
-x-scheme-handler/slack=Slack.desktop;
