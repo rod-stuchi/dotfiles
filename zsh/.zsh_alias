@@ -104,7 +104,7 @@ alias    key-intl="setxkbmap -rules evdev -model evdev -layout us -variant intl;
 alias    key-nointl="setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl; rm ~/.__localstate"
 
 alias imgcat="wezterm imgcat --height=20"
-alias pipe-top='top -p $(pgrep -a "pipe|plumb|pulse" | cut -d" " -f1 | paste -sd ',')'
+alias pipe-top='top -p $(pgrep -a "pipe|plumb|pulse|easyeffect|qpwgraph" | cut -d" " -f1 | paste -sd ',')'
 # adb tcpip 5555; adb connect 192.168.0.101:5555
 alias myphone="scrcpy --shortcut-mod=lctrl -S"
 
