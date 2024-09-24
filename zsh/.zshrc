@@ -426,6 +426,7 @@ source ~/.scripts/zoxide.sh
 
 # completion AWS-CLI
 complete -C '/home/rods/.aws/bin/v2/current/bin/aws_completer' aws
+complete -C '/home/rods/.aws/bin/v2/current/bin/aws_completer' awslocal
 
 # completion kubectl
 source <(kubectl completion zsh)
@@ -434,6 +435,7 @@ source <(kubectl completion zsh)
 complete -o nospace -C /home/rods/.local/bin/terraform terraform
 
 eval "$(starship init zsh)"
+eval "$(direnv hook zsh)"
 
 function yy() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"

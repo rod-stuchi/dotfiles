@@ -96,6 +96,8 @@ balias   xc="xclip -sel clip"
 balias   xcp="xclip -sel clip -t image/png -o > xclip.\$(date --iso-8601=seconds | tr ':' '.' | cut -d'-' -f1-3).png"
 balias   pwmysql="pwgen -sBy1 -r\\\/\@\'\\\" 40"
 balias   vimo="NVIM_APPNAME=nvim-old nvim "
+balias   kill-media="pkill chrome; pkill slack; pkill qpwgraph; pkill easyeffect; pkill firefox;"
+balias   start-media="easyeffects --gapplication-service & disown; qpwgraph & disown; qpwgraph & disown;"
 
 # https://bbs.archlinux.org/viewtopic.php?pid=1904807#p1904807
 # await for tick
