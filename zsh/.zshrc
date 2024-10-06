@@ -434,6 +434,9 @@ source <(kubectl completion zsh)
 # completion terraform
 complete -o nospace -C /home/rods/.local/bin/terraform terraform
 
+# completion for Hugo
+source <(hugo completion zsh)
+
 eval "$(starship init zsh)"
 eval "$(direnv hook zsh)"
 

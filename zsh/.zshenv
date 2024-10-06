@@ -115,6 +115,10 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 [ -x "$(command -v rg)" ] && export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 # }}}
 
+# {{{ RUBY
+export PATH=$PATH:$HOME/.gem/ruby/3.2.0/bin
+# }}}
+
 # {{{ RUST
 . "$HOME/.cargo/env"
 export PATH=$PATH:$HOME/.cargo/bin

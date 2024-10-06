@@ -379,11 +379,11 @@ bind DC send-keys -R \; clear-history
 unbind -T copy-mode-vi MouseDragEnd1Pane
 
 # auto layouts
-bind-key -n F1 select-layout even-vertical
-bind-key -n F2 select-layout even-horizontal
-bind-key -n F3 select-layout tiled
-bind-key -n F4 select-layout main-vertical
-bind-key -n F5 select-layout main-horizontal
+# bind-key -n F1 select-layout even-vertical
+# bind-key -n F2 select-layout even-horizontal
+# bind-key -n F3 select-layout tiled
+# bind-key -n F4 select-layout main-vertical
+# bind-key -n F5 select-layout main-horizontal
 
 # move window
 bind -n -r S-M-Left swap-window -t -1 \; select-window -t -1
@@ -416,6 +416,7 @@ bind C-Space send-prefix
 #set -g status-position top
 
 # Programs
+# bind-key "t" run "tty-clock -cs"
 bind o neww -n 'ranger' 'ranger'
 bind u run ~/dotfiles/tmux/plugins/tmux-url-select/tmux-url-select.pl
 
