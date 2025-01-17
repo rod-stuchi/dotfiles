@@ -12,3 +12,4 @@ export RODS=dotprofile
 
 # by tzselect
 TZ='America/Sao_Paulo'; export TZ
+. "/home/rods/.deno/env"

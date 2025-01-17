@@ -60,6 +60,7 @@ ialias   k="kubectl"
 ialias   zj="zellij --layout=no-tip"
 # https://rtyley.github.io/bfg-repo-cleaner/
 ialias   bfg="java -jar ~/.local/java/bfg-1.14.0.jar"
+ialias   uv-source="source ~/tmp/python-uv/.venv/bin/activate"
 
 alias    gst="git status"
 alias    ga="git add"
@@ -78,6 +79,7 @@ balias   gcms="git commit -m \""
 balias   gcm="git commit"
 alias    glb="git log --graph --oneline --branches"
 alias    gll="git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+balias   gllall="git log --pretty=fuller --date=iso8601-local"
 
 alias    {df,DF}='df -Th'
 alias    {distro,DISTRO}='cat /etc/[A-Za-z]*[_-][rv]e[lr]* ; print "Kernel $(uname -r)"'
@@ -99,6 +101,11 @@ balias   vimo="NVIM_APPNAME=nvim-old nvim "
 balias   kill-media="pkill chrome; pkill slack; pkill qpwgraph; pkill easyeffect; pkill firefox;"
 balias   start-media="easyeffects --gapplication-service & disown; qpwgraph & disown; qpwgraph & disown"
 balias   q4-proxy="socat TCP-LISTEN:44315,fork TCP:192.168.2.65:44415"
+balias   pitoquelo="rfkill unblock all && sleep 0.8 && sudo netctl start wlo1-ASUS"
+balias   k-swhkd="pkill -HUP swhkd"
+balias   wprop="sleep 2; swaymsg -t get_tree | jq -r '..|try select(.focused == true)'"
+balias   mirror='wl-mirror "$(swaymsg -t get_outputs | jq -r '\''.. | try select(.name | contains("HEADLESS")) | .name'\'')" & disown'
+balias   kde-settings="env XDG_CURRENT_DESKTOP=kde QT_STYLE_OVERRIDE=kvantum systemsettings"
 
 # https://bbs.archlinux.org/viewtopic.php?pid=1904807#p1904807
 # await for tick

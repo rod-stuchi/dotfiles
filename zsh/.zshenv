@@ -124,6 +124,21 @@ export PATH=$PATH:$HOME/.gem/ruby/3.2.0/bin
 export PATH=$PATH:$HOME/.cargo/bin
 # }}}
 
+# {{{ SWAY / Wayland
+export GTK_IM_MODULE=cedilla
+export QT_IM_MODULE=cedilla
+export QT_QPA_PLATFORM=wayland
+export MOZ_ENABLE_WAYLAND=1
+export MOZ_WEBRENDER=1
+export TERM=wezterm
+export TERMINAL=wezterm
+export XDG_SESSION_TYPE=wayland
+export XDG_CURRENT_DESKTOP=sway
+export QT_STYLE_OVERRIDE=kvantum
+export GTK_THEME=Orchis-Dark-Compact
+export XDG_PICTURES_DIR=$HOME/tmp/screenshots
+# }}}
+
 # {{{ ZELLIJ
 export ZELLIJ_CONFIG_DIR=$HOME/.config/zellij/
 # }}}

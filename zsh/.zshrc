@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/home/rods/.zsh/completions:"* ]]; then export FPATH="/home/rods/.zsh/completions:$FPATH"; fi
 # vim: fdm=marker foldcolumn=3 et ts=2 sts=2 sw=2 ai relativenumber number ft=sh
 
 # {{{ inspirited by 
@@ -405,15 +407,17 @@ lazyload sqlmap.py -- '
 # personal exports (like zoxide)
 [ -f $HOME/.personal_exports ] && source $HOME/.personal_exports
 
+# deno
+source "/home/rods/.deno/env"
 #}}}
 
-#{{{ WORKAROUND
-if [ ! -f ~/.__localstate ]; then
-  # systemctl --user restart dunst.service 
-  notify-send send -t 500 "dunst ok"
-  xmodmap ~/.Xmodmap &> /dev/null
-  touch .__localstate
-fi
+#{{{ WORKAROUND X11
+# if [ ! -f ~/.__localstate ]; then
+#   # systemctl --user restart dunst.service 
+#   notify-send send -t 500 "dunst ok"
+#   xmodmap ~/.Xmodmap &> /dev/null
+#   touch .__localstate
+# fi
 #}}}
 
 autoload -U +X bashcompinit && bashcompinit
@@ -424,21 +428,63 @@ autoload -U +X bashcompinit && bashcompinit
 # version 0.9.2 is working
 source ~/.scripts/zoxide.sh
 
-# completion AWS-CLI
-complete -C '/home/rods/.aws/bin/v2/current/bin/aws_completer' aws
-complete -C '/home/rods/.aws/bin/v2/current/bin/aws_completer' awslocal
+# ................. aws ................
+_aws_completion_setup() {
+  echo "Loading aws completions..."
+  complete -C '/home/rods/.aws/bin/v2/current/bin/aws_completer' aws
+  unfunction _aws_completion_setup
+}
+compdef _aws_completion_setup aws
 
-# completion kubectl
-source <(kubectl completion zsh)
+# ............... awslocal .............
+_awslocal_completion_setup() {
+  echo "Loading awslocal completions..."
+  complete -C '/home/rods/.aws/bin/v2/current/bin/aws_completer' awslocal
+  unfunction _awslocal_completion_setup
+}
+compdef _awslocal_completion_setup awslocal
 
-# completion terraform
-complete -o nospace -C /home/rods/.local/bin/terraform terraform
+# .............. kubectl ...............
+_kubectl_completion_setup() {
+  echo "Loading kubectl completions..."
+  source <(kubectl completion zsh)
+  unfunction _kubectl_completion_setup
+}
+compdef _kubectl_completion_setup kubectl
 
-# completion for Hugo
-source <(hugo completion zsh)
+# ................. uv .................
+_uv_completion_setup() {
+  echo "Loading uv completions..."
+  eval "$(uv generate-shell-completion zsh)"
+  unfunction _uv_completion_setup
+}
+compdef _uv_completion_setup uv
+
+# ................ hugo ................
+_hugo_completion_setup() {
+  echo "Loading hugo completions..."
+  source <(hugo completion zsh)
+  unfunction _hugo_completion_setup
+}
+compdef _hugo_completion_setup hugo
+
+# .............. terraform .............
+_terraform_completion_setup() {
+  echo "Loading terraform completions..."
+  complete -o nospace -C /home/rods/.local/bin/terraform terraform
+  unfunction _terraform_completion_setup
+}
+compdef _terraform_completion_setup terraform
+
+
 
 eval "$(starship init zsh)"
 eval "$(direnv hook zsh)"
+
+
+function export-openai() {
+    export OPENAI_API_KEY=$(gpg -qd /disks/Vault/Secret_Files/openai.gpg)
+}
 
 function yy() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
