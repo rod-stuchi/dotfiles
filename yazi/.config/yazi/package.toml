@@ -1,0 +1,5 @@
+[plugin]
+deps = [{ use = "yazi-rs/plugins:hide-preview", rev = "600614a" }, { use = "dedukun/relative-motions", rev = "df97039" }, { use = "yazi-rs/plugins:max-preview", rev = "600614a" }, { use = "yazi-rs/plugins:smart-filter", rev = "600614a" }, { use = "dedukun/bookmarks", rev = "5116df5" }]
+
+[flavor]
+deps = [{ use = "dangooddd/kanagawa", rev = "240194c" }]

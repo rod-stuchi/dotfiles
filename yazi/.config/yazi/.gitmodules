@@ -1,0 +1,6 @@
+[submodule "flavors/onedark.yazi"]
+	path = flavors/onedark.yazi
+	url = https://github.com/BennyOe/onedark.yazi.git
+[submodule "plugins/relative-motions.yazi"]
+	path = plugins/relative-motions.yazi
+	url = https://github.com/dedukun/relative-motions.yazi
