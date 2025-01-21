@@ -1,5 +1,7 @@
 [include]
+    # linux path
     path = /disks/Vault/Secret_Files/user-gitconfig
+    # macos path
     path = /Volumes/VeraCrypt/Secret_Files/user-gitconfig
 
 
