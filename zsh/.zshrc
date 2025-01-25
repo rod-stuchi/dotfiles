@@ -1,5 +1,3 @@
-# Add deno completions to search path
-if [[ ":$FPATH:" != *":/home/rods/.zsh/completions:"* ]]; then export FPATH="/home/rods/.zsh/completions:$FPATH"; fi
 # vim: fdm=marker foldcolumn=3 et ts=2 sts=2 sw=2 ai relativenumber number ft=sh
 
 # {{{ inspirited by 
@@ -14,7 +12,6 @@ autoload -U colors
 colors
 
 zmodload zsh/complist
-
 
 autoload -U compinit
 compinit -u
@@ -65,7 +62,6 @@ setopt PROMPT_SUBST
 setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_SILENT
 setopt SHARE_HISTORY
-
 
 # vi mode
 bindkey -v

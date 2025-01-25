@@ -1,3 +1,6 @@
+# vim: fdm=marker foldcolumn=3 et ts=2 sts=2 sw=2 ai relativenumber number ft=sh
+
+# {{{ function to expand, background
 # https://blog.sebastian-daschner.com/entries/zsh-aliases
 # blank aliases
 
@@ -40,84 +43,100 @@ background() {
     ${@[1]} ${@[$i]} &> /dev/null &
   done
 }
+# }}}
 
-# blank aliases, without trailing whitespace
-balias clh='curl localhost:'
+case "$(uname)" in
+  "Darwin")
+    # {{{ MacOS specific aliases
+    alias mount-avell-home="sshfs rods@avell-rods:/home/rods Rods"
+    # }}}
+    ;;
+  "Linux")
+    # {{{ Linux specific aliases
+    balias xc="xclip -sel clip"
+    balias xcp="xclip -sel clip -t image/png -o > xclip.\$(date --iso-8601=seconds | tr ':' '.' | cut -d'-' -f1-3).png"
+    balias pwmysql="pwgen -sBy1 -r\\\/\@\'\\\" 40"
+    balias vimo="NVIM_APPNAME=nvim-old nvim "
+    balias kill-media="pkill chrome; pkill slack; pkill qpwgraph; pkill easyeffect; pkill firefox;"
+    balias start-media="easyeffects --gapplication-service & disown; qpwgraph & disown; qpwgraph & disown"
+    balias q4-proxy="socat TCP-LISTEN:44315,fork TCP:192.168.2.65:44415"
+    balias pitoquelo="rfkill unblock all && sleep 0.8 && sudo netctl start wlo1-ASUS"
+    balias k-swhkd="pkill -HUP swhkd"
+    balias wprop="sleep 2; swaymsg -t get_tree | jq -r '..|try select(.focused == true)'"
+    balias mirror='wl-mirror "$(swaymsg -t get_outputs | jq -r '\''.. | try select(.name | contains("HEADLESS")) | .name'\'')" & disown'
+    balias kde-settings="env XDG_CURRENT_DESKTOP=kde QT_STYLE_OVERRIDE=kvantum systemsettings"
+
+    alias ss="sudo ss -tulpn"
+    # https://bbs.archlinux.org/viewtopic.php?pid=1904807#p1904807
+    # await for tick
+    alias key-intl="setxkbmap -rules evdev -model evdev -layout us -variant intl; rm ~/.__localstate"
+    # no await, quote and double-quote
+    alias key-nointl="setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl; rm ~/.__localstate"
+    alias {distro,DISTRO}='cat /etc/[A-Za-z]*[_-][rv]e[lr]* ; print "Kernel $(uname -r)"'
+    alias pipe-top='top -p $(pgrep -a "pipe|plumb|pulse|easyeffect|qpwgraph" | cut -d" " -f1 | paste -sd ',')'
+    # adb tcpip 5555; adb connect 192.168.0.101:5555
+    alias myphone="scrcpy --shortcut-mod=lctrl -S"
+
+    alias serviio='/disks/2TB/apps-linux/serviio/serviio-2.0/bin/serviio.sh'
+
+    # https://rtyley.github.io/bfg-repo-cleaner/
+    ialias   bfg="java -jar ~/.local/java/bfg-1.14.0.jar"
+    ialias   uv-source="source ~/tmp/python-uv/.venv/bin/activate"
+    # }}}
+    ;;
+esac
+
+# {{{ list
+alias ls="eza"
+alias l1="eza -1"
+alias ll="eza -l"
+alias lla="eza -la"
+alias lss="eza --icons -lh -s=Extension"
+# }}}
+
+# {{{ nvim
+alias vim="nvim"
+alias vi="nvim"
+alias v="nvim" 
+# }}}
+
+# {{{ git
+alias gst="git status"
+alias ga="git add"
+alias gau="git add -u"
+alias gco="git checkout"
+alias gsm="git switch master"
+alias gsw="git switch"
+alias gd="git diff"
+alias gdca="git diff --cached"
+alias gdi="git diff ':(exclude)yarn.lock' ':(exclude)package-lock.json'"
+alias gdcai="git diff --cached ':(exclude)yarn.lock' ':(exclude)package-lock.json'"
+alias gp="git push"
+alias grc="git rebase --continue"
+alias gpp="git pull --prune"
+alias glb="git log --graph --oneline --branches"
+alias gll="git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+balias gcms="git commit -m \""
+balias gcm="git commit"
+balias gllall="git log --pretty=fuller --date=iso8601-local"
+# }}}
+
+alias -s {html,HTML}='background chromium'# {{{
+alias -s {pdf,PDF}='background zathura'# }}}
 
 # "ignored" aliases, not expanded
-ialias   ls="ls --color=always"
-ialias   lss="eza --icons -lh -s=Extension"
-ialias   ll="ls -lh --color=always"
-ialias   lla="ls -lha --color=always"
-ialias   z="__empty 2>&1" # it just to avoid expansion of zoxide (z) command
-ialias   zi="__empty 2>&1" # it just to avoid expansion of zoxide (zi) command
-ialias   j="zjump"
-ialias   vim="nvim"
-ialias   vi="nvim"
-ialias   r="ranger"
-ialias   bc="bc -l"
-ialias   k="kubectl"
-ialias   zj="zellij --layout=no-tip"
-# https://rtyley.github.io/bfg-repo-cleaner/
-ialias   bfg="java -jar ~/.local/java/bfg-1.14.0.jar"
-ialias   uv-source="source ~/tmp/python-uv/.venv/bin/activate"
+ialias z="__empty 2>&1" # it just to avoid expansion of zoxide (z) command
+ialias zi="__empty 2>&1" # it just to avoid expansion of zoxide (zi) command
+ialias j="zjump"
+ialias bc="bc -l"
+ialias k="kubectl"
+ialias zj="zellij --layout=no-tip"
 
-alias    gst="git status"
-alias    ga="git add"
-alias    gau="git add -u"
-alias    gco="git checkout"
-alias    gsm="git switch master"
-alias    gsw="git switch"
-alias    gd="git diff"
-alias    gdca="git diff --cached"
-alias    gdi="git diff ':(exclude)yarn.lock' ':(exclude)package-lock.json'"
-alias    gdcai="git diff --cached ':(exclude)yarn.lock' ':(exclude)package-lock.json'"
-alias    gp="git push"
-alias    grc="git rebase --continue"
-alias    gpp="git pull --prune"
-balias   gcms="git commit -m \""
-balias   gcm="git commit"
-alias    glb="git log --graph --oneline --branches"
-alias    gll="git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-balias   gllall="git log --pretty=fuller --date=iso8601-local"
+alias {df,DF}='df -Th'
 
-alias    {df,DF}='df -Th'
-alias    {distro,DISTRO}='cat /etc/[A-Za-z]*[_-][rv]e[lr]* ; print "Kernel $(uname -r)"'
-
-alias -s {html,HTML}='background chromium'
-alias -s {pdf,PDF}='background zathura'
-
-alias    serviio='/disks/2TB/apps-linux/serviio/serviio-2.0/bin/serviio.sh'
-
-alias    t="trans en:pt --speak "
-alias    p="trans pt:en "
-
-alias    ss="sudo ss -tulpn"
-
-balias   xc="xclip -sel clip"
-balias   xcp="xclip -sel clip -t image/png -o > xclip.\$(date --iso-8601=seconds | tr ':' '.' | cut -d'-' -f1-3).png"
-balias   pwmysql="pwgen -sBy1 -r\\\/\@\'\\\" 40"
-balias   vimo="NVIM_APPNAME=nvim-old nvim "
-balias   kill-media="pkill chrome; pkill slack; pkill qpwgraph; pkill easyeffect; pkill firefox;"
-balias   start-media="easyeffects --gapplication-service & disown; qpwgraph & disown; qpwgraph & disown"
-balias   q4-proxy="socat TCP-LISTEN:44315,fork TCP:192.168.2.65:44415"
-balias   pitoquelo="rfkill unblock all && sleep 0.8 && sudo netctl start wlo1-ASUS"
-balias   k-swhkd="pkill -HUP swhkd"
-balias   wprop="sleep 2; swaymsg -t get_tree | jq -r '..|try select(.focused == true)'"
-balias   mirror='wl-mirror "$(swaymsg -t get_outputs | jq -r '\''.. | try select(.name | contains("HEADLESS")) | .name'\'')" & disown'
-balias   kde-settings="env XDG_CURRENT_DESKTOP=kde QT_STYLE_OVERRIDE=kvantum systemsettings"
-
-# https://bbs.archlinux.org/viewtopic.php?pid=1904807#p1904807
-# await for tick
-alias    key-intl="setxkbmap -rules evdev -model evdev -layout us -variant intl; rm ~/.__localstate"
-# no await, quote and double-quote
-alias    key-nointl="setxkbmap -rules evdev -model evdev -layout us -variant altgr-intl; rm ~/.__localstate"
+alias t="trans en:pt --speak "
+alias p="trans pt:en "
 
 alias imgcat="wezterm imgcat --height=20"
-alias pipe-top='top -p $(pgrep -a "pipe|plumb|pulse|easyeffect|qpwgraph" | cut -d" " -f1 | paste -sd ',')'
-# adb tcpip 5555; adb connect 192.168.0.101:5555
-alias myphone="scrcpy --shortcut-mod=lctrl -S"
 
-
-# docker
 alias docker_ps="docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}\t{{.State}}'"
