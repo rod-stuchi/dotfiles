@@ -4,10 +4,10 @@
 
 
 case "$(uname)" in
-  "Darwin")
-    # {{{ MacOS specific exports
-    # }}}
-    ;;
+  # "Darwin")
+  #   # {{{ MacOS specific exports
+  #   # }}}
+  #   ;;
   "Linux")
     # {{{ Linux specific exports
     #{{{ FLUTTER
@@ -68,6 +68,11 @@ case "$(uname)" in
     export GTK_THEME=Orchis-Dark-Compact
     export XDG_PICTURES_DIR=$HOME/tmp/screenshots
     # }}}
+
+    # {{{ WEZTERM
+    export TERM=wezterm
+    # }}}
+    #
     # }}}
     ;;
 esac
@@ -151,8 +156,9 @@ export LESS=-XRFiS                     # colors, do not clear on exit, exit if f
 # }}}
 
 # {{{ RUST
-if [ -d "$HOME/.cargo" ]; then
-. "$HOME/.cargo/env"
+if [[ -d "$HOME/.cargo" ]]; then
+  . "$HOME/.cargo/env"
+fi
 # }}}
 
 # {{{ ZELLIJ
@@ -163,15 +169,14 @@ if [ -d "$HOME/.cargo" ]; then
 export LISTMAX=-1
 export HISTSIZE=50000
 export SAVEHIST=30000
-export HISTFILE=~/.history
+export HISTFILE=$HOME/.history
 
-fpath=(~/dotfiles/zsh/plugins/zsh-completions/src/ $fpath)
-fpath=(~/github/zsh/wd/ $fpath)
-fpath=(~/.scripts/ $fpath)
-fpath=(~/.local/zsh_completion/ $fpath)
-# Add deno completions to search path
-if [[ ":$FPATH:" != *":/home/rods/.zsh/completions:"* ]]; then export FPATH="/home/rods/.zsh/completions:$FPATH"; fi
-
+fpath=($HOME/dotfiles/zsh/plugins/zsh-completions/src/ $fpath)
+fpath=($HOME/github/zsh/wd/ $fpath)
+fpath=($HOME/.scripts/ $fpath)
+fpath=($HOME/.local/zsh_completion/ $fpath)
+# completions for deno (need to be generated)
+fpath=($HOME/.zsh/completions/ $fpath)
 
 # You may have to force rebuild `zcompdump`:
 #    rm -f ~/.zcompdump; compinit
@@ -192,6 +197,3 @@ ZSH_HIGHLIGHT_REGEXP+=('\b(vim|vi|nvim)\b' fg=#ece600,bold)
 ZSH_HIGHLIGHT_HIGHLIGHTERS+=(main pattern brackets regexp)
 # }}}
 
-# {{{ WEZTERM
-export TERM=wezterm
-# }}}

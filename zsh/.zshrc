@@ -1,5 +1,8 @@
 # vim: fdm=marker foldcolumn=3 et ts=2 sts=2 sw=2 ai relativenumber number ft=sh
 
+# for debugging performance issues
+# zmodload zsh/zprof
+
 # {{{ inspirited by 
 # https://github.com/wincent/wincent/blob/master/roles/dotfiles/files/.zshrc
 # https://gist.github.com/LukeSmithxyz/e62f26e55ea8b0ed41a65912fbebbe52
@@ -333,6 +336,7 @@ if [ -e /etc/motd ]; then
 fi
 # }}}
 
+
 #{{{ SOURCES 
 [ -d /home/rods/.yarn/bin ] && export PATH=$HOME/.yarn/bin:$PATH
 # bin for python `pip install --user`
@@ -352,77 +356,69 @@ function cc {
 }
 export cc
 
-# d1=`date +%N`
-source ~/.fzf.zsh
+source <(fzf --zsh)
 source ~/dotfiles/zsh/plugins/fzf-tab/fzf-tab.zsh
 source ~/dotfiles/zsh/plugins/zsh-easy-motion/easy_motion.plugin.zsh
 bindkey -M vicmd ' ' vi-easy-motion
 source ~/.zsh_alias
-source ~/.scripts/utils.zsh
-source ~/.scripts/k8s.zsh
-source ~/.scripts/git-funcs.zsh
-source ~/.scripts/docker.zsh
-source ~/.scripts/movie.zsh
-source ~/.scripts/qr.zsh
-source ~/.scripts/android.sh
-source ~/VPN/CyberGhost/vpn.sh
-# d2=`date +%N`
-# echo -n ".scripts: "
-# echo "(${d2} - ${d1}) / 1000" | bc
 
-# d1=`date +%N`
+if [[ -d "$HOME/.scripts/" ]]; then
+  source "$HOME/.scripts/utils.zsh"
+  source "$HOME/.scripts/k8s.zsh"
+  source "$HOME/.scripts/git-funcs.zsh"
+  source "$HOME/.scripts/docker.zsh"
+  source "$HOME/.scripts/movie.zsh"
+  source "$HOME/.scripts/qr.zsh"
+  source "$HOME/.scripts/android.sh"
+fi
+if [[ -d "$HOME/VPN/" ]]; then
+  source "$HOME/VPN/CyberGhost/vpn.sh"
+fi
+
 wd() {
   source ~/dotfiles/zsh/plugins/wd/wd.sh
 }
-source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/dotfiles/zsh/plugins/zsh-lazyload/zsh-lazyload.zsh
-
-# d2=`date +%N`
-# echo -n ".others: "
-# echo "(${d2} - ${d1}) / 1000" | bc
 
 lazyload rvm -- '
   export PATH="$PATH:$HOME/.rvm/bin"
   [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 '
 
-lazyload nvm -- '
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-'
+if [[ "$(uname)" == "Linux" ]]; then
+  lazyload nvm -- '
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+  '
+fi
+if [[ "$(uname)" == "Darwin" ]]; then
+  lazyload nvm -- '
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+    [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+  '
+fi
 
 lazyload r.aws -- '
   [ -s "$HOME/.scripts/aws.zsh" ] && source "$HOME/.scripts/aws.zsh"
 '
 
 lazyload sqlmap.py -- '
-[ -d $HOME/github/sqlmap ] && export PATH=$PATH:$HOME/github/sqlmap
-
+  [ -d $HOME/github/sqlmap ] && export PATH=$PATH:$HOME/github/sqlmap
 '
+
 # personal exports (like zoxide)
 [ -f $HOME/.personal_exports ] && source $HOME/.personal_exports
 
 # deno
-source "/home/rods/.deno/env"
-#}}}
-
-#{{{ WORKAROUND X11
-# if [ ! -f ~/.__localstate ]; then
-#   # systemctl --user restart dunst.service 
-#   notify-send send -t 500 "dunst ok"
-#   xmodmap ~/.Xmodmap &> /dev/null
-#   touch .__localstate
-# fi
+if [[ -f "$HOME/.deno/env" ]]; then
+  source "$HOME/.deno/env"
+fi
 #}}}
 
 autoload -U +X bashcompinit && bashcompinit
-
-# # zoxide
-# autoload -Uz compinit
-# eval "$(zoxide init zsh)"
-# version 0.9.2 is working
-source ~/.scripts/zoxide.sh
 
 # ................. aws ................
 _aws_completion_setup() {
@@ -472,14 +468,17 @@ _terraform_completion_setup() {
 }
 compdef _terraform_completion_setup terraform
 
-
-
+eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 eval "$(direnv hook zsh)"
 
-
 function export-openai() {
+  if [[ "$(uname)" == "Linux" ]]; then
     export OPENAI_API_KEY=$(gpg -qd /disks/Vault/Secret_Files/openai.gpg)
+  fi
+  if [[ "$(uname)" == "Darwin" ]]; then
+    export OPENAI_API_KEY=$(gpg -qd /Volumes/VeraCrypt/Secret_Files/openai.gpg)
+  fi
 }
 
 function yy() {
@@ -490,3 +489,6 @@ function yy() {
   fi
   rm -f -- "$tmp"
 }
+
+# for debugging performance issues
+# zprof

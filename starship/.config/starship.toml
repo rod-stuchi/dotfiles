@@ -23,6 +23,7 @@ $golang\
 $lua\
 $kubernetes\
 $rust\
+$ruby\
 $aws"""
 
 [git_commit]

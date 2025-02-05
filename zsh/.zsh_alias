@@ -49,6 +49,7 @@ case "$(uname)" in
   "Darwin")
     # {{{ MacOS specific aliases
     alias mount-avell-home="sshfs rods@avell-rods:/home/rods Rods"
+    alias python=python3
     # }}}
     ;;
   "Linux")
@@ -121,12 +122,10 @@ balias gcm="git commit"
 balias gllall="git log --pretty=fuller --date=iso8601-local"
 # }}}
 
-alias -s {html,HTML}='background chromium'# {{{
-alias -s {pdf,PDF}='background zathura'# }}}
+alias -s {html,HTML}='background chromium'
+alias -s {pdf,PDF}='background zathura'
 
 # "ignored" aliases, not expanded
-ialias z="__empty 2>&1" # it just to avoid expansion of zoxide (z) command
-ialias zi="__empty 2>&1" # it just to avoid expansion of zoxide (zi) command
 ialias j="zjump"
 ialias bc="bc -l"
 ialias k="kubectl"
