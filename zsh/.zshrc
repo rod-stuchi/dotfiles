@@ -420,21 +420,23 @@ fi
 
 autoload -U +X bashcompinit && bashcompinit
 
-# ................. aws ................
-_aws_completion_setup() {
-  echo "Loading aws completions..."
-  complete -C '/home/rods/.aws/bin/v2/current/bin/aws_completer' aws
-  unfunction _aws_completion_setup
-}
-compdef _aws_completion_setup aws
+if [[ "$(uname)" == "Linux" ]]; then
+  # ................. aws ................
+  _aws_completion_setup() {
+    echo "Loading aws completions..."
+    complete -C '/home/rods/.aws/bin/v2/current/bin/aws_completer' aws
+    unfunction _aws_completion_setup
+  }
+  compdef _aws_completion_setup aws
 
-# ............... awslocal .............
-_awslocal_completion_setup() {
-  echo "Loading awslocal completions..."
-  complete -C '/home/rods/.aws/bin/v2/current/bin/aws_completer' awslocal
-  unfunction _awslocal_completion_setup
-}
-compdef _awslocal_completion_setup awslocal
+  # ............... awslocal .............
+  _awslocal_completion_setup() {
+    echo "Loading awslocal completions..."
+    complete -C '/home/rods/.aws/bin/v2/current/bin/aws_completer' awslocal
+    unfunction _awslocal_completion_setup
+  }
+  compdef _awslocal_completion_setup awslocal
+fi
 
 # .............. kubectl ...............
 _kubectl_completion_setup() {
@@ -478,6 +480,15 @@ function export-openai() {
   fi
   if [[ "$(uname)" == "Darwin" ]]; then
     export OPENAI_API_KEY=$(gpg -qd /Volumes/VeraCrypt/Secret_Files/openai.gpg)
+  fi
+}
+
+function export-anthropic() {
+  if [[ "$(uname)" == "Linux" ]]; then
+    export ANTHROPIC_API_KEY=$(gpg -qd /disks/Vault/Secret_Files/anthropic.gpg)
+  fi
+  if [[ "$(uname)" == "Darwin" ]]; then
+    export ANTHROPIC_API_KEY=$(gpg -qd /Volumes/VeraCrypt/Secret_Files/anthropic.gpg)
   fi
 }
 

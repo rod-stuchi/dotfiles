@@ -140,8 +140,8 @@ ialias zj="zellij --layout=no-tip"
 
 alias {df,DF}='df -Th'
 
-alias t="trans en:pt --speak "
-alias p="trans pt:en "
+alias t="trans -x 192.168.2.10:8099 en:pt --speak "
+alias p="trans -x 192.168.2.10:8099 pt:en "
 
 alias imgcat="wezterm imgcat --height=20"
 

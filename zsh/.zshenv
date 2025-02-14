@@ -4,12 +4,23 @@
 
 
 case "$(uname)" in
-  # "Darwin")
-  #   # {{{ MacOS specific exports
-  #   # }}}
-  #   ;;
+  "Darwin")
+    # {{{ MacOS specific exports
+    # AWSCLI completions
+    fpath=(/opt/homebrew/share/zsh/site-functions/_aws $fpath)
+
+    if [[ -f /Volumes/VeraCrypt/Secret_Files/load-envs-3 ]]; then
+      . /Volumes/VeraCrypt/Secret_Files/load-envs-3
+    fi
+    # }}}
+    ;;
   "Linux")
     # {{{ Linux specific exports
+
+    # {{{ AWS CLI
+    [ -f $HOME/.aws/bin/v2/current/bin/aws ] && export PATH=$PATH:$HOME/.aws/bin/v2/current/bin
+    # }}}
+
     #{{{ FLUTTER
     export PATH="$PATH:$HOME/flutter/bin"
     export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
@@ -72,15 +83,11 @@ case "$(uname)" in
     # {{{ WEZTERM
     export TERM=wezterm
     # }}}
-    #
+
     # }}}
     ;;
 esac
 
-
-# {{{ AWS CLI
-[ -f $HOME/.aws/bin/v2/current/bin/aws ] && export PATH=$PATH:$HOME/.aws/bin/v2/current/bin
-# }}}
 
 # EDITOR {{{
 export EDITOR=nvim
