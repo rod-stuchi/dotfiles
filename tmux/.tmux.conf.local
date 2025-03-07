@@ -452,9 +452,9 @@ set -g @thumbs-regexp-3 '[a-f0-9]{8}\.\.[a-f0-9]{8}' # git hash for diff
 set -g @thumbs-regexp-4 'dial-(?:adm|api|pwa)[a-z0-9-_]+' # Dialog kubernetes
 run-shell ~/dotfiles/tmux/plugins/tmux-thumbs/tmux-thumbs.tmux
 
-set -g @easy-motion-default-motion "bd-f"
-set -g @easy-motion-prefix "Space"
-run-shell ~/dotfiles/tmux/plugins/tmux-easy-motion/easy_motion.tmux
+# set -g @easy-motion-default-motion "bd-f"
+# set -g @easy-motion-prefix "Space"
+# run-shell ~/dotfiles/tmux/plugins/tmux-easy-motion/easy_motion.tmux
 
 # -- tpm -----------------------------------------------------------------------
 

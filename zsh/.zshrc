@@ -339,7 +339,7 @@ fi
 
 #{{{ SOURCES 
 [ -d /home/rods/.yarn/bin ] && export PATH=$HOME/.yarn/bin:$PATH
-# bin for python `pip install --user`
+
 [ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
 
 

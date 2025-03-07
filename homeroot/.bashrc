@@ -28,3 +28,4 @@ export PATH="$PATH:$HOME/.rvm/bin"
 complete -C /home/rods/.local/bin/terraform terraform
 . "$HOME/.cargo/env"
 . "/home/rods/.deno/env"
+. "$HOME/.local/bin/env"

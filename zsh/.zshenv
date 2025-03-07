@@ -12,6 +12,8 @@ case "$(uname)" in
     if [[ -f /Volumes/VeraCrypt/Secret_Files/load-envs-3 ]]; then
       . /Volumes/VeraCrypt/Secret_Files/load-envs-3
     fi
+
+    export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
     # }}}
     ;;
   "Linux")

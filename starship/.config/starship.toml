@@ -118,11 +118,12 @@ disabled = false
 
 [hostname]
 format = '[$ssh_symbol$hostname]($style) '
+aliases = { "Mac-JXYQ00X0QW" = "mpb-m4" }
 
 [username]
 format = '[$user]($style) '
 
-[character] 
+[character]
 success_symbol            = '[](bold green)'
 error_symbol              = '[](bold red)'
 vimcmd_symbol             = '[](bold green)'
