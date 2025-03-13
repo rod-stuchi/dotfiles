@@ -362,15 +362,14 @@ source ~/dotfiles/zsh/plugins/zsh-easy-motion/easy_motion.plugin.zsh
 bindkey -M vicmd ' ' vi-easy-motion
 source ~/.zsh_alias
 
-if [[ -d "$HOME/.scripts/" ]]; then
-  source "$HOME/.scripts/utils.zsh"
-  source "$HOME/.scripts/k8s.zsh"
-  source "$HOME/.scripts/git-funcs.zsh"
-  source "$HOME/.scripts/docker.zsh"
-  source "$HOME/.scripts/movie.zsh"
-  source "$HOME/.scripts/qr.zsh"
-  source "$HOME/.scripts/android.sh"
-fi
+[ -f "$HOME/.scripts/utils.zsh" ] && source "$HOME/.scripts/utils.zsh"
+[ -f "$HOME/.scripts/k8s.zsh" ] && source "$HOME/.scripts/k8s.zsh"
+[ -f "$HOME/.scripts/git-funcs.zsh" ] && source "$HOME/.scripts/git-funcs.zsh"
+[ -f "$HOME/.scripts/docker.zsh" ] && source "$HOME/.scripts/docker.zsh"
+[ -f "$HOME/.scripts/movie.zsh" ] && source "$HOME/.scripts/movie.zsh"
+[ -f "$HOME/.scripts/qr.zsh" ] && source "$HOME/.scripts/qr.zsh"
+[ -f "$HOME/.scripts/android.sh" ] && source "$HOME/.scripts/android.sh"
+
 if [[ -d "$HOME/VPN/" ]]; then
   source "$HOME/VPN/CyberGhost/vpn.sh"
 fi
