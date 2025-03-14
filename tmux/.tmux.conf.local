@@ -439,8 +439,8 @@ if-shell "uname | grep -q Linux" "set -g prefix C-Space; bind C-Space send-prefi
 
 # Programs
 # bind-key "t" run "tty-clock -cs"
-bind o neww -n 'ranger' 'ranger'
-bind u run ~/dotfiles/tmux/plugins/tmux-url-select/tmux-url-select.pl
+# bind o neww -n 'ranger' 'ranger'
+# bind u run ~/dotfiles/tmux/plugins/tmux-url-select/tmux-url-select.pl
 
 # PLUGINS
 set -g @thumbs-key \\

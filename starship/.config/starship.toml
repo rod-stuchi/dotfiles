@@ -103,6 +103,9 @@ contexts = [
   { context_pattern = ".*437642595153.*/(?P<name>[a-z-_]+)$", context_alias = "QA $name", style = "green", symbol = "🟢 " },
 ]
 
+[ruby]
+format = '[$symbol($version )]($style)'
+
 [rust]
 format = '[$symbol($version )]($style)'
 
