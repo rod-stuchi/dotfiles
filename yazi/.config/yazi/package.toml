@@ -1,5 +1,34 @@
-[plugin]
-deps = [{ use = "yazi-rs/plugins:hide-preview", rev = "600614a" }, { use = "dedukun/relative-motions", rev = "df97039" }, { use = "yazi-rs/plugins:max-preview", rev = "600614a" }, { use = "yazi-rs/plugins:smart-filter", rev = "600614a" }, { use = "dedukun/bookmarks", rev = "5116df5" }]
+[[plugin.deps]]
+use = "yazi-rs/plugins:hide-preview"
+rev = "600614a"
+hash = "5be5885898ca9df783bdec0d402bf4b0"
 
-[flavor]
-deps = [{ use = "dangooddd/kanagawa", rev = "240194c" }, { use = "yazi-rs/flavors:catppuccin-mocha", rev = "78d1d19" }]
+[[plugin.deps]]
+use = "dedukun/relative-motions"
+rev = "df97039"
+hash = "395940d2b22941e0acb1232579c9d4cf"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:max-preview"
+rev = "600614a"
+hash = "9bc26d10d2f6e2aa93b10905b1b76979"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-filter"
+rev = "600614a"
+hash = "ea24edab4a62c94dbd205adfb6f2c08d"
+
+[[plugin.deps]]
+use = "dedukun/bookmarks"
+rev = "5116df5"
+hash = "ef59fb468043af39f92a92496fd7b2f0"
+
+[[flavor.deps]]
+use = "dangooddd/kanagawa"
+rev = "240194c"
+hash = "6687890dce56d85f8708adaaa21a5e59"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-mocha"
+rev = "78d1d19"
+hash = "407710c2af9621a8351453e637d6c870"

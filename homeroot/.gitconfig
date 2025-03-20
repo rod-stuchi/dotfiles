@@ -1,7 +1,7 @@
 [include]
-    # linux path
+    # linux path for rod
     path = /disks/Vault/Secret_Files/user-gitconfig
-    # macos path
+    # macos path for rod
     path = /Volumes/VeraCrypt/Secret_Files/user-gitconfig
 
 
@@ -88,3 +88,15 @@
 
 [alias]
 	tag-date = log --tags --simplify-by-decoration --pretty=\"format:%ci %d\"
+
+# macos path apple
+[IncludeIf "gitdir:/Users/rods/dev/ns/**/.git"]
+    path = /Volumes/VeraCrypt/Secret_Files/gitconfig-1
+
+# macos path apple
+[IncludeIf "gitdir:/Users/rods/dev/mks/**/.git"]
+    path = /Volumes/VeraCrypt/Secret_Files/gitconfig-2
+
+# macos path apple
+[IncludeIf "gitdir:/Users/rods/dev/clmt/**/.git"]
+    path = /Volumes/VeraCrypt/Secret_Files/gitconfig-3

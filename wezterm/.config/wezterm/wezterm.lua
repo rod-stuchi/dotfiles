@@ -22,7 +22,7 @@ local config = {
 	}),
 	color_scheme_dirs = { "/usr/share/wezterm/colors/*/" },
 	color_scheme = "Dracula",
-	window_background_opacity = 0.95,
+	window_background_opacity = 0.92,
 	warn_about_missing_glyphs = false,
 	enable_wayland = false,
 	enable_scroll_bar = true,
@@ -35,7 +35,6 @@ if is_linux() then
 end
 
 if is_darwin() then
-
 	config.initial_cols = 160
 	config.initial_rows = 40
 
@@ -45,6 +44,7 @@ if is_darwin() then
 		font = wezterm.font("Hack Nerd Font Mono"),
 		font_size = 9.0,
 	}
+	config.macos_window_background_blur = 8
 end
 
 return config

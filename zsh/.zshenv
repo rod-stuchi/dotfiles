@@ -1,22 +1,104 @@
 # vim: fdm=marker foldcolumn=3 et ts=2 sts=2 sw=2 ai relativenumber number ft=sh
 #
 # A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-#
-# {{{ AWS CLI
-[ -f $HOME/.aws/bin/v2/current/bin/aws ] && export PATH=$PATH:$HOME/.aws/bin/v2/current/bin
-# }}}
+
+
+case "$(uname)" in
+  "Darwin")
+    # {{{ MacOS specific exports
+    # AWSCLI completions
+    fpath=(/opt/homebrew/share/zsh/site-functions/_aws $fpath)
+
+    if [[ -f /Volumes/VeraCrypt/Secret_Files/load-envs-3 ]]; then
+      . /Volumes/VeraCrypt/Secret_Files/load-envs-3
+    fi
+
+    # Postgres (psql)
+    export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+    # }}}
+    ;;
+  "Linux")
+    # {{{ Linux specific exports
+
+    # {{{ AWS CLI
+    [ -f $HOME/.aws/bin/v2/current/bin/aws ] && export PATH=$PATH:$HOME/.aws/bin/v2/current/bin
+    # }}}
+
+    #{{{ FLUTTER
+    export PATH="$PATH:$HOME/flutter/bin"
+    export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
+    #}}}
+
+    # {{{ JAVA
+    # export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
+    export JAVA_HOME=/usr/lib/jvm/default
+    export ANDROID_HOME=$HOME/android
+    export ANDROID_SDK_ROOT=$ANDROID_HOME
+    export PATH=$PATH:$ANDROID_HOME/emulator
+    export PATH=$PATH:$ANDROID_HOME/platform-tools
+    export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin/
+    export PATH=$PATH:$ANDROID_HOME/build-tools/32.0.0/
+    # }}}
+
+    # {{{ LANGUAGE
+    export LC_ALL=en_US.UTF-8
+    export LANG=en_US.UTF-8
+    # }}}
+
+    # PYTHON {{{
+    # poetry
+    export PATH=$PATH:"$HOME/.poetry/bin"
+
+    # pyenv
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PATH:$PYENV_ROOT/bin"
+    if command -v pyenv 1> /dev/null 2>&1; then
+      # eval "$(pyenv init -)"
+      # eval "$(pyenv init --path)"
+      eval "$(pyenv init -)"
+    fi
+    # }}}
+
+    # {{{ RANGER
+    # NOTE: disable
+    # export RANGER_LOAD_DEFAULT_RC=FALSE
+    # }}}
+    #
+    # {{{ RUBY
+    export PATH=$PATH:$HOME/.gem/ruby/3.2.0/bin
+    # }}}
+
+    # {{{ SWAY / Wayland
+    export GTK_IM_MODULE=cedilla
+    export QT_IM_MODULE=cedilla
+    export QT_QPA_PLATFORM=wayland
+    export MOZ_ENABLE_WAYLAND=1
+    export MOZ_WEBRENDER=1
+    export TERM=wezterm
+    export TERMINAL=wezterm
+    export XDG_SESSION_TYPE=wayland
+    export XDG_CURRENT_DESKTOP=sway
+    export QT_STYLE_OVERRIDE=kvantum
+    export GTK_THEME=Orchis-Dark-Compact
+    export XDG_PICTURES_DIR=$HOME/tmp/screenshots
+    # https://github.com/swaywm/sway/issues/6167
+    # export WLR_DRM_NO_MODIFIERS=1
+    # }}}
+
+    # {{{ WEZTERM
+    export TERM=wezterm
+    # }}}
+
+    # }}}
+    ;;
+esac
+
 
 # EDITOR {{{
 export EDITOR=nvim
 export VISUAL=nvim
 export KEYTIMEOUT=1 # vi mode
-
 # }}}
-
-#{{{ FLUTTER
-export PATH="$PATH:$HOME/flutter/bin"
-export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
-#}}}
 
 # FZF {{{
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --no-messages --follow --glob "!.git" --glob "!node_modules" --glob "!.yarn" '
@@ -27,22 +109,13 @@ export FZF_ALT_C_COMMAND='fd --type=d --hidden --strip-cwd-prefix --exclude .git
 # }}}
 
 # {{{ GOLANG
-export PATH=$PATH:$HOME/go/bin
+if [ -d "$HOME/go/bin" ]; then
+  export PATH=$PATH:$HOME/go/bin
+fi
 # }}}
 
 # {{{ GPG
 export GPG_TTY=$(tty)
-# }}}
-
-# {{{ JAVA
-# export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
-export JAVA_HOME=/usr/lib/jvm/default
-export ANDROID_HOME=$HOME/android
-export ANDROID_SDK_ROOT=$ANDROID_HOME
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin/
-export PATH=$PATH:$ANDROID_HOME/build-tools/32.0.0/
 # }}}
 
 # {{{ JQ
@@ -71,12 +144,9 @@ export PATH=$PATH:$ANDROID_HOME/build-tools/32.0.0/
 # }}}
 
 # {{{ KUBERNETES
-export PATH=$PATH:"${KREW_ROOT:-$HOME/.krew}/bin"
-# }}}
-
-# {{{ LANGUAGE
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+if [ -d "$HOME/.krew" ]; then
+  export PATH=$PATH:"${KREW_ROOT:-$HOME/.krew}/bin"
+fi
 # }}}
 
 # {{{ LESS
@@ -93,69 +163,32 @@ export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 export LESS=-XRFiS                     # colors, do not clear on exit, exit if fits screen, ignorecase
 # }}}
 
-# PYTHON {{{
-#  PYTHON poetry
-export PATH=$PATH:"$HOME/.poetry/bin"
-
-# PYTHON pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PATH:$PYENV_ROOT/bin"
-if command -v pyenv 1> /dev/null 2>&1; then
-  # eval "$(pyenv init -)"
-  # eval "$(pyenv init --path)"
-  eval "$(pyenv init -)"
-fi
-# }}}
-
-# {{{ RANGER
-export RANGER_LOAD_DEFAULT_RC=FALSE
-# }}}
-
 # {{{ RIPGREP
 [ -x "$(command -v rg)" ] && export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 # }}}
 
-# {{{ RUBY
-export PATH=$PATH:$HOME/.gem/ruby/3.2.0/bin
-# }}}
-
 # {{{ RUST
-. "$HOME/.cargo/env"
-export PATH=$PATH:$HOME/.cargo/bin
-# }}}
-
-# {{{ SWAY / Wayland
-# https://github.com/swaywm/sway/issues/6167
-# export WLR_DRM_NO_MODIFIERS=1
-
-export GTK_IM_MODULE=cedilla
-export QT_IM_MODULE=cedilla
-export QT_QPA_PLATFORM=wayland
-export MOZ_ENABLE_WAYLAND=1
-export MOZ_WEBRENDER=1
-export TERM=wezterm
-export TERMINAL=wezterm
-export XDG_SESSION_TYPE=wayland
-export XDG_CURRENT_DESKTOP=sway
-export QT_STYLE_OVERRIDE=kvantum
-export GTK_THEME=Orchis-Dark-Compact
-export XDG_PICTURES_DIR=$HOME/tmp/screenshots
+if [[ -d "$HOME/.cargo" ]]; then
+  . "$HOME/.cargo/env"
+fi
 # }}}
 
 # {{{ ZELLIJ
-export ZELLIJ_CONFIG_DIR=$HOME/.config/zellij/
+[ -x "$(command -v zellij)" ] && export ZELLIJ_CONFIG_DIR=$HOME/.config/zellij/
 # }}}
 
 # {{{ ZSH
 export LISTMAX=-1
 export HISTSIZE=50000
 export SAVEHIST=30000
-export HISTFILE=~/.history
+export HISTFILE=$HOME/.history
 
-fpath=(~/dotfiles/zsh/plugins/zsh-completions/src/ $fpath)
-fpath=(~/github/zsh/wd/ $fpath)
-fpath=(~/.scripts/ $fpath)
-fpath=(~/.local/zsh_completion/ $fpath)
+fpath=($HOME/dotfiles/zsh/plugins/zsh-completions/src/ $fpath)
+fpath=($HOME/github/zsh/wd/ $fpath)
+fpath=($HOME/.scripts/ $fpath)
+fpath=($HOME/.local/zsh_completion/ $fpath)
+# completions for deno (need to be generated)
+fpath=($HOME/.zsh/completions/ $fpath)
 
 # You may have to force rebuild `zcompdump`:
 #    rm -f ~/.zcompdump; compinit
@@ -176,6 +209,3 @@ ZSH_HIGHLIGHT_REGEXP+=('\b(vim|vi|nvim)\b' fg=#ece600,bold)
 ZSH_HIGHLIGHT_HIGHLIGHTERS+=(main pattern brackets regexp)
 # }}}
 
-# {{{ WEZTERM
-export TERM=wezterm
-# }}}

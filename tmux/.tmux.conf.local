@@ -428,10 +428,8 @@ bind -n -r M-Right   resize-pane -R
 set -gu prefix2
 unbind C-a
 # unbind C-b
-# set -g prefix C-a
-# bind C-a send-prefix
-set -g prefix C-Space
-bind C-Space send-prefix
+if-shell "uname | grep -q Darwin" "set -g prefix C-b; bind C-b send-prefix"
+if-shell "uname | grep -q Linux" "set -g prefix C-Space; bind C-Space send-prefix"
 
 # if you don't want Oh my tmux! to alter a binding or a setting, use #!important
 # bind c new-window -c '#{pane_current_path}' #!important
@@ -441,8 +439,8 @@ bind C-Space send-prefix
 
 # Programs
 # bind-key "t" run "tty-clock -cs"
-bind o neww -n 'ranger' 'ranger'
-bind u run ~/dotfiles/tmux/plugins/tmux-url-select/tmux-url-select.pl
+# bind o neww -n 'ranger' 'ranger'
+# bind u run ~/dotfiles/tmux/plugins/tmux-url-select/tmux-url-select.pl
 
 # PLUGINS
 set -g @thumbs-key \\
@@ -454,9 +452,9 @@ set -g @thumbs-regexp-3 '[a-f0-9]{8}\.\.[a-f0-9]{8}' # git hash for diff
 set -g @thumbs-regexp-4 'dial-(?:adm|api|pwa)[a-z0-9-_]+' # Dialog kubernetes
 run-shell ~/dotfiles/tmux/plugins/tmux-thumbs/tmux-thumbs.tmux
 
-set -g @easy-motion-default-motion "bd-f"
-set -g @easy-motion-prefix "Space"
-run-shell ~/dotfiles/tmux/plugins/tmux-easy-motion/easy_motion.tmux
+# set -g @easy-motion-default-motion "bd-f"
+# set -g @easy-motion-prefix "Space"
+# run-shell ~/dotfiles/tmux/plugins/tmux-easy-motion/easy_motion.tmux
 
 # -- tpm -----------------------------------------------------------------------
 

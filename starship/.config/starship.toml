@@ -23,6 +23,7 @@ $golang\
 $lua\
 $kubernetes\
 $rust\
+$ruby\
 $aws"""
 
 [git_commit]
@@ -102,6 +103,9 @@ contexts = [
   { context_pattern = ".*437642595153.*/(?P<name>[a-z-_]+)$", context_alias = "QA $name", style = "green", symbol = "🟢 " },
 ]
 
+[ruby]
+format = '[$symbol($version )]($style)'
+
 [rust]
 format = '[$symbol($version )]($style)'
 
@@ -117,11 +121,12 @@ disabled = false
 
 [hostname]
 format = '[$ssh_symbol$hostname]($style) '
+aliases = { "Mac-JXYQ00X0QW" = "mpb-m4" }
 
 [username]
 format = '[$user]($style) '
 
-[character] 
+[character]
 success_symbol            = '[](bold green)'
 error_symbol              = '[](bold red)'
 vimcmd_symbol             = '[](bold green)'
