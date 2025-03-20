@@ -125,6 +125,9 @@ export PATH=$PATH:$HOME/.cargo/bin
 # }}}
 
 # {{{ SWAY / Wayland
+# https://github.com/swaywm/sway/issues/6167
+# export WLR_DRM_NO_MODIFIERS=1
+
 export GTK_IM_MODULE=cedilla
 export QT_IM_MODULE=cedilla
 export QT_QPA_PLATFORM=wayland
