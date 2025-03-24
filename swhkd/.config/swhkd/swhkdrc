@@ -1,0 +1,144 @@
+# vim: fdm=marker:foldlevel=0:noexpandtab!:ts=4:sw=4
+# to reload config use `pkill -HUP swhkd`
+# to find keyname use "wev" program
+#
+# {{{ SWAY
+# increase gaps (inner, outer)
+super + {_,alt +} g
+	swaymsg gaps {inner,outer} current plus 5
+
+# decrease gaps (inner, outer)
+super + shift +  {_, alt +} g
+	swaymsg gaps {inner,outer} current minus 5
+
+# start a virtual monitor(screen)
+super + alt + f8
+	$HOME/.scripts/sway-virtual-headless.sh
+
+# kill the virtual monitor(screen)
+super + shift + alt + f8
+	$HOME/.scripts/sway-virtual-remove-headless.sh
+
+# lock screen
+super + alt + l
+    $HOME/.scripts/sway-lock.sh
+
+# set random wallpaper
+super + alt + w
+	$HOME/.scripts/wallpaper.zsh
+# }}}
+#
+# {{{ TERMINAL
+super + control + Return
+	wezterm
+
+super + shift + Return
+	wezterm start --class=infloatmode -- newgrp docker
+
+# set opacity
+super + alt + {f5,f6} 
+	$HOME/.scripts/wezterm_opacity.sh {down,up}
+# }}}
+
+#{{{ TRANS(late) LANGUAGE
+super + shift + {t,y}
+	wezterm start --always-new-process --class=infloatmode -- trans {en:pt,pt:en} -I
+#}}}
+
+# {{{ AUDIO
+
+super + alt + p
+	wezterm start --class=infloatmode pulsemixer > /dev/null 2>&1
+
+super + alt + i
+	pavucontrol
+
+super + alt + o
+	easyeffects
+
+super + {f5,f6}
+	$HOME/.scripts/volume.zsh {vol\-down,vol\-up}
+
+super + ctrl + {f5,f6} 
+	$HOME/.scripts/volume.zsh {mic\-down,mic\-up}
+
+{XF86AudioRaiseVolume,XF86AudioLowerVolume}
+	$HOME/.scripts/volume.zsh {vol\-up,vol\-down}
+
+XF86AudioMute
+	$HOME/.scripts/volume.zsh vol-mute
+
+
+ctrl + {XF86AudioRaiseVolume,XF86AudioLowerVolume}
+	$HOME/.scripts/volume.zsh {mic\-up,mic\-down}
+
+ctrl + XF86AudioMute
+	$HOME/.scripts/volume.zsh mic-mute
+# }}}
+
+# {{{ ROFI, CopyQ
+super + y
+	wezterm start /usr/bin/zsh --login -c "/usr/bin/yazi $HOME"
+#
+# start rofi for program launcher
+super + p
+	rofi -monitor "$(swaymsg -t get_outputs | jq '.[] | select(.focused) | .name' -r)" -modi drun,run -show drun -width 39 \
+		-no-cycle -padding 9 -show-icons \
+		-kb-accept-entry 'Return' -kb-remove-to-eol '' \
+		-kb-row-up 'Control+k,Up' \
+		-kb-row-down 'Control+j,Down' \
+		-theme ~/.config/rofi/launchers/type-1/style-5.rasi
+
+# copyq toggle main window
+super + {_,control +} c
+	copyq {menu,show}
+#}}}
+
+# {{{ SCREENSHOTS, COLORPICKER
+# pick a color to clipboard
+alt + {_, shift + } 1
+	$HOME/.scripts/sway-colorpicker.sh {\-\-clip,\-\-clip \-\-gui}
+
+# screenshot to file and clipboard
+alt + {2,3,4,5}
+	$HOME/.scripts/sway-screenshot.sh -m {region, active, select, screen}
+
+# screenshot to file and edit
+alt + shift + {2,3,4,5}
+	$HOME/.scripts/sway-screenshot.sh -e -m {region, active, select, screen}
+
+# screenshot to file with delay and clipboard
+alt + ctrl + {2,3,4,5}
+	$HOME/.scripts/sway-screenshot.sh -d 4 -m {region, active, select, screen}
+# }}}
+
+# {{{ EMOJI
+# copy to clipboard random emoji
+super + F9
+	$HOME/.scripts/emoji/choice-clip.sh
+
+# start rofi for emojis
+super + shift + F9
+	$HOME/.scripts/emoji/rofi-emoji.sh
+# }}}
+
+# {{{ MEDIA, play, pause
+# play/pause vídeos in Browser
+ctrl + alt + p
+	playerctl play-pause
+
+ctrl + alt + {h,l}
+	playerctl position {10\-,10\+}
+# }}}
+
+# {{{ NOTIFICATIONS
+# Dunst Notifications
+super + alt + n
+	$HOME/.scripts/notification-toggle.sh --toggle
+
+ctrl + {shift +,alt +} space
+	dunstctl {close\-all,close}
+#
+ctrl + alt + backslash
+	dunstctl history-pop
+# }}}
