@@ -10,12 +10,9 @@ ${custom.giturl}$git_branch$git_commit$git_state$git_status$git_metrics\
 $line_break\
 $username\
 $hostname\
-${custom.ranger}\
-${custom.yazi}\
 $cmd_duration$jobs$shlvl$sudo$character"""
 
 right_format = """
-${custom.docker}\
 $nodejs\
 $python\
 $terraform\
@@ -137,26 +134,6 @@ vimcmd_visual_symbol      = '[](bold yellow)'
 # Disable the package module, hiding it from the prompt completely
 [package]
 disabled = true
-
-# from: https://github.com/starship/starship/discussions/1252
-[custom.docker]
-disabled = true
-description = "Shows the docker symbol if the current directory has Dockerfile or docker-compose.yml files"
-command = "echo 🐳"
-files = ["Dockerfile", "docker-compose.yml", "docker-compose.yaml"]
-when = """ command -v docker &> /dev/null; exit (echo $?); """
-
-[custom.ranger]
-disabled = true
-description = "shows if you are in a Ranger shell"
-command = "echo 🤠"
-when = ''' test -n "${RANGER_LEVEL}" '''
-
-[custom.yazi]
-disabled = true
-description = "shows if you are in a Yazi shell"
-command = "echo 🦆"
-when = ''' test -n "${YAZI_LEVEL}" '''
 
 # from: https://github.com/starship/starship/discussions/1252#discussioncomment-7923685
 [custom.distrobox]

@@ -142,3 +142,8 @@ ctrl + {shift +,alt +} space
 ctrl + alt + backslash
 	dunstctl history-pop
 # }}}
+
+# {{{ KEYBOARD LAYOUT
+ctrl + alt + backspace
+	$HOME/.scripts/keyboard-battery-swhkd.sh
+# }}}
