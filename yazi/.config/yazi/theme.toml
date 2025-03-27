@@ -8,4 +8,4 @@
 dark = "kanagawa"
 
 [manager]
-border_style = { fg = "#282C34"}
+border_style = { fg = "#434a57"}
