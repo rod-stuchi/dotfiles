@@ -4,15 +4,8 @@
 
 # vim:fileencoding=utf-8:foldmethod=marker
 
-# : Flavor {{{
-
 [flavor]
-use = "kanagawa"
-#use = "catppuccin-mocha"
-# For upcoming Yazi 0.4 (nightly version):
-#dark = "catppuccin-mocha"
+dark = "kanagawa"
 
 [manager]
 border_style = { fg = "#282C34"}
-
-# : }}}

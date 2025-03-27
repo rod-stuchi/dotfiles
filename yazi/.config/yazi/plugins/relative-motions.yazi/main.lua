@@ -1,3 +1,4 @@
+--- @since 25.2.7
 -- stylua: ignore
 local MOTIONS_AND_OP_KEYS = {
 	{ on = "0" }, { on = "1" }, { on = "2" }, { on = "3" }, { on = "4" },
@@ -8,7 +9,7 @@ local MOTIONS_AND_OP_KEYS = {
 	{ on = "t" }, { on = "L" }, { on = "H" }, { on = "w" },
 	{ on = "W" }, { on = "<" }, { on = ">" }, { on = "~" },
 	-- movement
-	{ on = "g" }, { on = "j" }, { on = "k" }, { on = "<Down>" }, { on = "<Up>" }
+	{ on = "g" }, { on = "j" }, { on = "k" }, { on = "h" }, { on = "l" }, { on = "<Down>" }, { on = "<Up>" }, { on = "<Left>" }, { on = "<Right>" }
 }
 
 -- stylua: ignore
@@ -16,7 +17,7 @@ local MOTION_KEYS = {
 	{ on = "0" }, { on = "1" }, { on = "2" }, { on = "3" }, { on = "4" },
 	{ on = "5" }, { on = "6" }, { on = "7" }, { on = "8" }, { on = "9" },
 	-- movement
-	{ on = "g" }, { on = "j" }, { on = "k" }
+	{ on = "g" }, { on = "j" }, { on = "k" }, { on = "h" }, { on = "l" }, { on = "<Down>" }, { on = "<Up>" }, { on = "<Left>" }, { on = "<Right>" }
 }
 
 -- stylua: ignore
@@ -29,6 +30,10 @@ local DIRECTION_KEYS = {
 local SHOW_NUMBERS_ABSOLUTE = 0
 local SHOW_NUMBERS_RELATIVE = 1
 local SHOW_NUMBERS_RELATIVE_ABSOLUTE = 2
+
+local ENTER_MODE_FIRST = 0
+local ENTER_MODE_CACHE = 1
+local ENTER_MODE_CACHE_OR_FIRST = 2
 
 -----------------------------------------------
 ----------------- R E N D E R -----------------
@@ -71,10 +76,14 @@ local render_motion = ya.sync(function(_, motion_num, motion_cmd)
 			motion_span = ui.Span(string.format(" %3d%s ", motion_num, motion_cmd))
 		end
 
+		local status_config = THEME.status
+		local separator_open = status_config.separator_open or status_config.sep_right.open
+		local separator_close = status_config.separator_close or status_config.sep_right.close
+
 		return ui.Line {
-			ui.Span(THEME.status.separator_open):fg(style.main.bg),
+			ui.Span(separator_open):fg(style.main.bg),
 			motion_span:style(style.main),
-			ui.Span(THEME.status.separator_close):fg(style.main.bg),
+			ui.Span(separator_close):fg(style.main.bg),
 			ui.Span(" "),
 		}
 	end
@@ -149,6 +158,10 @@ local function normal_direction(dir)
 		return "j"
 	elseif dir == "<Up>" then
 		return "k"
+	elseif dir == "<Left>" then
+		return "h"
+	elseif dir == "<Right>" then
+		return "l"
 	end
 	return dir
 end
@@ -205,6 +218,29 @@ end
 
 local get_active_tab = ya.sync(function(_) return cx.tabs.idx end)
 
+local get_cache_or_first_dir = ya.sync(function(state)
+	if state._enter_mode == ENTER_MODE_CACHE then
+		return nil
+	elseif state._enter_mode == ENTER_MODE_CACHE_OR_FIRST then
+		local hovered_file = cx.active.current.hovered
+
+		if hovered_file ~= nil and hovered_file.cha.is_dir then
+			return cx.active.current.cursor
+		end
+	end
+
+	local files = cx.active.current.files
+	local index = 1
+
+	for i = 1, #files do
+		if files[i].cha.is_dir then
+			index = i
+			break
+		end
+	end
+
+	return index - 1
+end)
 -----------------------------------------------
 ---------- E N T R Y   /   S E T U P ----------
 -----------------------------------------------
@@ -231,7 +267,7 @@ return {
 
 		if cmd == "g" then
 			if direction == "g" then
-				ya.manager_emit("arrow", { -99999999 })
+				ya.manager_emit("arrow", { "top" })
 				ya.manager_emit("arrow", { lines - 1 })
 				render_clear()
 				return
@@ -254,6 +290,19 @@ return {
 			ya.manager_emit("arrow", { lines })
 		elseif cmd == "k" then
 			ya.manager_emit("arrow", { -lines })
+		elseif cmd == "h" then
+			for _ = 1, lines do
+				ya.manager_emit("leave", {})
+			end
+		elseif cmd == "l" then
+			for _ = 1, lines do
+				ya.manager_emit("enter", {})
+				local file_idx = get_cache_or_first_dir()
+				if file_idx then
+					ya.manager_emit("arrow", { "top" })
+					ya.manager_emit("arrow", { file_idx })
+				end
+			end
 		elseif is_tab_command(cmd) then
 			if cmd == "t" then
 				for _ = 1, lines do
@@ -313,6 +362,16 @@ return {
 
 		if args["show_motion"] then
 			render_motion_setup()
+		end
+
+		if args["enter_mode"] == "cache" then
+			state._enter_mode = ENTER_MODE_CACHE
+		elseif args["enter_mode"] == "first" then
+			state._enter_mode = ENTER_MODE_FIRST
+		elseif args["enter_mode"] == "cache_or_first" then
+			state._enter_mode = ENTER_MODE_CACHE_OR_FIRST
+		else
+			state._enter_mode = ENTER_MODE_CACHE_OR_FIRST
 		end
 
 		if args["show_numbers"] == "absolute" then
