@@ -147,9 +147,9 @@ alias imgcat="wezterm imgcat --height=20"
 
 alias docker_ps="docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}\t{{.State}}'"
 
-alias monitor-fix='swaymsg "output * dpms off" && sleep 5 && swaymsg "output * dpms on"'
-
 alias openwebui='open-webui serve --host 192.168.2.10 --port 5599'
 
+alias fix-monitor='swaymsg "output * dpms off" && sleep 5 && swaymsg "output * dpms on"'
+
 # there is a issue when reconnecting the keyboard
-alias restart-swhkd="pkill swhkd; sleep 1; swhkd & disown"
+alias fix-swhkd="pkill swhkd; sleep 1; swhkd & disown; killall -9 dunst"

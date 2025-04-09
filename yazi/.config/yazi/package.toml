@@ -1,21 +1,21 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:hide-preview"
-rev = "2730199"
+rev = "a1738e8"
 hash = "53f826884e2c7e521cecc492a7f31d7e"
 
 [[plugin.deps]]
 use = "dedukun/relative-motions"
-rev = "8103065"
-hash = "9f13f0740fa3a0c18e47ec6fb62ddfaa"
+rev = "61ae795"
+hash = "65d576a76597aac2a428dc7ec0eda2ce"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:max-preview"
-rev = "2730199"
+rev = "a1738e8"
 hash = "a8025f2bb311e869069364fba01abffc"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-filter"
-rev = "2730199"
+rev = "a1738e8"
 hash = "f0c4b41b5d19a3144958383333eff6e7"
 
 [[plugin.deps]]
