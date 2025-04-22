@@ -1,0 +1,257 @@
+// -*- mode: jsonc -*-
+// env GTK_DEBUG=interactive waybar # debug
+[
+    {
+        "output": ["DP-1", "eDP-1"],
+        "height": 30,
+        "spacing": 4,
+        "modules-left": [
+            "sway/workspaces",
+            "sway/scratchpad",
+            "sway/mode",
+            "custom/netusage"
+        ],
+        "modules-center": [
+            "sway/window"
+        ],
+        "modules-right": [
+            "custom/weather",
+            "idle_inhibitor",
+            // "custom/pacman",
+            "custom/dollar",
+            "custom/keyboard_battery",
+            "pulseaudio",
+            "network",
+            "custom/disk1",
+            "cpu",
+            "memory",
+            "temperature",
+            // "backlight",
+            "clock",
+            "tray",
+            "custom/notification",
+            "custom/power"
+        ],
+        "sway/window": {
+            "format": "{}",
+            "max-length": 50,
+            "rewrite": {
+                "(.*) — Mozilla Firefox": " $1",
+                "(.*) - Google Chrome": " $1",
+                "(.*) - zsh": "> [$1]",
+                "(.*) - NVIM": " $1"
+            }
+        },
+        "sway/mode": {
+            "format": "󰩨  {}",
+            "max-length": 50
+        },
+        "sway/scratchpad": {
+            "format": "{icon}  {count}",
+            "show-empty": false,
+            "format-icons": ["", ""],
+            "tooltip": true,
+            "tooltip-format": "{app}: {title}"
+        },
+        "idle_inhibitor": {
+            "format": "{icon}",
+            "format-icons": {
+                "activated": " ",
+                "deactivated": " "
+            }
+        },
+        "tray": {
+            "icon-size": 18,
+            "show-passive-items": true,
+            "spacing": 10
+        },
+        "clock": {
+            "timezone": "America/Sao_Paulo",
+            "format": "{:%a %d %b %H:%M}",
+            "tooltip-format": "<tt><small>{calendar}</small></tt>",
+            "calendar": {
+                "mode"          : "year",
+                "mode-mon-col"  : 3,
+                "weeks-pos"     : "right",
+                "on-scroll"     : 1,
+                "on-click-right": "mode",
+                "format": {
+                    "months":     "<span color='#ffead3'><b>{}</b></span>",
+                    "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                    "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                    "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                    "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                }
+            },
+            "format-alt": "{:%A %d %B, %Y %H:%M (%Z)}",
+            "on-click-right": "kdialog --calendar Calendar --title \"RodsWay Calendar\""
+        },
+        "cpu": {
+            "format": "{usage}% ",
+            "tooltip": false
+        },
+        "memory": {
+            "format": "{}%  "
+        },
+        "temperature": {
+            "critical-threshold": 80,
+            "format": "{temperatureC}°C {icon}",
+            "format-critical": " {temperatureC}°C {icon}",
+            "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "█"]
+        },
+        "backlight": {
+            "format": "{percent}% {icon}",
+            "format-icons": ["", "", "", "", "", "", "", "", ""]
+        },
+        "network": {
+            "format-wifi": "  {signalStrength}%",
+            "tooltip-format": "  {essid} / {ifname} 󰊙  {gwaddr}",
+            "format-alt": "{ifname}: {ipaddr}/{cidr}",
+            "format-ethernet": "{ipaddr}/{cidr}",
+            "format-linked": "{ifname} (No IP)",
+            "format-disconnected": "Disconnected ⚠"
+        },
+        "pulseaudio": {
+            "format": "{volume}% {icon} {format_source}",
+            "format-bluetooth": "{volume}% {icon} {format_source}",
+            "format-bluetooth-muted": "󰝟 {icon} {format_source}",
+            "format-muted": "󰝟 {format_source}",
+            "format-source": "{volume}% ",
+            "format-source-muted": "",
+            "format-icons": {
+                "headphone": " ",
+                "hands-free": "󱥋 ",
+                "headset": "󰋎 ",
+                "phone": " ",
+                "portable": " ",
+                "car": " ",
+                "default": ["", " ", " "]
+            },
+            "on-click": "pavucontrol",
+            "on-click-right": "2>&1 wezterm start --class=infloatmode pulsemixer > /dev/null"
+        },
+        "custom/power": {
+            "format" : "⏻ ",
+            "tooltip": false,
+            "menu": "on-click",
+            "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+            "menu-actions": {
+                "shutdown": "shutdown",
+                "reboot": "reboot",
+                "suspend": "systemctl suspend",
+                "hibernate": "systemctl hibernate"
+            }
+        },
+        "custom/netusage": {
+            "exec": "$HOME/github/sway-netusage/waybar-netusage -down -interface wlo1",
+            "return-type": "json"
+        },
+        "custom/pacman": {
+            "format": "{}  ",
+            "interval": "once",
+            "exec": "checkupdates | wc -l",
+            "on-click": "update-system",
+            "signal": 8
+        },
+        "custom/dollar": {
+            "interval": "once",
+            "exec": "$HOME/develop/playwright/xe.com/waybar-update.sh",
+            "on-click": "$HOME/develop/playwright/xe.com/run.sh --manual",
+            "on-click-middle": "/home/rods/develop/playwright/xe.com/mkplot.sh & sleep 0.3 && swaymsg '[instance=\"infloatmode\" class=\"Nsxiv\"] floating enable, resize set width 36 ppt height 62 ppt'",
+            "on-click-right": "/home/rods/develop/playwright/xe.com/mkplot-month.sh & sleep 0.5 && swaymsg '[instance=\"infloatmode\" class=\"Nsxiv\"] floating enable, resize set width 58 ppt height 80 ppt'",
+            "signal": 15
+        },
+        "custom/weather": {
+            "interval": 900,
+            "exec": "$HOME/.scripts/weather.sh",
+            "on-click": "$HOME/.scripts/weather.sh --click",
+            "on-click-right": "$HOME/.scripts/weather.sh --update; pkill -SIGRTMIN+16 waybar",
+            "signal": 16
+        },
+        "custom/disk1": {
+            "interval": 600,
+            "exec": "$HOME/.scripts/disk-usage.sh \"/\" \"/home\" \"/disks/Vault\"",
+            "on-click": "$HOME/.scripts/disk-usage-shifter.sh",
+            "on-click-right": "pkill -SIGRTMIN+17 waybar",
+            "signal": 17
+        },
+        "custom/notification": {
+            "interval": 60,
+            "exec": "$HOME/.scripts/notification.sh",
+            "on-click-right": "$HOME/.scripts/notification-toggle.sh --toggle",
+            "format": "{icon}",
+            "format-icons": {
+                "on": "<span size=\"12pt\"> </span>",
+                "off": "<span size=\"12pt\" foreground=\"#00000040\"> </span>"
+            },
+            "return-type": "json",
+            "tooltip": false,
+            "signal": 18
+        },
+        "custom/keyboard_battery": {
+            "interval": 30,
+            "exec": "$HOME/.scripts/keyboard-battery.sh",
+            "on-click": "$HOME/.scripts/keyboard-battery.sh --toggle; pkill -SIGRTMIN+19 waybar",
+            "on-click-right": "$HOME/.scripts/keyboard-battery.sh; pkill -SIGRTMIN+19 waybar",
+            "signal": 19
+        }
+    },
+    // ====================================================================================================
+    {
+        "output": [
+            "HEADLESS-1",
+            "HEADLESS-2",
+            "HEADLESS-3",
+            "HEADLESS-4",
+            "HEADLESS-5",
+            "HEADLESS-6",
+            "HEADLESS-7",
+            "HEADLESS-8",
+            "HEADLESS-9"
+        ],
+        "spacing": 4,
+        "modules-center": [
+            "sway/window"
+        ],
+        "modules-right": [
+            "cpu",
+            "memory",
+            "temperature",
+            "clock"
+        ],
+        "sway/window": {
+            "format": "{}",
+            "max-length": 50,
+            "rewrite": {
+                "(.*) — Mozilla Firefox": " $1",
+                "(.*) - Google Chrome": " $1",
+                "(.*) - zsh": "> [$1]",
+                "(.*) - NVIM": " $1"
+            }
+        },
+        "clock": {
+            "format": "{:%H:%M (%Z)}",
+            "tooltip-format": "{tz_list}",
+            "timezones": [
+                "America/Sao_Paulo",
+                "Europe/London",
+                "America/New_York",
+                "America/Los_Angeles",
+                "Asia/Tokyo"
+            ],
+            "format-alt": "{:%Y-%m-%d}"
+        },
+        "cpu": {
+            "format": "{usage}% ",
+            "tooltip": false
+        },
+        "memory": {
+            "format": "{}%  "
+        },
+        "temperature": {
+            "critical-threshold": 80,
+            "format": "{temperatureC}°C {icon}",
+            "format-icons": ["", "", ""]
+        }
+    }
+]

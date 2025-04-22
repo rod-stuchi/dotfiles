@@ -1,0 +1,4 @@
+dev:
+    pkill waybar; eza *.jsonc *.css | entr -r waybar
+run:
+    pkill waybar; waybar & disown
