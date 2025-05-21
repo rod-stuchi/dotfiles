@@ -437,6 +437,17 @@ if [[ "$(uname)" == "Linux" ]]; then
   compdef _awslocal_completion_setup awslocal
 fi
 
+
+if [[ "$(uname)" == "Darwin" ]]; then
+  # ................. aws ................
+  _aws_completion_setup() {
+    echo "Loading aws completions..."
+    complete -C '/opt/homebrew/bin/aws_completer' aws
+    unfunction _aws_completion_setup
+  }
+  compdef _aws_completion_setup aws
+fi
+
 # .............. kubectl ...............
 _kubectl_completion_setup() {
   echo "Loading kubectl completions..."
