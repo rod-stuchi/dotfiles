@@ -1,0 +1,14 @@
+[Unit]
+ConditionEnvironment=!SSH_AGENT_PID
+Description=OpenSSH key agent
+Documentation=man:ssh-agent(1) man:ssh-add(1) man:ssh(1)
+
+[Service]
+Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
+# -t 18000 = 5 hours
+ExecStart=/usr/bin/ssh-agent -D -a ${SSH_AUTH_SOCK} -t 18000
+SuccessExitStatus=2
+Type=simple
+
+[Install]
+WantedBy=default.target
