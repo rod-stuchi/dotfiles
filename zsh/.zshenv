@@ -77,12 +77,26 @@ case "$(uname)" in
     export TERM=wezterm
     export TERMINAL=wezterm
     export XDG_SESSION_TYPE=wayland
-    export XDG_CURRENT_DESKTOP=sway
+    export CHROME_OZONE_PLATFORM_HINT=wayland
+    # export XDG_CURRENT_DESKTOP=sway
     export QT_STYLE_OVERRIDE=kvantum
     export GTK_THEME=Orchis-Dark-Compact
     export XDG_PICTURES_DIR=$HOME/tmp/screenshots
+
+    # Wayland-specific environment variables
+    export XDG_CURRENT_DESKTOP=KDE
+    export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+    # export _JAVA_AWT_WM_NONREPARENTING=1
+    # export SDL_VIDEODRIVER=wayland
+
     # https://github.com/swaywm/sway/issues/6167
     # export WLR_DRM_NO_MODIFIERS=1
+    # }}}
+
+    # {{{ SSH (ssh-agent)
+    if [ -z "$SSH_AUTH_SOCK" ]; then
+        export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+    fi
     # }}}
 
     # {{{ WEZTERM

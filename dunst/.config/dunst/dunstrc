@@ -70,6 +70,8 @@
     # present (e.g. xcompmgr, compiz, etc.). (X11 only)
     transparency = 30
 
+    gap_size = 0
+
     # Draw a line of "separator_height" pixel height between two
     # notifications.
     # Set to 0 to disable.
@@ -86,7 +88,7 @@
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 1
+    frame_width = 2
 
     # Defines color of the frame around the notification window.
     frame_color = "#122250"
@@ -97,7 +99,7 @@
     #  * foreground: use the same color as the foreground;
     #  * frame: use the same color as the frame;
     #  * anything else will be interpreted as a X color.
-    separator_color = auto
+    separator_color = frame
 
     # Sort messages by urgency.
     sort = yes
@@ -107,7 +109,7 @@
     # Set to 0 to disable.
     # A client can set the 'transient' hint to bypass this. See the rules
     # section for how to disable this if necessary
-    idle_threshold = 120
+    idle_threshold = 300
 
     ### Text ###
 
@@ -485,5 +487,14 @@
 [wallpaper]
     summary = "wallpaper: *"
     history_ignore = yes
+
+# not quite working in the low, 10 seconds timeout
+[chrome]
+    urgency = low
+    timeout = 10
+    desktop_entry = "google-chrome*"
+    background = "#269846"
+    foreground = "#ffffff"
+    frame_color = "#e1392d"
 
 # vim: ft=cfg

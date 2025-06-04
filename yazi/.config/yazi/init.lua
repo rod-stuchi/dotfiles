@@ -7,6 +7,10 @@ require("session"):setup({
 	sync_yanked = true,
 })
 
+require("zoxide"):setup({
+	update_db = true,
+})
+
 require("bookmarks"):setup({
 	last_directory = { enable = false, persist = false, mode = "dir" },
 	persist = "all",

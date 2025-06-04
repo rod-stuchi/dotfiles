@@ -11,6 +11,16 @@
 
 ### Variables
 #
+# For Intel as primary
+exec export WLR_DRM_DEVICES="/dev/dri/card1:/dev/dri/card0"
+exec export __GLX_VENDOR_LIBRARY_NAME=mesa
+# Force EGL platform
+exec export EGL_PLATFORM=wayland
+exec export WLR_RENDERER=gles2
+exec export WLR_NO_HARDWARE_CURSORS=1
+# Mesa configuration
+exec export MESA_LOADER_DRIVER_OVERRIDE=iris
+exec export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json
 
 font pango:Source Code Pro Medium 9
 
@@ -157,6 +167,9 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+    # from alias `fix-swhkd`
+    bindsym $mod+Shift+r exec "pkill swhkd; sleep 1; swhkd & disown; killall -9 dunst; dunstify 'reloaded swhkd'"
 #
 # Moving around:
 #

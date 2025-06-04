@@ -23,6 +23,8 @@ if [[ "$(uname)" == "Linux" ]]; then
         # exec >> /tmp/sway.log 2>&1
         # sway
 
+        # exec hyprland
+
         # to start plasma / kde
         # exec startplasma-wayland
     fi

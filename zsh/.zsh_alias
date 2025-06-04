@@ -148,8 +148,12 @@ alias imgcat="wezterm imgcat --height=20"
 alias docker_ps="docker ps --format 'table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}\t{{.State}}'"
 
 alias openwebui='open-webui serve --host 192.168.2.10 --port 5599'
+alias openwebui-update='uv pip install --upgrade open-webui openai'
 
 alias fix-monitor='swaymsg "output * dpms off" && sleep 5 && swaymsg "output * dpms on"'
 
 # there is a issue when reconnecting the keyboard
 alias fix-swhkd="pkill swhkd; sleep 1; swhkd & disown; killall -9 dunst"
+
+alias rfkill-all="rfkill unblock all"
+balias gs-size="gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=out.pdf in.pdf" 
