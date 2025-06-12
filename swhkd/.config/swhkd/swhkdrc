@@ -21,11 +21,12 @@ super + shift + alt + f8
 
 # lock screen
 super + alt + l
-    $HOME/.scripts/sway-lock.sh
+	$HOME/.scripts/sway-lock.sh
 
 # set random wallpaper
 super + alt + w
-	$HOME/.scripts/wallpaper.zsh
+	$HOME/.config/sway/cycle-wallpaper.sh
+	# $HOME/.scripts/wallpaper.zsh
 # }}}
 #
 # {{{ TERMINAL

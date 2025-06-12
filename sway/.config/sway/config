@@ -12,15 +12,24 @@
 ### Variables
 #
 # For Intel as primary
-exec export WLR_DRM_DEVICES="/dev/dri/card1:/dev/dri/card0"
+# exec export WLR_DRM_DEVICES="/dev/dri/card1:/dev/dri/card0"
+
+# For Nvidia/Nouveau drivers
+exec export WLR_DRM_DEVICES="/dev/dri/card0:/dev/dri/card1"
 exec export __GLX_VENDOR_LIBRARY_NAME=mesa
+
 # Force EGL platform
 exec export EGL_PLATFORM=wayland
 exec export WLR_RENDERER=gles2
 exec export WLR_NO_HARDWARE_CURSORS=1
-# Mesa configuration
-exec export MESA_LOADER_DRIVER_OVERRIDE=iris
+# # Mesa configuration for Intel
+# exec export MESA_LOADER_DRIVER_OVERRIDE=iris
+# exec export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json
+
+# Mesa configuration for Nouveau
+exec export MESA_LOADER_DRIVER_OVERRIDE=nouveau
 exec export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json
+exec export __NV_PRIME_RENDER_OFFLOAD=1
 
 font pango:Source Code Pro Medium 9
 
@@ -71,11 +80,15 @@ client.focused #2a4aff #2a4aff #ffffff #ff893a #2a4aff
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
-output eDP-1 resolution 1920x1080 position 0,0
-output DP-1  resolution 3440x1440 position 1920,0
+# output eDP-1 resolution 1920x1080 position 0,0
+# output DP-1  resolution 3440x1440 position 1920,0
 #
+output DP-1  resolution 3440x1440 position 0,0
+output eDP-1 resolution 1920x1080 position 3440,0
+
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg /home/rods/Pictures/wallpapers-3440x1440/bonfire-dark-black-background-campfire-flame-night-time-3440x1440-3149.jpg fill
 #
 
 ### Idle configuration
