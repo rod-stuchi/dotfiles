@@ -5,11 +5,12 @@
 # vim:fileencoding=utf-8:foldmethod=marker
 
 [flavor]
-dark = "kanagawa"
+# dark = "kanagawa"
+dark = "catppuccin-mocha"
 
 [mgr]
 border_style = { fg = "#434a57"}
 
-[tabs]
-active   = { fg = "#24273a", bg = "#8aadf4", bold = true }
-inactive = { fg = "#8aadf4", bg = "#363a4f" }
+# [tabs]
+# active   = { fg = "#24273a", bg = "#8aadf4", bold = true }
+# inactive = { fg = "#8aadf4", bg = "#363a4f" }

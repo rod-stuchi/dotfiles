@@ -1,31 +1,31 @@
 [[plugin.deps]]
 use = "dedukun/relative-motions"
-rev = "61ae795"
-hash = "65d576a76597aac2a428dc7ec0eda2ce"
+rev = "2e3b617"
+hash = "b67ee12053113983273e9118a7d1272b"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-filter"
-rev = "a1738e8"
-hash = "f0c4b41b5d19a3144958383333eff6e7"
+rev = "aeca767"
+hash = "4d82cd9e7534d976f000edf9c0f68d8f"
 
 [[plugin.deps]]
 use = "dedukun/bookmarks"
-rev = "95b2c58"
-hash = "17a094653b7d0db4ac68ed531d2e1412"
+rev = "fbb7c00"
+hash = "1d231a808d3344546380df33daf43e91"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "63f9650"
+rev = "aeca767"
 hash = "d5d4f3527592da5fbe77fd6f51815f80"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "63f9650"
+rev = "aeca767"
 hash = "a7ab702e1ef0c097defbc976ed34c186"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "63f9650"
+rev = "aeca767"
 hash = "d0ad0c1946b46a30c8489735fe8de41c"
 
 [[flavor.deps]]
@@ -35,5 +35,5 @@ hash = "a04e157148549bacbb2831aab0e6e8cb"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "68326b4"
-hash = "2ac87e1b3a61f5887472899e86535d29"
+rev = "d04a298"
+hash = "288a0dedd5d13b28605cf82c05326dcd"
