@@ -342,8 +342,10 @@ output * bg /home/rods/Pictures/wallpapers-3440x1440/bonfire-dark-black-backgrou
     #set clipboard manager to copyq
     set $clipboard copyq toggle
 
-    # ** Start dunst ****************************************
+    # ** Start Services ****************************************
     exec systemctl --user start dunst.service
+    exec systemctl --user start ssh-agent.service
+    exec systemctl --user start keyboard-bluetooth-watcher.service
 
     # ** Start swhkd ****************************************
     exec swhks

@@ -8,6 +8,23 @@ local is_darwin = function()
 	return wezterm.target_triple:find("darwin") ~= nil
 end
 
+local get_opacity = function()
+	local config_dir = wezterm.config_dir
+	local opacity_file = config_dir .. "/opacity.txt"
+
+	local file = io.open(opacity_file, "r")
+	if file then
+		local content = file:read("*all")
+		file:close()
+		local opacity = tonumber(content:match("%S+"))
+		if opacity and opacity >= 0 and opacity <= 1 then
+			return opacity
+		end
+	end
+
+	return 1
+end
+
 local config = {
 	window_padding = {
 		left = 6,
@@ -22,7 +39,8 @@ local config = {
 	}),
 	color_scheme_dirs = { "/usr/share/wezterm/colors/*/" },
 	color_scheme = "Dracula",
-	window_background_opacity = 0.92,
+	-- window_background_opacity = 0.90,
+	window_background_opacity = get_opacity(),
 	warn_about_missing_glyphs = false,
 	enable_wayland = false,
 	enable_scroll_bar = true,

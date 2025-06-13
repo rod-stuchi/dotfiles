@@ -1,0 +1,12 @@
+[Unit]
+Description=Bluetooth Keyboard Connection Event Watcher (User)
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=%h/.scripts/monitor-keyboard-conn-bluetooth.sh
+Restart=always
+
+[Install]
+; WantedBy=default.target
+WantedBy=graphical-session.target

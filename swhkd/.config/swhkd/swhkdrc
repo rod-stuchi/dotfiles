@@ -25,8 +25,7 @@ super + alt + l
 
 # set random wallpaper
 super + alt + w
-	$HOME/.config/sway/cycle-wallpaper.sh
-	# $HOME/.scripts/wallpaper.zsh
+	$HOME/.scripts/cycle-wallpaper.sh
 # }}}
 #
 # {{{ TERMINAL
@@ -37,7 +36,7 @@ super + shift + Return
 	wezterm start --class=infloatmode -- newgrp docker
 
 # set opacity
-super + alt + {f5,f6} 
+super + alt + {f5,f6}
 	$HOME/.scripts/wezterm_opacity.sh {down,up}
 # }}}
 
