@@ -484,22 +484,28 @@ eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 eval "$(direnv hook zsh)"
 
-function export-openai() {
+function __get_api_key_from_gpg() {
+  local file="$1"
   if [[ "$(uname)" == "Linux" ]]; then
-    export OPENAI_API_KEY=$(gpg -qd /disks/Vault/Secret_Files/openai.gpg)
-  fi
-  if [[ "$(uname)" == "Darwin" ]]; then
-    export OPENAI_API_KEY=$(gpg -qd /Volumes/VeraCrypt/Secret_Files/openai.gpg)
+    gpg -qd "/disks/Vault/Secret_Files/$file.gpg"
+  elif [[ "$(uname)" == "Darwin" ]]; then
+    gpg -qd "/Volumes/VeraCrypt/Secret_Files/$file.gpg"
+  else
+    echo "Unsupported OS"
+    return 1
   fi
 }
 
+function export-google() {
+  export GOOGLE_API_KEY=$(__get_api_key_from_gpg google)
+}
+
+function export-openai() {
+  export OPENAI_API_KEY=$(__get_api_key_from_gpg openai)
+}
+
 function export-anthropic() {
-  if [[ "$(uname)" == "Linux" ]]; then
-    export ANTHROPIC_API_KEY=$(gpg -qd /disks/Vault/Secret_Files/anthropic.gpg)
-  fi
-  if [[ "$(uname)" == "Darwin" ]]; then
-    export ANTHROPIC_API_KEY=$(gpg -qd /Volumes/VeraCrypt/Secret_Files/anthropic.gpg)
-  fi
+  export ANTHROPIC_API_KEY=$(__get_api_key_from_gpg anthropic)
 }
 
 function yy() {

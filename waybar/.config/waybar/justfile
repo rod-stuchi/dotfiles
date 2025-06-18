@@ -2,3 +2,6 @@ dev:
     pkill waybar; eza *.jsonc *.css | entr -r waybar
 run:
     pkill waybar; waybar & disown
+
+debug:
+    pkill waybar; eza *.jsonc *.css | entr -r bash -c 'env GTK_DEBUG=interactive waybar'

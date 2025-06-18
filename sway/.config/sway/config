@@ -183,6 +183,7 @@ output * bg /home/rods/Pictures/wallpapers-3440x1440/bonfire-dark-black-backgrou
 
     # from alias `fix-swhkd`
     bindsym $mod+Shift+r exec "pkill swhkd; sleep 1; swhkd & disown; killall -9 dunst; dunstify 'reloaded swhkd'"
+    bindsym $mod+Shift+m exec 'swaymsg "output * dpms off" && sleep 2 && swaymsg "output * dpms on"'
 #
 # Moving around:
 #
