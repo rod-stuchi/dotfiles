@@ -508,6 +508,12 @@ function export-anthropic() {
   export ANTHROPIC_API_KEY=$(__get_api_key_from_gpg anthropic)
 }
 
+function export-all() {
+  export-google
+  export-openai
+  export-anthropic
+}
+
 function yy() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
   yazi "$@" --cwd-file="$tmp"
