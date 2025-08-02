@@ -68,31 +68,6 @@ case "$(uname)" in
     export PATH=$PATH:$HOME/.gem/ruby/3.2.0/bin
     # }}}
 
-    # {{{ SWAY / Wayland
-    export GTK_IM_MODULE=cedilla
-    export QT_IM_MODULE=cedilla
-    export QT_QPA_PLATFORM=wayland
-    export MOZ_ENABLE_WAYLAND=1
-    export MOZ_WEBRENDER=1
-    export TERM=wezterm
-    export TERMINAL=wezterm
-    export XDG_SESSION_TYPE=wayland
-    export CHROME_OZONE_PLATFORM_HINT=wayland
-    # export XDG_CURRENT_DESKTOP=sway
-    export QT_STYLE_OVERRIDE=kvantum
-    export GTK_THEME=Orchis-Dark-Compact
-    export XDG_PICTURES_DIR=$HOME/tmp/screenshots
-
-    # Wayland-specific environment variables
-    export XDG_CURRENT_DESKTOP=KDE
-    export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-    # export _JAVA_AWT_WM_NONREPARENTING=1
-    # export SDL_VIDEODRIVER=wayland
-
-    # https://github.com/swaywm/sway/issues/6167
-    # export WLR_DRM_NO_MODIFIERS=1
-    # }}}
-
     # {{{ SSH (ssh-agent)
     if [ -z "$SSH_AUTH_SOCK" ]; then
         export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
