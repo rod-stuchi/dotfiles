@@ -1,0 +1,22 @@
+    Polling registry 'https://index.crates.io/'..................
+
+Package                Installed  Latest   Needs update
+asak                   v0.3.4     v0.3.4   No
+bkt                    v0.8.2     v0.8.2   No
+cargo-strip            v0.2.3     v0.2.3   No
+cargo-update           v17.0.0    v17.0.0  No
+fre                    v0.4.1     v0.4.1   No
+html-query             v1.2.2     v1.2.2   No
+htmlq                  v0.4.0     v0.4.0   No
+inlyne                 v0.5.0     v0.5.0   No
+jaq                    v2.3.0     v2.3.0   No
+jless                  v0.9.0     v0.9.0   No
+jql                    v8.0.7     v8.0.7   No
+numbat-cli             v1.16.0    v1.16.0  No
+ripdrag                v0.4.10    v0.4.10  No
+rustlings              v6.4.0     v6.4.0   No
+so                     v0.4.10    v0.4.10  No
+stylua                 v2.1.0     v2.1.0   No
+tealdeer               v1.7.2     v1.7.2   No
+wl-clipboard-rs-tools  v0.9.2     v0.9.2   No
+
