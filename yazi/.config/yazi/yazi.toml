@@ -61,6 +61,9 @@ play = [
 	{ run = 'mpv "%1"', orphan = true, for = "windows" },
 	{ run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
 ]
+show-trace = [
+	{ run = 'npx playwright show-trace "$@"', desc = "Show Playwright Trace", for = "unix" },
+]
 
 [open]
 rules = [
@@ -83,6 +86,7 @@ rules = [
 prepend_rules = [
 	# custom Rods
 	{ mime = "application/pdf", use = [ "zathura", "open", "openJoinPDF", "reveal" ] },
+	{ mime = "application/zip", pat = "*.trace.zip", use = [ "show-trace", "extract", "reveal" ] },
 ]
 
 [tasks]

@@ -380,11 +380,6 @@ wd() {
 # source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/dotfiles/zsh/plugins/zsh-lazyload/zsh-lazyload.zsh
 
-lazyload rvm -- '
-  export PATH="$PATH:$HOME/.rvm/bin"
-  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-'
-
 if [[ "$(uname)" == "Linux" ]]; then
   lazyload nvm -- '
     export NVM_DIR="$HOME/.nvm"
@@ -399,6 +394,10 @@ if [[ "$(uname)" == "Darwin" ]]; then
     [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
   '
 fi
+
+lazyload mise -- '
+  eval "$(mise activate zsh)"
+'
 
 lazyload r.aws -- '
   [ -s "$HOME/.scripts/aws.zsh" ] && source "$HOME/.scripts/aws.zsh"
