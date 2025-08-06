@@ -88,6 +88,7 @@
 
 [alias]
 	tag-date = log --tags --simplify-by-decoration --pretty=\"format:%ci %d\"
+	shorthash = rev-parse --short HEAD
 
 # macos path apple
 [IncludeIf "gitdir:/Users/rods/dev/ns/**/.git"]
