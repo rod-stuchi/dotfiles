@@ -1,0 +1,21 @@
+use_nvm() {
+    local node_version=$1
+    nvm_sh=$HOME/.nvm/nvm.sh
+    if [[ -e $nvm_sh ]]; then
+        source $nvm_sh
+        nvm use $node_version
+    fi
+}
+
+use_rvm() {
+    local ruby_version=$1
+    rvm_sh=$HOME/.rvm/scripts/rvm
+    if [[ -e $rvm_sh ]]; then
+        source $rvm_sh
+        rvm use $ruby_version
+    fi
+}
+
+use_mise() {
+    eval "$(mise env -s bash "$@")"
+}
