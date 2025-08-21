@@ -3,7 +3,7 @@
 ## The PGP Agente config [timeout](https://superuser.com/questions/624343/keep-gnupg-credentials-cached-for-entire-user-session)
     ./gpg-agent.conf
 
-is set to 38 hours (60 * 60 * 38) = 136800 seconds
+is set to 5 hours (60 * 60 * 5) = 18000 seconds
 
 ## Clear password cache [link](https://askubuntu.com/questions/349238/how-can-i-clear-my-cached-gpg-password)
 
@@ -21,3 +21,7 @@ is set to 38 hours (60 * 60 * 38) = 136800 seconds
 - pgp.mit.edu
 - keybase.io
 - keyoxide.org
+
+## To reload config
+
+    gpgconf --kill gpg-agent
