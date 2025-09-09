@@ -1,0 +1,32 @@
+group-by=app-name,summary,body
+max-visible=5
+# The `margin` option in mako uses the format `top,right,bottom,left` (similar to CSS)
+margin=0,0,5,0
+outer-margin=40,10,0,0
+
+on-button-left=invoke-default-action
+on-button-middle=dismiss-group
+on-button-right=dismiss
+
+background-color=#285577cc
+border-color=#001c3199
+markup=1
+
+# [app-name="Google Chrome" body~="youtube.com" group-index=1]
+
+[app-name=google-chrome body~="cleverpush.com" group-index=1]
+# group-by=app-name
+
+[app-name=wp-vol]
+layer=overlay
+history=0
+anchor=top-center
+# Group all volume notifications together
+group-by=app-name
+# Hide the group-index
+format=<b>%s</b>\n%b
+
+
+[app-name=volume group-index=0]
+# Only show last notification
+invisible=0
