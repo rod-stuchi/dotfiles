@@ -1,8 +1,10 @@
+# vim: set noexpandtab:
+
 [include]
-    # linux path for rod
-    path = /disks/Vault/Secret_Files/user-gitconfig
-    # macos path for rod
-    path = /Volumes/VeraCrypt/Secret_Files/user-gitconfig
+	# linux path for rod
+	path = /disks/Vault/Secret_Files/user-gitconfig
+	# macos path for rod
+	path = /Volumes/VeraCrypt/Secret_Files/user-gitconfig
 
 
 [core]
@@ -16,12 +18,12 @@
 	date = relative
 
 [pull]
-    rebase = false
-    ff = only
+	rebase = false
+	ff = only
 
 [branch]
-    autoSetupMerge=false
-    autoSetupRebase=never
+	autoSetupMerge=false
+	autoSetupRebase=never
 
 [pager]
 	diff = delta
@@ -30,10 +32,10 @@
 #	show = delta
 
 [interactive]
-    ; diffFilter = delta --color-only  --features=interactive
+	; diffFilter = delta --color-only  --features=interactive
 
 [delta "interactive"]
-    keep-plus-minus-markers = false
+	keep-plus-minus-markers = false
 
 [delta]
 	commit-style                  = raw
@@ -89,16 +91,17 @@
 [alias]
 	tag-date = log --tags --simplify-by-decoration --pretty=\"format:%ci %d\"
 	shorthash = rev-parse --short HEAD
-    latest = !git branch --sort=authordate -vv | rg -v 'gone\\]'
+	latest = !git branch --sort=authordate -vv | rg -v 'gone\\]'
+	sw = !git switch $(git latest | fzf --no-sort --tac --nth=1 --accept-nth=1)
 
 # macos path apple
 [IncludeIf "gitdir:/Users/rods/dev/ns/**/.git"]
-    path = /Volumes/VeraCrypt/Secret_Files/gitconfig-1
+	path = /Volumes/VeraCrypt/Secret_Files/gitconfig-1
 
 # macos path apple
 [IncludeIf "gitdir:/Users/rods/dev/mks/**/.git"]
-    path = /Volumes/VeraCrypt/Secret_Files/gitconfig-2
+	path = /Volumes/VeraCrypt/Secret_Files/gitconfig-2
 
 # macos path apple
 [IncludeIf "gitdir:/Users/rods/dev/clmt/**/.git"]
-    path = /Volumes/VeraCrypt/Secret_Files/gitconfig-3
+	path = /Volumes/VeraCrypt/Secret_Files/gitconfig-3
