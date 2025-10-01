@@ -19,9 +19,9 @@ super + alt + f8
 super + shift + alt + f8
 	$HOME/.scripts/sway-virtual-remove-headless.sh
 
-# lock screen
-super + alt + l
-	$HOME/.scripts/sway-lock.sh
+# # lock screen
+# super + alt + l
+# 	$HOME/.scripts/sway-lock.sh
 
 # set random wallpaper
 super + alt + w

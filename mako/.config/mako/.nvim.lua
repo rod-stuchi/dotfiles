@@ -1,4 +1,6 @@
 -- Auto-reload mako configuration when config file is saved
+vim.notify(".nvim found, auto-reload mako config", vim.log.levels.INFO)
+
 vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = { "*/mako/config", vim.fn.expand("~/.config/mako/config") },
 	callback = function()

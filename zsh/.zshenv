@@ -152,6 +152,10 @@ export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 export LESS=-XRFiS                     # colors, do not clear on exit, exit if fits screen, ignorecase
 # }}}
 
+# {{{ NPM
+export npm_config_prefix="$HOME/.local"
+# }}}
+
 # {{{ RIPGREP
 [ -x "$(command -v rg)" ] && export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 # }}}

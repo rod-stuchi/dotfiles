@@ -98,6 +98,7 @@ image_bound      = [ 0, 0 ]
 suppress_preload = false
 
 [plugin]
+preload = []
 
 preloaders = [
 	# Image

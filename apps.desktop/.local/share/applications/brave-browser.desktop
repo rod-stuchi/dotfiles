@@ -109,7 +109,9 @@ StartupNotify=true
 StartupWMClass=brave-browser
 TryExec=brave
 # Exec=brave %U
-Exec=brave --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland %U
+# Exec=brave --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland %U
+Exec=dbus-launch brave --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland %U
+# Exec=brave --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland  --ozone-platform-hint=auto --enable-features=WebRTCPipeWireCapturer %U
 Terminal=false
 Icon=brave-desktop
 Type=Application
@@ -169,7 +171,8 @@ Name[uk]=Нове вікно
 Name[vi]=Cửa sổ Mới
 Name[zh_CN]=新建窗口
 Name[zh_TW]=開新視窗
-Exec=brave --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland
+# Exec=brave --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland
+Exec=dbus-launch brave --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland
 
 [Desktop Action new-private-window]
 Name=New Incognito Window
@@ -221,5 +224,6 @@ Name[uk]=Нове вікно в режимі анонімного перегля
 Name[vi]=Cửa sổ ẩn danh mới
 Name[zh_CN]=新建隐身窗口
 Name[zh_TW]=新增無痕式視窗
-Exec=brave --incognito --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland
+# Exec=brave --incognito --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland
+Exec=dbus-launch brave --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland --incognito
 MimeType=x-scheme-handler/unknown;x-scheme-handler/about;text/html;text/xml;application/xhtml_xml;image/webp;x-scheme-handler/http;x-scheme-handler/https;

@@ -106,7 +106,9 @@ Comment[zh_CN]=访问互联网
 Comment[zh_HK]=連線到網際網路
 Comment[zh_TW]=連線到網際網路
 # Exec=/usr/bin/chromium %U
-Exec=/usr/bin/chromium --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland %U
+# Exec=/usr/bin/chromium --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland %U
+# Exec=dbus-launch chromium --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland %U
+Exec=chromium --ozone-platform-hint=auto %U
 StartupNotify=true
 Terminal=false
 Icon=chromium
@@ -168,8 +170,10 @@ Name[vi]=Cửa sổ Mới
 Name[zh_CN]=新建窗口
 Name[zh_TW]=開新視窗
 # Exec=/usr/bin/chromium
-Exec=/usr/bin/chromium --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland
-
+# Exec=/usr/bin/chromium --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland
+# Exec=dbus-launch chromium --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland
+# Exec=chromium --ozone-platform-hint=auto --enable-features=WebRTCPipeWireCapturer --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland
+Exec=chromium --ozone-platform-hint=auto
 [Desktop Action new-private-window]
 Name=New Incognito Window
 Name[ar]=نافذة جديدة للتصفح المتخفي
@@ -221,4 +225,7 @@ Name[vi]=Cửa sổ ẩn danh mới
 Name[zh_CN]=新建隐身窗口
 Name[zh_TW]=新增無痕式視窗
 # Exec=/usr/bin/chromium --incognito
-Exec=/usr/bin/chromium --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland --incognito
+# Exec=/usr/bin/chromium --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland --incognito
+# Exec=dbus-launch chromium --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland --incognito
+# Exec=chromium --ozone-platform-hint=auto --enable-features=WebRTCPipeWireCapturer --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland --incognito
+Exec=chromium --ozone-platform-hint=auto --incognito

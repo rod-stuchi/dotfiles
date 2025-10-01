@@ -1,5 +1,11 @@
 local wezterm = require("wezterm")
 
+-- Allow working with both the current release and the nightly
+local config = {}
+if wezterm.config_builder then
+	config = wezterm.config_builder()
+end
+
 local is_linux = function()
 	return wezterm.target_triple:find("linux") ~= nil
 end
@@ -25,25 +31,25 @@ local get_opacity = function()
 	return 1
 end
 
-local config = {
-	window_padding = {
-		left = 6,
-		right = 3,
-		top = 3,
-		bottom = 3,
-	},
+config.window_padding = {
+	left = 6,
+	right = 3,
+	top = 3,
+	bottom = 3,
+}
 
-	font = wezterm.font({
-		family = "JetBrains Mono",
-		-- harfbuzz_features = { 'calt=1', 'clig=1', 'liga=1' },
-	}),
-	color_scheme_dirs = { "/usr/share/wezterm/colors/*/" },
-	color_scheme = "Dracula",
-	-- window_background_opacity = 0.90,
-	window_background_opacity = get_opacity(),
-	warn_about_missing_glyphs = false,
-	enable_wayland = false,
-	enable_scroll_bar = true,
+config.font = wezterm.font({
+	family = "terminal-font-jetbrains",
+})
+config.color_scheme_dirs = { "/usr/share/wezterm/colors/*/" }
+config.color_scheme = "Dracula"
+config.window_background_opacity = get_opacity()
+config.warn_about_missing_glyphs = false
+config.enable_wayland = true
+config.enable_scroll_bar = true
+
+config.keys = {
+	{ key = "Enter", mods = "SHIFT", action = wezterm.action({ SendString = "\x1b\r" }) },
 }
 
 if is_linux() then
@@ -56,6 +62,7 @@ if is_darwin() then
 	config.initial_cols = 160
 	config.initial_rows = 40
 
+	config.font = wezterm.font({ family = "JetBrains Mono" })
 	config.font_size = 12
 	config.enable_tab_bar = true
 	config.window_frame = {

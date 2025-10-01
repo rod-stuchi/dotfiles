@@ -157,3 +157,8 @@ alias fix-swhkd="pkill swhkd; sleep 1; swhkd & disown; killall -9 dunst"
 
 alias rfkill-all="rfkill unblock all"
 balias gs-size="gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=out.pdf in.pdf" 
+
+balias chrome="google-chrome-stable --ozone-platform-hint=auto --enable-features=WebRTCPipeWireCapturer &>/dev/null & disown"
+balias chromium="chromium --ozone-platform-hint=auto --enable-features=WebRTCPipeWireCapturer &>/dev/null & disown"
+
+balias shred="shred -vzu -n 5 "

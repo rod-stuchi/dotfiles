@@ -27,3 +27,16 @@ require("bookmarks"):setup({
 		},
 	},
 })
+
+-- ref.: https://github.com/sxyazi/yazi/discussions/1643#discussioncomment-14385573
+
+-- function Linemode:mtime()
+-- 	local time = math.floor(self._file.cha.mtime or 0)
+-- 	if time == 0 then
+-- 		return ""
+-- 	elseif os.date("%Y", time) == os.date("%Y") then
+-- 		return os.date("%m/%d %H:%M", time)
+-- 	else
+-- 		return os.date("%m/%d  %Y", time)
+-- 	end
+-- end

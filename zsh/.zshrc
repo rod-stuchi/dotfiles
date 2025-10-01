@@ -497,6 +497,7 @@ function __get_api_key_from_gpg() {
 
 function export-google() {
   export GOOGLE_API_KEY=$(__get_api_key_from_gpg google)
+  export GEMINI_API_KEY=$GOOGLE_API_KEY
 }
 
 function export-openai() {
@@ -505,6 +506,10 @@ function export-openai() {
 
 function export-anthropic() {
   export ANTHROPIC_API_KEY=$(__get_api_key_from_gpg anthropic)
+}
+
+function export-anthropic-adm() {
+  export ANTHROPIC_ADMIN_KEY=$(__get_api_key_from_gpg anthropic-admin)
 }
 
 function export-all() {
