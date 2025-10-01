@@ -6,53 +6,44 @@
         "height": 30,
         "spacing": 4,
         "modules-left": [
-            "sway/workspaces",
-            "sway/scratchpad",
-            "sway/mode",
+            "niri/workspaces",
             "custom/netusage"
         ],
         "modules-center": [
-            "sway/window"
+            "niri/window"
         ],
         "modules-right": [
             "custom/weather",
             "idle_inhibitor",
-            // "custom/pacman",
             "custom/dollar",
+            "image#dollar",
             "custom/mouse_battery",
             "custom/keyboard_battery",
             "pulseaudio",
             "network",
             "custom/disk1",
-            "cpu",
-            "memory",
-            "temperature",
-            // "backlight",
+            "group/hardware",
+
+            "backlight",
             "clock",
             "tray",
             "custom/notification",
             "custom/power"
         ],
-        "sway/window": {
+        "niri/language": {
+            "format": "Lang: {short}",
+            "signal": 19
+        },
+        "niri/window": {
             "format": "{}",
             "max-length": 50,
             "rewrite": {
                 "(.*) — Mozilla Firefox": " $1",
                 "(.*) - Google Chrome": " $1",
                 "(.*) - zsh": "> [$1]",
-                "(.*) - NVIM": " $1"
+                "(.*) - nvim": " $1",
+                "nvim (.*)": " $1"
             }
-        },
-        "sway/mode": {
-            "format": "󰩨  {}",
-            "max-length": 50
-        },
-        "sway/scratchpad": {
-            "format": "{icon}  {count}",
-            "show-empty": false,
-            "format-icons": ["", ""],
-            "tooltip": true,
-            "tooltip-format": "{app}: {title}"
         },
         "idle_inhibitor": {
             "format": "{icon}",
@@ -87,6 +78,19 @@
             "format-alt": "{:%A %d %B, %Y %H:%M (%Z)}",
             "on-click-right": "kdialog --calendar Calendar --title \"RodsWay Calendar\""
         },
+        "group/hardware": {
+            "orientation": "inherit",
+            "drawer": {
+                "transition-duration": 500,
+                "children-class": "drawer-child",
+                "transition-left-to-right": false
+            },
+            "modules": [
+                "temperature",
+                "cpu",
+                "memory"
+            ]
+        },
         "cpu": {
             "format": "{usage}% ",
             "tooltip": false
@@ -101,8 +105,17 @@
             "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "█"]
         },
         "backlight": {
+            // TODO: NOT WORKING that well with ddcutil-modules.sh
+            "scroll-step": 1,
             "format": "{percent}% {icon}",
-            "format-icons": ["", "", "", "", "", "", "", "", ""]
+            "tooltip-format": "Backlight {}%",
+            "format-icons": ["", "", "", "", "", "", "", "", ""],
+            "exec": "$HOME/.config/waybar/custom-scripts/ddcutil-modules.sh",
+            "return-type": "json",
+            "on-scroll-up": "echo '+' > /tmp/waybar-ddc-backlight-rx",
+            "on-scroll-down": "echo '-' > /tmp/waybar-ddc-backlight-rx",
+            "on-click": "echo 'min' > /tmp/waybar-ddc-backlight-rx",
+            "on-click-right": "echo 'max' > /tmp/waybar-ddc-backlight-rx"
         },
         "network": {
             "format-wifi": "  {signalStrength}%",
@@ -129,6 +142,7 @@
                 "default": ["", " ", " "]
             },
             "on-click": "pavucontrol",
+            // "on-click-right": "/usr/bin/ghostty --title=pulsemixer --command=pulsemixer"
             "on-click-right": "2>&1 wezterm start --class=infloatmode pulsemixer > /dev/null"
         },
         "custom/power": {
@@ -158,9 +172,15 @@
             "interval": "once",
             "exec": "$HOME/develop/playwright/xe.com/waybar-update.sh",
             "on-click": "$HOME/develop/playwright/xe.com/run.sh --manual",
-            "on-click-middle": "/home/rods/develop/playwright/xe.com/mkplot.sh & sleep 0.3 && swaymsg '[instance=\"infloatmode\" class=\"Nsxiv\"] floating enable, resize set width 36 ppt height 62 ppt'",
-            "on-click-right": "/home/rods/develop/playwright/xe.com/mkplot-month.sh & sleep 0.5 && swaymsg '[instance=\"infloatmode\" class=\"Nsxiv\"] floating enable, resize set width 58 ppt height 80 ppt'",
+            "on-click-middle": "$HOME/develop/playwright/xe.com/mkplot.sh",
+            "on-click-right": "$HOME/develop/playwright/xe.com/mkplot-month.sh",
             "signal": 15
+        },
+        "image#dollar": {
+            "path": "/tmp/chart-dollar.svg",
+            "on-click": "$HOME/develop/playwright/xe.com/mkplot.sh",
+            "size": 90,
+            "signal": 21
         },
         "custom/weather": {
             "interval": 900,
@@ -191,9 +211,9 @@
         },
         "custom/keyboard_battery": {
             "interval": 30,
-            "exec": "$HOME/.scripts/keyboard-battery.sh",
-            "on-click": "$HOME/.scripts/keyboard-battery.sh --toggle; pkill -SIGRTMIN+19 waybar",
-            "on-click-right": "$HOME/.scripts/keyboard-battery.sh; pkill -SIGRTMIN+19 waybar",
+            "exec": "$HOME/.scripts/niri-keyboard-layout-switcher_waybar.sh",
+            "on-click": "$HOME/.scripts/niri-keyboard-layout-switcher_waybar.sh --toggle; pkill -SIGRTMIN+19 waybar",
+            "on-click-right": "$HOME/.scripts/niri-keyboard-layout-switcher_waybar.sh; pkill -SIGRTMIN+19 waybar",
             "signal": 19
         },
         "custom/mouse_battery": {
@@ -210,14 +230,14 @@
         "height": 30,
         "spacing": 4,
         "modules-left": [
-            "sway/workspaces",
-            "sway/mode",
+            "niri/workspaces"
         ],
         "modules-center": [
-            "sway/window"
+            "niri/window"
         ],
         "modules-right": [
             "idle_inhibitor",
+            "custom/keyboard_battery",
             "pulseaudio",
             "network",
             "temperature",
@@ -226,7 +246,7 @@
             "custom/notification",
             "custom/power"
         ],
-        "sway/window": {
+        "niri/window": {
             "format": "{}",
             "max-length": 50,
             "rewrite": {
@@ -235,10 +255,6 @@
                 "(.*) - zsh": "> [$1]",
                 "(.*) - NVIM": " $1"
             }
-        },
-        "sway/mode": {
-            "format": "󰩨  {}",
-            "max-length": 50
         },
         "idle_inhibitor": {
             "format": "{icon}",
@@ -304,11 +320,18 @@
                 "default": ["", " ", " "]
             },
             "on-click": "pavucontrol",
-            "on-click-right": "2>&1 wezterm start --class=infloatmode pulsemixer > /dev/null"
+            "on-click-right": "/usr/bin/ghostty --title=pulsemixer --command=pulsemixer"
         },
         "custom/netusage": {
             "exec": "$HOME/github/sway-netusage/waybar-netusage -down -interface wlo1",
             "return-type": "json"
+        },
+        "custom/keyboard_battery": {
+            "interval": 30,
+            "exec": "$HOME/.scripts/keyboard-battery.sh",
+            "on-click": "$HOME/.scripts/keyboard-battery.sh --toggle; pkill -SIGRTMIN+19 waybar",
+            "on-click-right": "$HOME/.scripts/keyboard-battery.sh; pkill -SIGRTMIN+19 waybar",
+            "signal": 19
         },
         "custom/notification": {
             "interval": 60,
@@ -325,6 +348,7 @@
         }
     },
     // ====================================================================================================
+    // TODO: this might be removed, as it works in sway, not sure in Niri.
     {
         "output": [
             "HEADLESS-1",
