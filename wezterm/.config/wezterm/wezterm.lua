@@ -49,7 +49,7 @@ config.enable_wayland = true
 config.enable_scroll_bar = true
 
 config.keys = {
-	{ key = "Enter", mods = "SHIFT", action = wezterm.action({ SendString = "\x1b\r" }) },
+	-- { key = "Enter", mods = "SHIFT", action = wezterm.action({ SendString = "\x1b\r" }) },
 }
 
 if is_linux() then
