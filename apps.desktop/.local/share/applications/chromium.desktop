@@ -107,14 +107,12 @@ Comment[zh_HK]=連線到網際網路
 Comment[zh_TW]=連線到網際網路
 # Exec=/usr/bin/chromium %U
 # Exec=/usr/bin/chromium --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland %U
-# Exec=dbus-launch chromium --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland %U
-Exec=chromium --ozone-platform-hint=auto %U
+Exec=dbus-launch chromium --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland %U
 StartupNotify=true
 Terminal=false
 Icon=chromium
 Type=Application
 Categories=Network;WebBrowser;
-MimeType=application/pdf;application/rdf+xml;application/rss+xml;application/xhtml+xml;application/xhtml_xml;application/xml;image/gif;image/jpeg;image/png;image/webp;text/html;text/xml;x-scheme-handler/http;x-scheme-handler/https;
 Actions=new-window;new-private-window;
 
 [Desktop Action new-window]
@@ -171,9 +169,8 @@ Name[zh_CN]=新建窗口
 Name[zh_TW]=開新視窗
 # Exec=/usr/bin/chromium
 # Exec=/usr/bin/chromium --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland
-# Exec=dbus-launch chromium --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland
-# Exec=chromium --ozone-platform-hint=auto --enable-features=WebRTCPipeWireCapturer --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland
-Exec=chromium --ozone-platform-hint=auto
+Exec=dbus-launch chromium --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland
+
 [Desktop Action new-private-window]
 Name=New Incognito Window
 Name[ar]=نافذة جديدة للتصفح المتخفي
@@ -226,6 +223,5 @@ Name[zh_CN]=新建隐身窗口
 Name[zh_TW]=新增無痕式視窗
 # Exec=/usr/bin/chromium --incognito
 # Exec=/usr/bin/chromium --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland --incognito
-# Exec=dbus-launch chromium --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland --incognito
-# Exec=chromium --ozone-platform-hint=auto --enable-features=WebRTCPipeWireCapturer --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland --incognito
-Exec=chromium --ozone-platform-hint=auto --incognito
+Exec=dbus-launch chromium --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland --incognito
+MimeType=x-scheme-handler/unknown;x-scheme-handler/about;application/pdf;application/rdf+xml;application/rss+xml;application/xhtml+xml;application/xhtml_xml;application/xml;image/gif;image/jpeg;image/png;image/webp;text/html;text/xml;x-scheme-handler/http;x-scheme-handler/https;
