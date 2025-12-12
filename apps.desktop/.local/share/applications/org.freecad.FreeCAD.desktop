@@ -15,7 +15,7 @@ GenericName[ko]=CAD 응용프로그램
 GenericName[pl]=Aplikacja CAD
 GenericName[ru]=Система автоматизированного проектирования
 # Exec=FreeCAD - --single-instance %F
-Exec=env QT_QPA_PLATFORMTHEME=qt6ct freecad
+Exec=env QT_QPA_PLATFORMTHEME=fusion freecad
 Terminal=false
 Type=Application
 Icon=org.freecad.FreeCAD
