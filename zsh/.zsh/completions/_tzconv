@@ -1,0 +1,62 @@
+#compdef tzconv ./tzconv
+
+_tzconv() {
+    local context state state_descr line
+    typeset -A opt_args
+
+    local -a timezones
+    timezones=(
+        'CST:Central Standard Time'
+        'CDT:Central Daylight Time'
+        'Central:Central Time'
+        'EST:Eastern Standard Time'
+        'EDT:Eastern Daylight Time'
+        'Eastern:Eastern Time'
+        'PST:Pacific Standard Time'
+        'PDT:Pacific Daylight Time'
+        'Pacific:Pacific Time'
+        'MST:Mountain Standard Time'
+        'MDT:Mountain Daylight Time'
+        'Mountain:Mountain Time'
+        'UTC:Coordinated Universal Time'
+        'GMT:Greenwich Mean Time'
+        'CET:Central European Time'
+        'IST:Indian Standard Time'
+        'JST:Japan Standard Time'
+        'local:System Local Time'
+    )
+
+    _arguments \
+        '1:Time or Source Timezone:->first' \
+        '2:Source Timezone or Arrow:->second' \
+        '3:Arrow or Target Timezone:->third' \
+        '4:Target Timezone:->fourth'
+
+    case $state in
+        first)
+            _values 'Time' 'now'
+            _describe -t timezones 'timezones' timezones
+            ;;
+        second)
+            # words[2] is Arg 1. If it's a time, Arg 2 is TZ. Otherwise Arg 2 is Arrow.
+            if [[ $words[2] =~ ^[0-9] || $words[2] == "now" ]]; then
+                _describe -t timezones 'timezones' timezones
+            else
+                _values 'Arrow' 'to' '-'
+            fi
+            ;;
+        third)
+            # words[3] is Arg 2. If it's an arrow, Arg 3 is TZ. Otherwise Arg 3 is Arrow.
+            if [[ $words[3] == "to" || $words[3] == "-" ]]; then
+                 _describe -t timezones 'timezones' timezones
+            else
+                 _values 'Arrow' 'to' '-'
+            fi
+            ;;
+        fourth)
+            _describe -t timezones 'timezones' timezones
+            ;;
+    esac
+}
+
+_tzconv "$@"

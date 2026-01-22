@@ -45,6 +45,9 @@ if [[ "$(uname)" == "Linux" ]]; then
         # Start niri with proper dbus session
         exec dbus-run-session niri --session
 
+        # yet not working external monitor
+        # exec niri-session
+
     fi
 fi
 

@@ -63,7 +63,7 @@ case "$(uname)" in
     balias q4-proxy="socat TCP-LISTEN:44315,fork TCP:192.168.2.65:44415"
     balias pitoquelo="rfkill unblock all && sleep 0.8 && sudo netctl start wlo1-ASUS"
     balias k-swhkd="pkill -HUP swhkd"
-    balias wprop="sleep 2; swaymsg -t get_tree | jq -r '..|try select(.focused == true)'"
+    # balias wprop="sleep 2; swaymsg -t get_tree | jq -r '..|try select(.focused == true)'"
     balias mirror='wl-mirror "$(swaymsg -t get_outputs | jq -r '\''.. | try select(.name | contains("HEADLESS")) | .name'\'')" & disown'
     balias kde-settings="env XDG_CURRENT_DESKTOP=kde QT_STYLE_OVERRIDE=kvantum systemsettings"
 

@@ -407,6 +407,10 @@ lazyload sqlmap.py -- '
   [ -d $HOME/github/sqlmap ] && export PATH=$PATH:$HOME/github/sqlmap
 '
 
+lazyload tzconv -- '
+  export PATH=$PATH:$HOME/.scripts
+'
+
 # personal exports (like zoxide)
 [ -f $HOME/.personal_exports ] && source $HOME/.personal_exports
 
