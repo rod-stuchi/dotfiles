@@ -98,9 +98,8 @@ image_bound      = [ 0, 0 ]
 suppress_preload = false
 
 [plugin]
-preload = []
 
-preloaders = [
+prepend_preloaders = [
 	# Image
 	{ mime = "image/*", run = "image" },
 	# Video
@@ -108,7 +107,9 @@ preloaders = [
 	# PDF
 	{ mime = "application/pdf", run = "pdf" },
 ]
-previewers = [
+
+prepend_previewers = [
+	# Folder
 	{ name = "*/", run = "folder", sync = true },
 	# Code
 	{ mime = "text/*", run = "code" },
@@ -125,8 +126,11 @@ previewers = [
 	# Archive
 	{ mime = "application/*zip", run = "archive" },
 	{ mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", run = "archive" },
-	# Fallback
-	{ name = "*", run = "file" },
+]
+
+append_previewers = [
+	# fallback previewer
+	{ url = "*", run = "binary" },
 ]
 
 [input]
