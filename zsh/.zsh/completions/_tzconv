@@ -12,6 +12,7 @@ _tzconv() {
         'EST:Eastern Standard Time'
         'EDT:Eastern Daylight Time'
         'Eastern:Eastern Time'
+        'PT:Pacific Time'
         'PST:Pacific Standard Time'
         'PDT:Pacific Daylight Time'
         'Pacific:Pacific Time'

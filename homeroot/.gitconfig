@@ -12,7 +12,7 @@
 	pager = delta
 
 [diff]
-	tool = kdiff3
+	tool = QT_STYLE_OVERRIDE=kvantum kdiff3
 
 [log]
 	date = relative

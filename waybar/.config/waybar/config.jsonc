@@ -7,18 +7,19 @@
         "spacing": 4,
         "modules-left": [
             "niri/workspaces",
-            "custom/netusage"
+            "custom/netusage",
+            "custom/bluetooth-monitor"
         ],
         "modules-center": [
             "niri/window"
         ],
         "modules-right": [
-            "custom/weather",
+            // "custom/weather",
             "idle_inhibitor",
             "custom/dollar",
             "image#dollar",
-            "custom/mouse_battery",
-            "custom/keyboard_battery",
+            // "custom/mouse_battery",
+            // "custom/keyboard_battery",
             "pulseaudio",
             "network",
             "custom/disk1",
@@ -27,8 +28,9 @@
             "backlight",
             "clock",
             "tray",
-            "custom/notification",
-            "custom/power"
+            "custom/notification"
+            // "custom/monitor-speaker-toggle",
+            // "custom/power"
         ],
         "niri/language": {
             "format": "Lang: {short}",
@@ -145,20 +147,24 @@
             // "on-click-right": "/usr/bin/ghostty --title=pulsemixer --command=pulsemixer"
             "on-click-right": "2>&1 wezterm start --class=infloatmode pulsemixer > /dev/null"
         },
-        "custom/power": {
-            "format" : "⏻ ",
-            "tooltip": false,
-            "menu": "on-click",
-            "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
-            "menu-actions": {
-                "shutdown": "shutdown",
-                "reboot": "reboot",
-                "suspend": "systemctl suspend",
-                "hibernate": "systemctl hibernate"
-            }
-        },
+        // "custom/power": {
+        //     "format" : "⏻ ",
+        //     "tooltip": false,
+        //     "menu": "on-click",
+        //     "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+        //     "menu-actions": {
+        //         "shutdown": "shutdown",
+        //         "reboot": "reboot",
+        //         "suspend": "systemctl suspend",
+        //         "hibernate": "systemctl hibernate"
+        //     }
+        // },
         "custom/netusage": {
             "exec": "$HOME/github/sway-netusage/waybar-netusage -down -interface wlo1",
+            "return-type": "json"
+        },
+        "custom/bluetooth-monitor": {
+            "exec": "$HOME/develop/rust/keyboard-bluetooth-monitor/target/release/keyboard-bluetooth-monitor --waybar",
             "return-type": "json"
         },
         "custom/pacman": {
@@ -182,13 +188,6 @@
             "size": 90,
             "signal": 21
         },
-        "custom/weather": {
-            "interval": 900,
-            "exec": "$HOME/.scripts/weather.sh",
-            "on-click": "$HOME/.scripts/weather.sh --click",
-            "on-click-right": "$HOME/.scripts/weather.sh --update; pkill -SIGRTMIN+16 waybar",
-            "signal": 16
-        },
         "custom/disk1": {
             "interval": 600,
             "exec": "$HOME/.scripts/disk-usage.sh \"/\" \"/home\" \"/disks/Vault\"",
@@ -209,6 +208,20 @@
             "tooltip": false,
             "signal": 18
         },
+        "custom/monitor-speaker-toggle": {
+            "interval": "once",
+            "exec": "$HOME/.scripts/monitor-mute-toggle.sh",
+            "on-click-right": "$HOME/.scripts/monitor-mute-toggle.sh --toggle",
+            "format": "{icon}",
+            "format-icons": {
+                // "on": "<span size=\"12pt\"> </span>",
+                "on": "<span size=\"12pt\">󰍹 </span>",
+                "off": "<span size=\"12pt\" foreground=\"#adadadc0\">󰝟 </span>"
+            },
+            "return-type": "json",
+            "tooltip": false,
+            "signal": 22
+        },
         "custom/keyboard_battery": {
             "interval": 30,
             "exec": "$HOME/.scripts/niri-keyboard-layout-switcher_waybar.sh",
@@ -216,12 +229,12 @@
             "on-click-right": "$HOME/.scripts/niri-keyboard-layout-switcher_waybar.sh; pkill -SIGRTMIN+19 waybar",
             "signal": 19
         },
-        "custom/mouse_battery": {
-            "interval": 30,
-            "exec": "$HOME/.scripts/mouse-battery.sh",
-            "on-click": "$HOME/.scripts/mouse-battery.sh; pkill -SIGRTMIN+20 waybar",
-            "signal": 20
-        }
+        // "custom/mouse_battery": {
+        //     "interval": 30,
+        //     "exec": "$HOME/.scripts/mouse-battery.sh",
+        //     "on-click": "$HOME/.scripts/mouse-battery.sh; pkill -SIGRTMIN+20 waybar",
+        //     "signal": 20
+        // }
     },
     // ====================================================================================================
     // NOTEBOOK SCREEN
@@ -326,13 +339,13 @@
             "exec": "$HOME/github/sway-netusage/waybar-netusage -down -interface wlo1",
             "return-type": "json"
         },
-        "custom/keyboard_battery": {
-            "interval": 30,
-            "exec": "$HOME/.scripts/keyboard-battery.sh",
-            "on-click": "$HOME/.scripts/keyboard-battery.sh --toggle; pkill -SIGRTMIN+19 waybar",
-            "on-click-right": "$HOME/.scripts/keyboard-battery.sh; pkill -SIGRTMIN+19 waybar",
-            "signal": 19
-        },
+        // "custom/keyboard_battery": {
+        //     "interval": 30,
+        //     "exec": "$HOME/.scripts/keyboard-battery.sh",
+        //     "on-click": "$HOME/.scripts/keyboard-battery.sh --toggle; pkill -SIGRTMIN+19 waybar",
+        //     "on-click-right": "$HOME/.scripts/keyboard-battery.sh; pkill -SIGRTMIN+19 waybar",
+        //     "signal": 19
+        // },
         "custom/notification": {
             "interval": 60,
             "exec": "$HOME/.scripts/notification.sh",

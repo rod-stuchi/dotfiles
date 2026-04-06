@@ -1,0 +1,15 @@
+[Unit]
+PartOf=graphical-session.target
+After=graphical-session.target
+; Requisite=graphical-session.target
+
+[Service]
+; ExecStart=/usr/bin/swayidle -w timeout 605 'niri msg action power-off-monitors' timeout 600 '%h/.config/sway/swaylock.sh' before-sleep '%h/.config/sway/swaylock.sh'
+ExecStart=/usr/bin/swayidle -w \
+    timeout 600 '%h/.config/sway/swaylock.sh' \
+    timeout 605 'niri msg action power-off-monitors' \
+    timeout 30 'if pgrep swaylock; then niri msg action power-off-monitors; fi' \
+    resume 'if pgrep swaylock; then niri msg action power-on-monitors; fi' \
+    before-sleep '%h/.config/sway/swaylock.sh'
+
+Restart=on-failure

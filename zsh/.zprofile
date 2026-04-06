@@ -36,6 +36,11 @@ if [[ "$(uname)" == "Linux" ]]; then
 
         export XDG_PICTURES_DIR=$HOME/tmp/screenshots
 
+        # use ibus for GTK and QT applications
+        export GTK_IM_MODULE=ibus
+        export QT_IM_MODULE=ibus
+        export XMODIFIERS=@im=ibus
+
         # hyprland ========================
         # exec hyprland
         # hyprland ========================

@@ -502,6 +502,7 @@ function __get_api_key_from_gpg() {
 function export-google() {
   export GOOGLE_API_KEY=$(__get_api_key_from_gpg google)
   export GEMINI_API_KEY=$GOOGLE_API_KEY
+  export GOOGLE_GENERATIVE_AI_API_KEY=$GOOGLE_API_KEY
 }
 
 function export-openai() {

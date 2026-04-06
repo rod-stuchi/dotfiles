@@ -34,9 +34,9 @@ edit = [
 ]
 open = [
 	# custom Rods
-	{ run = 'mimeo "$@"',                   desc = "Open", for = "linux" },
-	{ run = 'open "$@"',                    desc = "Open", for = "macos" },
-	{ run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
+	{ run = 'handlr open "$@"',                   desc = "Open", for = "linux" },
+	{ run = 'open "$@"',                          desc = "Open", for = "macos" },
+	{ run = 'start "" "%1"', orphan = true,       desc = "Open", for = "windows" },
 ]
 # custom Rods
 openJoinPDF = [
@@ -100,6 +100,8 @@ suppress_preload = false
 [plugin]
 
 prepend_preloaders = [
+    # HEIC preloader
+    # { mime = "image/heic", run = "image" },
 	# Image
 	{ mime = "image/*", run = "image" },
 	# Video
@@ -117,6 +119,7 @@ prepend_previewers = [
 	# JSON
 	{ mime = "application/json", run = "json" },
 	# Image
+    # { mime = "image/heic", run = "image" },
 	{ mime = "image/vnd.djvu", run = "noop" },
 	{ mime = "image/*",        run = "image" },
 	# Video

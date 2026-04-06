@@ -3,6 +3,9 @@ max-visible=6
 # The `margin` option in mako uses the format `top,right,bottom,left` (similar to CSS)
 margin=0,0,5,0
 outer-margin=50,10,0,0
+width=340
+
+padding=10
 
 # this will send notification to the monitor being used (mouse focus)
 output=
@@ -14,11 +17,18 @@ on-button-right=dismiss
 background-color=#285577cc
 border-color=#001c3199
 markup=1
+font=Sans 12
+format=<span size="14pt"><b>%s</b></span>\n<span size="11pt">%b</span>
 
-# [app-name="Google Chrome" body~="youtube.com" group-index=1]
+[urgency=low]
+background-color=#867a7a84
+border-color=#e8a409e1
+border-size=4
 
-[app-name=google-chrome body~="cleverpush.com" group-index=1]
-# group-by=app-name
+[urgency=critical]
+background-color=#bd2c40cc
+border-color=#741624c8
+
 
 [app-name=wp-vol]
 layer=overlay
@@ -33,3 +43,37 @@ format=<b>%s</b>\n%b
 [app-name=volume group-index=0]
 # Only show last notification
 invisible=0
+
+[app-name="Google Chrome" body~="cleverpush.com"]
+background-color=#007b7ecc
+border-color=#214d5daa
+width=380
+format=<span size="13pt"><b>%s</b></span>\n<span size="11pt">%b</span>
+
+[app-name="Google Chrome" body~="youtube.com"]
+invisible=0
+background-color=#007b7ecc
+border-color=#214d5daa
+width=350
+format=<span size="15pt">▶️ </span><span size="13pt"><b>%s</b></span>\n<span size="11pt">%b</span>
+
+[app-name="bluetooth-battery-monitor"]
+width=330
+background-color=#2292e075
+border-color=#2292e0e1
+format=<span size="13pt">%s</span>\n<span size="12pt"><b>%b</b></span>
+border-size=2
+
+[app-name="external-monitor-lg"]
+width=200
+background-color=#897c61d5
+border-color=#e8a409e1
+format=<span size="20pt"><b>%s</b></span>\n<span size="15pt">%b</span>
+
+# [app-name="Google Chrome" body~="youtube.com"]
+# background-color=#007b7ecc
+# border-color=#214d5daa
+# format=<span size="14pt"><b>🎥 YouTube</b></span>\n<span size="11pt">Fetching title...</span>
+# on-notify=exec /home/rods/dotfiles/mako/.config/mako/mako-yt-title.sh "$body" "$id"
+
+
