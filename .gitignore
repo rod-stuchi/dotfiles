@@ -4,3 +4,4 @@ ranger/.config/ranger/plugins/__init__.py
 __pycache__
 sway/.config/sway/current-wallpaper
 wezterm/.config/wezterm/opacity.txt
+ghostty/.config/ghostty/local.config

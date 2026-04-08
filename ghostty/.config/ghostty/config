@@ -19,17 +19,17 @@
 # ==========================
 # # The config file consists of simple key-value pairs,
 # # separated by equals signs.
-# font-family = JetBrains Mono
 font-family = ""
-# font-family = "terminal-font"
 font-family = "JetBrains Mono"
 font-family = "Noto Color Emoji"
 font-size = 10
 window-padding-x = 5
 window-padding-y = 5
-background-opacity = 0.9
+background-opacity = 0.85
 background-blur = 1
 macos-option-as-alt = true
+
+config-file = ?local.config
 #
 # # Spacing around the equals sign does not matter.
 # # All of these are identical:
