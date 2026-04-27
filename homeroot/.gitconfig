@@ -98,6 +98,10 @@
 [IncludeIf "gitdir:/Users/rods/dev/ns/**/.git"]
 	path = /Volumes/VeraCrypt/Secret_Files/gitconfig-1
 
+# macos path apple (for worktrees)
+[IncludeIf "gitdir:/Users/rods/dev/ns/**/.git/worktrees/**"]
+      path = /Volumes/VeraCrypt/Secret_Files/gitconfig-1
+
 # macos path apple
 [IncludeIf "gitdir:/Users/rods/dev/mks/**/.git"]
 	path = /Volumes/VeraCrypt/Secret_Files/gitconfig-2

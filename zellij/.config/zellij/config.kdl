@@ -562,7 +562,9 @@ scroll_buffer_size 100000 // RODS
 // can be useful for removing wrappers around commands
 // Note: be sure to escape backslashes and similar characters properly
 //
-// post_command_discovery_hook "echo $RESURRECT_COMMAND | sed <your_regex_here>"
+// RODS: wraps resurrected commands in a shell so the pane stays open after the command exits
+// post_command_discovery_hook "printf '%s; exec $SHELL' \"${RESURRECT_COMMAND%;}\""
+// post_command_discovery_hook "echo $RESURRECT_COMMAND"
 
 // Number of async worker tasks to spawn per active client.
 //

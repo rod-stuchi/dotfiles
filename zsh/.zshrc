@@ -374,7 +374,17 @@ if [[ -d "$HOME/VPN/" ]]; then
   source "$HOME/VPN/CyberGhost/vpn.sh"
 fi
 
+# TODO: //check if we should put this in `.scripts/git-funcs` and version every
+# thing in `dotfiles`
+gwt() {
+  local target_dir=$(git worktree list | fzf --height 40% --reverse --header "Switch Worktree" | awk '{print $1}')
+  if [ -n "$target_dir" ]; then
+    cd "$target_dir"
+  fi
+}
+
 wd() {
+  # TODO: remove
   source ~/dotfiles/zsh/plugins/wd/wd.sh
 }
 # source ~/dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
