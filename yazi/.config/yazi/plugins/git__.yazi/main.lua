@@ -1,4 +1,4 @@
---- @since 26.5.6
+--- @since 25.12.29
 
 local WINDOWS = ya.target_family() == "windows"
 
@@ -7,15 +7,14 @@ local WINDOWS = ya.target_family() == "windows"
 -- see `bubble_up`
 ---@enum CODES
 local CODES = {
-	unknown = 100, -- status cannot/not yet determined
-	excluded = 99, -- ignored directory
+	excluded = 100, -- ignored directory
 	ignored = 6, -- ignored file
 	untracked = 5,
 	modified = 4,
 	added = 3,
 	deleted = 2,
 	updated = 1,
-	clean = 0,
+	unknown = 0,
 }
 
 local PATTERNS = {
@@ -80,7 +79,7 @@ local function bubble_up(changed)
 			local url = Url(path).parent
 			while url and url ~= empty do
 				local s = tostring(url)
-				new[s] = (new[s] or CODES.clean) > code and new[s] or code
+				new[s] = (new[s] or CODES.unknown) > code and new[s] or code
 				url = url.parent
 			end
 		end
@@ -117,7 +116,7 @@ local add = ya.sync(function(st, cwd, repo, changed)
 	st.dirs[cwd] = repo
 	st.repos[repo] = st.repos[repo] or {}
 	for path, code in pairs(changed) do
-		if code == CODES.clean then
+		if code == CODES.unknown then
 			st.repos[repo][path] = nil
 		elseif code == CODES.excluded then
 			-- Mark the directory with a special value `excluded` so that it can be distinguished during UI rendering
@@ -163,24 +162,20 @@ local function setup(st, opts)
 
 	local t = th.git or {}
 	local styles = {
-		[CODES.unknown] = t.unknown or ui.Style(),
-		[CODES.ignored] = t.ignored or ui.Style():fg("darkgray"),
-		[CODES.untracked] = t.untracked or ui.Style():fg("magenta"),
-		[CODES.modified] = t.modified or ui.Style():fg("yellow"),
-		[CODES.added] = t.added or ui.Style():fg("green"),
-		[CODES.deleted] = t.deleted or ui.Style():fg("red"),
-		[CODES.updated] = t.updated or ui.Style():fg("yellow"),
-		[CODES.clean] = t.clean or ui.Style(),
+		[CODES.ignored] = t.ignored and ui.Style(t.ignored) or ui.Style():fg("darkgray"),
+		[CODES.untracked] = t.untracked and ui.Style(t.untracked) or ui.Style():fg("magenta"),
+		[CODES.modified] = t.modified and ui.Style(t.modified) or ui.Style():fg("yellow"),
+		[CODES.added] = t.added and ui.Style(t.added) or ui.Style():fg("green"),
+		[CODES.deleted] = t.deleted and ui.Style(t.deleted) or ui.Style():fg("red"),
+		[CODES.updated] = t.updated and ui.Style(t.updated) or ui.Style():fg("yellow"),
 	}
 	local signs = {
-		[CODES.unknown] = t.unknown_sign or "",
 		[CODES.ignored] = t.ignored_sign or " ",
 		[CODES.untracked] = t.untracked_sign or "? ",
 		[CODES.modified] = t.modified_sign or " ",
 		[CODES.added] = t.added_sign or " ",
 		[CODES.deleted] = t.deleted_sign or " ",
 		[CODES.updated] = t.updated_sign or " ",
-		[CODES.clean] = t.clean_sign or "",
 	}
 
 	Linemode:children_add(function(self)
@@ -190,12 +185,12 @@ local function setup(st, opts)
 
 		local url = self._file.url
 		local repo = st.dirs[tostring(url.base or url.parent)]
-		local code = CODES.unknown
+		local code
 		if repo then
-			code = repo == CODES.excluded and CODES.ignored or st.repos[repo][tostring(url):sub(#repo + 2)] or CODES.clean
+			code = repo == CODES.excluded and CODES.ignored or st.repos[repo][tostring(url):sub(#repo + 2)]
 		end
 
-		if signs[code] == "" then
+		if not code or signs[code] == "" then
 			return ""
 		elseif self._file.is_hovered then
 			return ui.Line { " ", signs[code] }
@@ -224,6 +219,7 @@ local function fetch(_, job)
 		:cwd(tostring(cwd))
 		:arg({ "--no-optional-locks", "-c", "core.quotePath=", "status", "--porcelain", "-unormal", "--no-renames", "--ignored=matching" })
 		:arg(paths)
+		:stdout(Command.PIPED)
 		:output()
 	if not output then
 		return true, Err("Cannot spawn `git` command, error: %s", err)
@@ -244,11 +240,11 @@ local function fetch(_, job)
 	end
 	ya.dict_merge(changed, propagate_down(excluded, cwd, Url(repo)))
 
-	-- Reset the status of any files that don't appear in the output of `git status` to `clean`,
+	-- Reset the status of any files that don't appear in the output of `git status` to `unknown`,
 	-- so that cleaning up outdated statuses from `st.repos`
 	for _, path in ipairs(paths) do
 		local s = path:sub(#repo + 2)
-		changed[s] = changed[s] or CODES.clean
+		changed[s] = changed[s] or CODES.unknown
 	end
 
 	add(tostring(cwd), repo, changed)

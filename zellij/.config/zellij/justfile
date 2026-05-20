@@ -1,0 +1,9 @@
+help:
+    just -l
+
+# dump a new config file from the current Zellij version
+dump:
+    zellij setup --dump-config > ~/.config/zellij/config-dump.kdl
+
+check:
+    zellij --config ~/dotfiles/zellij/.config/zellij/config-new.044.kdl setup --check
