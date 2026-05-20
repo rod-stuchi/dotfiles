@@ -78,11 +78,14 @@ openJoinPDF = [
 zathura = [
 	{ run = 'zathura %s ',   desc = "Open Zathura", for = "linux", orphan = true },
 ]
+quicklook = [
+	{ run = 'qlmanage -p %s >/dev/null 2>&1', desc = "Quick Look", for = "macos", orphan = true },
+]
 
 [open]
 prepend_rules = [
 	# custom Rods
-	{ mime = "application/pdf", use = [ "zathura", "openJoinPDF", "open", "reveal" ] },
+	{ mime = "application/pdf", use = [ "zathura", "quicklook", "openJoinPDF", "open", "reveal" ] },
 	{ mime = "application/zip", pat = "*.trace.zip", use = [ "show-trace", "extract", "reveal" ] },
 ]
 
@@ -92,7 +95,7 @@ rules = [
 	# Text
 	{ mime = "text/*", use = [ "edit", "reveal" ] },
 	# Image
-	{ mime = "image/*", use = [ "open", "reveal" ] },
+	{ mime = "image/*", use = [ "quicklook", "open", "reveal" ] },
 	# Media
 	{ mime = "{audio,video}/*", use = [ "play", "reveal" ] },
 	# Code
