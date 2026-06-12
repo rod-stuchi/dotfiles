@@ -26,7 +26,11 @@ font-size = 10
 window-padding-x = 5
 window-padding-y = 5
 background-opacity = 0.85
-background-blur = 1
+
+# For macOS (options: true, false, macos-glass-regular, macos-glass-clear)
+background-blur = false
+# OR For Linux / generic values (specify a radius in pixels, e.g., 20)
+background-blur-radius = 20
 macos-option-as-alt = true
 
 config-file = ?local.config

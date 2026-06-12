@@ -368,6 +368,7 @@ source ~/.zsh_alias
 [ -f "$HOME/.scripts/docker.zsh" ] && source "$HOME/.scripts/docker.zsh"
 [ -f "$HOME/.scripts/movie.zsh" ] && source "$HOME/.scripts/movie.zsh"
 [ -f "$HOME/.scripts/qr.zsh" ] && source "$HOME/.scripts/qr.zsh"
+[ -f "$HOME/.scripts/pix.sh" ] && source "$HOME/.scripts/pix.sh"
 [ -f "$HOME/.scripts/android.sh" ] && source "$HOME/.scripts/android.sh"
 
 if [[ -d "$HOME/VPN/" ]]; then

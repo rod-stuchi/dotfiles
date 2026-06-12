@@ -1,3 +1,5 @@
+# vim: foldmethod=marker foldlevel=0
+# {{{ use_nvm
 use_nvm() {
     local node_version=$1
     nvm_sh=$HOME/.nvm/nvm.sh
@@ -6,7 +8,9 @@ use_nvm() {
         nvm use $node_version
     fi
 }
+# }}}
 
+# {{{ use_rvm
 use_rvm() {
     local ruby_version=$1
     rvm_sh=$HOME/.rvm/scripts/rvm
@@ -15,7 +19,50 @@ use_rvm() {
         rvm use $ruby_version
     fi
 }
+# }}}
 
+# {{{ use_mise
 use_mise() {
     eval "$(mise env -s bash "$@")"
 }
+# }}}
+
+# {{{ use_ai
+__get_api_key_from_gpg() {
+  local file="$1"
+  if [[ "$(uname)" == "Linux" ]]; then
+    gpg -qd "/disks/Vault/Secret_Files/$file.gpg"
+  elif [[ "$(uname)" == "Darwin" ]]; then
+    gpg -qd "/Volumes/VeraCrypt/Secret_Files/$file.gpg"
+  else
+    echo "Unsupported OS"
+    return 1
+  fi
+}
+
+export_google() {
+  export GOOGLE_API_KEY=$(__get_api_key_from_gpg google)
+  export GEMINI_API_KEY=$GOOGLE_API_KEY
+  export GOOGLE_GENERATIVE_AI_API_KEY=$GOOGLE_API_KEY
+}
+
+export_openai() {
+  export OPENAI_API_KEY=$(__get_api_key_from_gpg openai)
+}
+
+export_anthropic() {
+  export ANTHROPIC_API_KEY=$(__get_api_key_from_gpg anthropic)
+}
+
+# use_ai — load Google, OpenAI, and Anthropic API keys from GPG vault.
+# Usage in a project's .envrc:
+#
+#   if [ -z "$GOOGLE_API_KEY" ]; then
+#       use_ai
+#   fi
+use_ai() {
+  export_google
+  export_openai
+  export_anthropic
+}
+# }}}
