@@ -15,6 +15,7 @@ case "$(uname)" in
 
     # Postgres (psql)
     export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+    export PATH="/opt/homebrew/opt/ffmpeg-full/bin:$PATH"
     # }}}
     ;;
   "Linux")
