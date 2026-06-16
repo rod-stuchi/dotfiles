@@ -163,3 +163,4 @@ balias chromium="chromium --ozone-platform-hint=auto --enable-features=WebRTCPip
 
 balias shred="shred -vzu -n 5 "
 balias dua_root="sudo dua i -i /disks -i /home /"
+balias remove_orphan="sudo pacman -Rns $(pacman -Qdtq)"

@@ -543,5 +543,11 @@ function yy() {
   rm -f -- "$tmp"
 }
 
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  brew_tap_list() {
+    brew tap-info "$1" --json | jq -r '.[] | (.formula_names[], .cask_tokens[])'
+  }
+fi
+
 # for debugging performance issues
 # zprof
