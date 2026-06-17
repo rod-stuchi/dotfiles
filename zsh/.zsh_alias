@@ -66,6 +66,7 @@ case "$(uname)" in
     # balias wprop="sleep 2; swaymsg -t get_tree | jq -r '..|try select(.focused == true)'"
     balias mirror='wl-mirror "$(swaymsg -t get_outputs | jq -r '\''.. | try select(.name | contains("HEADLESS")) | .name'\'')" & disown'
     balias kde-settings="env XDG_CURRENT_DESKTOP=kde QT_STYLE_OVERRIDE=kvantum systemsettings"
+    balias remove_orphan="sudo pacman -Rns $(pacman -Qdtq)"
 
     alias ss="sudo ss -tulpn"
     # https://bbs.archlinux.org/viewtopic.php?pid=1904807#p1904807
@@ -163,4 +164,3 @@ balias chromium="chromium --ozone-platform-hint=auto --enable-features=WebRTCPip
 
 balias shred="shred -vzu -n 5 "
 balias dua_root="sudo dua i -i /disks -i /home /"
-balias remove_orphan="sudo pacman -Rns $(pacman -Qdtq)"
