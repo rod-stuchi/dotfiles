@@ -93,6 +93,8 @@
 	shorthash = rev-parse --short HEAD
 	latest = !git branch --sort=authordate -vv | rg -v 'gone\\]'
 	sw = !git switch $(git latest | fzf --no-sort --tac --nth=1 --accept-nth=1)
+	cleanup-dry = !git branch -vv | rg -v '^[+*]' | gawk '/: gone\\]/ {print $1}' | xargs -L1 echo \">>> git branch -d\"
+	cleanup = !git branch -vv | rg -v '^[+*]' | gawk '/: gone\\]/ {print $1}' | xargs -L1 git branch -d 
 
 # macos path apple
 [IncludeIf "gitdir:/Users/rods/dev/ns/**/.git"]
