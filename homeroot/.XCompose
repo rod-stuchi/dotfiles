@@ -1,0 +1,5 @@
+# ~/.XCompose
+include "%L"  # include your locale defaults
+
+<dead_acute> <c> : "ç"
+<dead_acute> <C> : "Ç"

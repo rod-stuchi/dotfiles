@@ -21,7 +21,7 @@ input {
             // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
             // -- check combinations, possiblities --
             // rg 'ralt' /usr/share/X11/xkb/rules/evdev.lst
-            options "caps:escape,altwin:swap_ralt_rwin"
+            options "caps:escape,altwin:swap_ralt_rwin,compose:rctrl"
         }
 
         // Enable numlock on start up, omitting this setting disables it.
