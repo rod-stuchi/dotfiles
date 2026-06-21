@@ -5,3 +5,6 @@ __pycache__
 sway/.config/sway/current-wallpaper
 wezterm/.config/wezterm/opacity.txt
 ghostty/.config/ghostty/local.config
+niri/.config/niri/issues/
+# ephemeral Niri config files (toggle files)
+niri/.config/niri/_*.kdl
