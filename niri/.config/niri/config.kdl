@@ -123,8 +123,8 @@ output "DP-1" {
 
 blur {
     // off
-    passes 1
-    offset 3
+    offset 2
+    passes 3
     noise 0.02
     saturation 2
 }
@@ -137,17 +137,15 @@ layout {
     gaps 16
 
     tab-indicator {
-        width 5
-        active-color "#ffd42f"
-        inactive-color "#a5a5a5"
+        width 8
+        active-color "#9b8afe"
+        inactive-color "#1f0054"
     }
 
     // When to center a column when changing focus, options are:
-    // - "never", default behavior, focusing an off-screen column will keep at the left
-    //   or right edge of the screen.
+    // - "never", default behavior, focusing an off-screen column will keep at the left or right edge of the screen.
     // - "always", the focused column will always be centered.
-    // - "on-overflow", focusing a column will center it if it doesn't fit
-    //   together with the previously focused column.
+    // - "on-overflow", focusing a column will center it if it doesn't fit together with the previously focused column.
     center-focused-column "never"
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
@@ -188,7 +186,7 @@ layout {
         // off
 
         // How many logical pixels the ring extends out from the windows.
-        width 4
+        width 3
 
         // Colors can be set in a variety of ways:
         // - CSS named colors: "red"
@@ -209,7 +207,7 @@ layout {
         // You can use any CSS linear-gradient tool on the web to set these up.
         // Changing the color space is also supported, check the wiki for more info.
         //
-        active-gradient from="#80c8ff" to="#bbddff" angle=90
+        active-gradient from="#d2940d" to="#80c8ff" angle=90
 
         // You can also color the gradient relative to the entire view
         // of the workspace, rather than relative to just the window itself.
@@ -238,7 +236,6 @@ layout {
     // You can enable drop shadows for windows.
     shadow {
         // Uncomment the next line to enable shadows.
-        // on
         off
 
         // By default, the shadow draws only around its window, and not behind it.
@@ -261,16 +258,16 @@ layout {
         // pixels and match the CSS box-shadow properties.
 
         // Softness controls the shadow blur radius.
-        softness 30
+        softness 5
 
         // Spread expands the shadow.
         spread 5
 
         // Offset moves the shadow relative to the window.
-        offset x=0 y=5
+        offset x=0 y=0
 
         // You can also change the shadow color and opacity.
-        color "#0007"
+        color "#fff8"
     }
 
     // Struts shrink the area occupied by windows, similarly to layer-shell panels.
@@ -369,17 +366,8 @@ window-rule {
 }
 
 window-rule {
-    //match app-id="^google-chrome$"
     match is-active=false
-    opacity 0.75
-
-    background-effect {
-        blur true
-        //passes 2
-        //offset 3
-        //noise 0.02
-        saturation 1
-    }
+    // opacity 0.75
 }
 
 // Open the Firefox picture-in-picture player as floating by default.
@@ -493,7 +481,7 @@ binds {
     // shows a list of important hotkeys.
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+Ctrl+Shift+F hotkey-overlay-title="Toogle windowed fullscreen" { toggle-windowed-fullscreen; }
+    Mod+Ctrl+Shift+F hotkey-overlay-title="Toggle windowed fullscreen" { toggle-windowed-fullscreen; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open a Terminal" { spawn "kitty"; }
@@ -502,6 +490,9 @@ binds {
     Mod+Alt+Space hotkey-overlay-title="Keyboard layout: next layout" { spawn "bash" "-c" "$HOME/.scripts/niri-keyboard-layout-switcher_waybar.sh --toggle; pkill -SIGRTMIN+19 waybar"; }
     Mod+Alt+w hotkey-overlay-title="Change Wallpaper" { spawn "bash" "-c" "$HOME/.scripts/cycle-wallpaper-niri.sh"; }
     Mod+Alt+d hotkey-overlay-title="Dynamic Screen Cast" { spawn "bash" "-c" "niri msg action set-dynamic-cast-window --id \"$(niri msg --json pick-window | jq .id)\""; }
+    Mod+Alt+o hotkey-overlay-title="Toggle Inactive Opacity" { spawn-sh "$HOME/.local/bin/uv run --script $HOME/.config/niri/toggle.py opacity"; }
+    Mod+Alt+b hotkey-overlay-title="Toggle Blur" { spawn-sh "$HOME/.local/bin/uv run --script $HOME/.config/niri/toggle.py blur"; }
+    Mod+Alt+s hotkey-overlay-title="Toggle Shadow" { spawn-sh "$HOME/.local/bin/uv run --script $HOME/.config/niri/toggle.py shadow"; }
     Alt+4 hotkey-overlay-title="Screenshot: Region" { spawn "bash" "-c" "$HOME/.scripts/niri-screenshot.sh -m region"; }
     Alt+8 { spawn-sh "niri msg --json focused-window | jq . > /tmp/wprop-pipe"; }
 
@@ -515,7 +506,7 @@ binds {
     // ========================== Emojis ==========================
 
     // ========================== CopyQ ==========================
-     Alt+c hotkey-overlay-title="CopyQ: toogle window" { spawn "copyq" "toggle"; }
+     Alt+c hotkey-overlay-title="CopyQ: toggle window" { spawn "copyq" "toggle"; }
     // ========================== CopyQ ==========================
 
     // ========================= MakoCtl =========================
@@ -778,3 +769,7 @@ binds {
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
 }
+
+include optional=true "_opacity.kdl"
+include optional=true "_blur.kdl"
+include optional=true "_shadow.kdl"

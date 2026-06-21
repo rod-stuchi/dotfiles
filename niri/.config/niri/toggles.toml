@@ -1,0 +1,71 @@
+# Source of truth for niri property toggles.
+#
+# Each [property] table is rendered by toggle.py into its `output` file
+# (e.g. `toggle.py opacity` -> _opacity.kdl), which config.kdl includes via
+# `include optional=true`. The generated _*.kdl files are disposable and
+# gitignored; this file is what gets versioned.
+#
+# A property is a KDL `template` with named `$slots`. Every slot defines an
+# `on` and `off` string. toggle.py renders the ON version, compares it to the
+# current output file, and writes the opposite state (recreating the file from
+# the ON state if it is missing).
+
+# ================================================================================
+[opacity]
+output = "_opacity.kdl"
+template = '''
+window-rule {
+  match is-active=false
+  $inactive
+}
+window-rule {
+  match is-active=true
+  opacity 1.0
+}'''
+[opacity.slots.inactive]
+on  = "opacity 0.6"
+off = ""                 # line dropped when off -> niri uses its default
+
+# ================================================================================
+[blur]
+output = "_blur.kdl"
+template = '''
+blur {
+  $global
+}
+window-rule {
+  match is-active=true
+  background-effect {
+    blur $active
+    noise 0.05
+    saturation 1.9
+  }
+}
+window-rule {
+  match is-active=false
+  background-effect {
+    blur false
+    noise 0.02
+    saturation 1.5
+  }
+}'''
+[blur.slots.global]
+on  = "on"
+off = "on"
+[blur.slots.active]
+on  = "true"
+off = "false"            # off-state disables blur; tune values as desired
+
+# ================================================================================
+[shadow]
+output = "_shadow.kdl"
+template = """
+layout {
+  shadow {
+    $state
+  }
+}
+"""
+[shadow.slots.state]
+on  = "on"
+off = "off"

@@ -1,0 +1,2 @@
+validate:
+    niri validate --config ~/.config/niri/config.kdl
