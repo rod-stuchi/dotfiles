@@ -25,3 +25,15 @@ swaylock -F -f \
     --layout-border-color "$ring_color" \
     --layout-text-color "$color_bg" \
     -r
+
+# After unlock, return focus to the DP-1 ultrawide.
+# swaylock runs with -f (daemonized, required for swayidle before-sleep), so we
+# watch the process rather than chaining on its exit. flock keeps a single
+# watcher even if multiple lock paths fire (keybind, idle-timeout, before-sleep).
+(
+    flock -n 9 || exit 0
+    for _ in $(seq 1 20); do pgrep -x swaylock >/dev/null 2>&1 && break; sleep 0.1; done
+    while pgrep -x swaylock >/dev/null 2>&1; do sleep 0.3; done
+    niri msg action focus-monitor DP-1
+) 9>"${XDG_RUNTIME_DIR:-/tmp}/swaylock-refocus.lock" &
+disown

@@ -108,7 +108,7 @@ Comment[zh_TW]=連線到網際網路
 StartupWMClass=Google-chrome
 # Exec=/usr/bin/google-chrome-stable %U
 # Exec=/usr/bin/google-chrome-stable --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland %U
-Exec=dbus-launch google-chrome-stable --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland  %U
+Exec=google-chrome-stable --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland  %U
 StartupNotify=true
 Terminal=false
 Icon=google-chrome
@@ -172,7 +172,7 @@ Name[zh_TW]=開新視窗
 StartupWMClass=Google-chrome
 # Exec=/usr/bin/google-chrome-stable
 # Exec=/usr/bin/google-chrome-stable --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland
-Exec=dbus-launch google-chrome-stable --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland
+Exec=google-chrome-stable --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland
 
 [Desktop Action new-private-window]
 Name=New Incognito Window
@@ -227,4 +227,4 @@ Name[zh_TW]=新增無痕式視窗
 StartupWMClass=Google-chrome
 # Exec=/usr/bin/google-chrome-stable --incognito
 # Exec=/usr/bin/google-chrome-stable --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland --incognito 
-Exec=dbus-launch google-chrome-stable --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland --incognito 
+Exec=google-chrome-stable --enable-gpu --enable-hardware-acceleration --ozone-platform=wayland --incognito 

@@ -13,6 +13,7 @@ $hostname\
 $cmd_duration$jobs$shlvl$sudo$character"""
 
 right_format = """
+${custom.ai}\
 $nodejs\
 $python\
 $terraform\
@@ -169,3 +170,10 @@ echo "$GIT_REMOTE_SYMBOL "
 """
 when = 'git rev-parse --is-inside-work-tree 2> /dev/null'
 format = "at $output  "
+
+[custom.ai]
+description = "Show an AI icon when AI provider keys are exported"
+when = '[ -n "$GEMINI_API_KEY" ] || [ -n "$ANTHROPIC_API_KEY" ]'
+command = 'echo 🤖'
+format = '[$output ]($style)'
+style = 'bold purple'
