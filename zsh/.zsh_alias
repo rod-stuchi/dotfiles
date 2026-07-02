@@ -163,4 +163,4 @@ balias chrome="google-chrome-stable --ozone-platform-hint=auto --enable-features
 balias chromium="chromium --ozone-platform-hint=auto --enable-features=WebRTCPipeWireCapturer &>/dev/null & disown"
 
 balias shred="shred -vzu -n 5 "
-balias dua_root="sudo dua i -i /disks -i /home /"
+balias dua_root="sudo dua -i /disks -i /home i /"
