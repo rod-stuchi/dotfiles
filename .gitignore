@@ -8,3 +8,10 @@ ghostty/.config/ghostty/local.config
 niri/.config/niri/issues/
 # ephemeral Niri config files (toggle files)
 niri/.config/niri/_*.kdl
+
+# GPG
+gpg/.gnupg/.gpg-connect_history
+gpg/.gnupg/private-keys-v1.d/
+gpg/.gnupg/pubring.kbx
+gpg/.gnupg/pubring.kbx~
+gpg/.gnupg/trustdb.gpg
