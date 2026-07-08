@@ -4,6 +4,10 @@
 # Inserts a blank line between shell prompts
 add_newline = false
 
+# Custom modules spawn a shell to evaluate `when`/`command`; the default 500ms
+# timeout is occasionally exceeded on a loaded system, causing WARN logs.
+command_timeout = 2000
+
 format = """
 $directory\
 ${custom.giturl}$git_branch$git_commit$git_state$git_status$git_metrics\
