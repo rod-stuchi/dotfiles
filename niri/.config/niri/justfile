@@ -1,2 +1,16 @@
 validate:
     niri validate --config ~/.config/niri/config.kdl
+
+# Nautilus hard-depends on `localsearch` only for its gschema
+# (org.freedesktop.Tracker3.Miner.Files); without it nautilus aborts on
+# startup (SIGABRT in g_application_register). But the indexer daemon pegs
+# the CPU and we never use file search, so we install the package (nautilus
+# pulls it in automatically) and mask its services. Masking also blocks the
+# D-Bus activation path, so nothing can wake it. Re-run after reinstalling.
+# mask the CPU-heavy localsearch/tracker3 indexer (nautilus only needs its gschema)
+disable-indexer:
+    systemctl --user mask --now localsearch-3.service localsearch-control-3.service localsearch-writeback-3.service
+
+# Re-enable the localsearch file indexer (reverses `disable-indexer`).
+enable-indexer:
+    systemctl --user unmask localsearch-3.service localsearch-control-3.service localsearch-writeback-3.service
