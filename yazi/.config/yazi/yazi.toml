@@ -74,6 +74,13 @@ show-trace = [
 ]
 openJoinPDF = [
 	{ run = 'qpdf --empty --pages %s -- - | zathura -',   desc = "Open All Zathura", for = "linux", orphan = true },
+	{ run = '''bash -c 'f="$(mktemp -t yazi-join).pdf"; qpdf --empty --pages "$@" -- "$f" && qlmanage -p "$f" >/dev/null 2>&1' -- %s''', desc = "Open All Quick Look", for = "macos", orphan = true },
+]
+imageJoinVertical = [
+	{ run = '''bash -c 'n=$#; last="${@: -1}"; base="${last%.*}"; ext="${last##*.}"; out="${base}_+$((n-1))-out-vert.${ext}"; magick "$@" -append "$out"' -- %s''', desc = "Join Images Vertically (magick -append)", for = "unix", block = true },
+]
+imageJoinHorizontal = [
+	{ run = '''bash -c 'n=$#; last="${@: -1}"; base="${last%.*}"; ext="${last##*.}"; out="${base}_+$((n-1))-out-horiz.${ext}"; magick "$@" +append "$out"' -- %s''', desc = "Join Images Horizontally (magick +append)", for = "unix", block = true },
 ]
 zathura = [
 	{ run = 'zathura %s ',   desc = "Open Zathura", for = "linux", orphan = true },
@@ -87,6 +94,7 @@ prepend_rules = [
 	# custom Rods
 	{ mime = "application/pdf", use = [ "zathura", "quicklook", "openJoinPDF", "open", "reveal" ] },
 	{ mime = "application/zip", pat = "*.trace.zip", use = [ "show-trace", "extract", "reveal" ] },
+	{ mime = "image/*", use = [ "quicklook", "open", "imageJoinVertical", "imageJoinHorizontal", "reveal" ] },
 ]
 
 rules = [
