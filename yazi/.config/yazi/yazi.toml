@@ -77,10 +77,10 @@ openJoinPDF = [
 	{ run = '''bash -c 'f="$(mktemp -t yazi-join).pdf"; qpdf --empty --pages "$@" -- "$f" && qlmanage -p "$f" >/dev/null 2>&1' -- %s''', desc = "Open All Quick Look", for = "macos", orphan = true },
 ]
 imageJoinVertical = [
-	{ run = '''bash -c 'n=$#; last="${@: -1}"; base="${last%.*}"; ext="${last##*.}"; out="${base}_+$((n-1))-out-vert.${ext}"; magick "$@" -append "$out"' -- %s''', desc = "Join Images Vertically (magick -append)", for = "unix", block = true },
+	{ run = '''bash -c 'n=$#; last="${@: -1}"; base="${last%.*}"; ext="${last##*.}"; out="${base}_+$((n-1))-out-vert.${ext}"; magick "$@" -append "$out"' -- %s''', desc = "Join Images Vertically▥ (magick -append)", for = "unix" },
 ]
 imageJoinHorizontal = [
-	{ run = '''bash -c 'n=$#; last="${@: -1}"; base="${last%.*}"; ext="${last##*.}"; out="${base}_+$((n-1))-out-horiz.${ext}"; magick "$@" +append "$out"' -- %s''', desc = "Join Images Horizontally (magick +append)", for = "unix", block = true },
+	{ run = '''bash -c 'n=$#; last="${@: -1}"; base="${last%.*}"; ext="${last##*.}"; out="${base}_+$((n-1))-out-horiz.${ext}"; magick "$@" +append "$out"' -- %s''', desc = "Join Images Horizontally ▤ (magick +append)", for = "unix" },
 ]
 zathura = [
 	{ run = 'zathura %s ',   desc = "Open Zathura", for = "linux", orphan = true },
