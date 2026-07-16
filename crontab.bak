@@ -1,0 +1,25 @@
+# [minute] [hour] [day_of_month] [month] [day_of_week] (command)
+#  minute values can be from 0 to 59.
+#  hour values can be from 0 to 23.
+#  day_of_month values can be from 1 to 31.
+#  month values can be from 1 to 12.
+#  day_of_week values can be from 0 to 6, with 0 denoting Sunday.
+#
+# Spaces are used to separate fields. To fine-tune your schedule you may also use one of the following symbols:
+#
+# Symbol	Description
+# *		Wildcard, specifies every possible time interval
+# ,		List multiple values separated by a comma.
+# -		Specify a range between two numbers, separated by a hyphen
+# /		Specify a periodicity/frequency using a slash
+#
+# For example, the line:
+# */5 9-16 * 1-5,9-12 1-5 ~/bin/i_love_cron.sh
+
+
+*/5 7-23   * * 1-5 /home/rods/develop/playwright/xe.com/run.sh
+# */10 *   * * *   /home/rods/.scripts/update-external-ip.sh
+# */10 *   * * *   /home/rods/.scripts/update-external-IP-cloudns.sh
+*/10 *     * * *   /home/rods/.scripts/update-external-IP-duckdns.sh
+# this script will rotate wallpaper each 10 minutes
+*/30 */3   * * *   /home/rods/.scripts/cycle-wallpaper-niri.sh

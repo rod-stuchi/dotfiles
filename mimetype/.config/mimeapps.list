@@ -19,6 +19,7 @@ image/jpeg=org.gnome.Loupe.desktop;
 image/png=org.gnome.Loupe.desktop;
 inode/directory=org.gnome.Nautilus.desktop;
 text/html=chromium.desktop;
+video/webm=mpv.desktop;
 x-scheme-handler/about=chromium.desktop;
 x-scheme-handler/claude-cli=claude-code-url-handler.desktop;
 x-scheme-handler/http=chromium.desktop;

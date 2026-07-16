@@ -164,3 +164,5 @@ balias chromium="chromium --ozone-platform-hint=auto --enable-features=WebRTCPip
 
 balias shred="shred -vzu -n 5 "
 balias dua_root="sudo dua -i /disks -i /home i /"
+
+alias test-file-picker='gdbus call --session --dest org.freedesktop.portal.Desktop --object-path /org/freedesktop/portal/desktop --method org.freedesktop.portal.FileChooser.OpenFile "" "Test Open" "{}"'

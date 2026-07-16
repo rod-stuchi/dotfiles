@@ -1,0 +1,12 @@
+[Unit]
+Description=Resize the floating GTK file-chooser portal to ~2/3 monitor height
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart=%h/.config/niri/portal-float-resize.py
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=graphical-session.target
