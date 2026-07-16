@@ -52,7 +52,8 @@ prepend_keymap = [
 append_keymap = [
 	# Goto
 	{ on = [ "g", "d" ],       run = "cd ~/Downloads/", desc = "Go to ~/Downloads" },
-	{ on = [ "g", "$" ],       run = "cd /disks/Vault/Financeiro/", desc = "Go to Financeiro directory" },
+	{ on = [ "g", "$" ],       run = "cd /disks/Vault/Financeiro/", desc = "Go to Financeiro directory", for = "linux" },
+	{ on = [ "g", "$" ],       run = "cd /Volumes/VeraCrypt/Financeiro/", desc = "Go to Financeiro directory", for = "macos" },
 	{ on = [ "g", "t" ],       run = "cd /tmp/", desc = "Go to /tmp" },
 ]
 
