@@ -165,7 +165,8 @@
         },
         "custom/bluetooth-monitor": {
             "exec": "$HOME/develop/rust/keyboard-bluetooth-monitor/target/release/keyboard-bluetooth-monitor --waybar",
-            "return-type": "json"
+            "return-type": "json",
+            "on-click": "sh -c 'pid_file=\"${XDG_RUNTIME_DIR:-/tmp}/keyboard-bluetooth-monitor.pid\"; test -r \"$pid_file\" && kill -USR1 \"$(cat \"$pid_file\")\"'"
         },
         "custom/pacman": {
             "format": "{}  ",
