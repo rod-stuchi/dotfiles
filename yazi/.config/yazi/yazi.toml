@@ -85,13 +85,20 @@ imageJoinHorizontal = [
 zathura = [
 	{ run = 'zathura %s ',   desc = "Open Zathura", for = "linux", orphan = true },
 ]
+# custom Rods
 quicklook = [
 	{ run = 'qlmanage -p %s >/dev/null 2>&1', desc = "Quick Look", for = "macos", orphan = true },
+]
+# custom Rods
+numbers = [
+	{ run = 'open -a Numbers %s', desc = "Open in Numbers", for = "macos", orphan = true },
 ]
 
 [open]
 prepend_rules = [
 	# custom Rods
+	{ url = "*.numbers", use = [ "numbers", "open", "reveal" ] },
+	{ url = "*.csv", use = [ "quicklook", "edit", "reveal" ] },
 	{ mime = "application/pdf", use = [ "zathura", "quicklook", "openJoinPDF", "open", "reveal" ] },
 	{ mime = "application/zip", pat = "*.trace.zip", use = [ "show-trace", "extract", "reveal" ] },
 	{ mime = "image/*", use = [ "quicklook", "open", "imageJoinVertical", "imageJoinHorizontal", "reveal" ] },
