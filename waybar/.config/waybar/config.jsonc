@@ -184,6 +184,7 @@
             "signal": 15
         },
         "image#dollar": {
+            "interval": "once",
             "path": "/tmp/chart-dollar.svg",
             "on-click": "$HOME/develop/playwright/xe.com/mkplot.sh",
             "size": 90,
