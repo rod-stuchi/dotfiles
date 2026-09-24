@@ -16,3 +16,6 @@ gpg/.gnupg/private-keys-v1.d/
 gpg/.gnupg/pubring.kbx
 gpg/.gnupg/pubring.kbx~
 gpg/.gnupg/trustdb.gpg
+
+*.log
+herdr/.config/herdr/session.json
