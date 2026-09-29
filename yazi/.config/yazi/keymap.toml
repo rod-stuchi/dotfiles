@@ -16,9 +16,8 @@ prepend_keymap = [
 	{ on = "<A-j>", run = "seek 5",  desc = "Seek down 5 units in the preview" },
 
 	{ on = [ "\\", "s" ], run = 'shell "$SHELL" --block --confirm', desc = "Open shell here" },
-	{ on = [ "\\", "d" ], run = ''' shell 'ripdrag --and-exit --no-click "$@" 2>/dev/null &' --confirm ''', desc = "Drap on Drop exit 1th" },
-	{ on = [ "\\", "D" ], run = ''' shell 'ripdrag --no-click "$@" 2>/dev/null &' --confirm ''', desc = "Drap on Drop no-exit" },
-	{ on = [ "\\", "s" ], run = 'shell "$SHELL" --block --confirm', desc = "Open shell here" },
+	{ on = [ "\\", "d" ], run = ''' shell 'ripdrag --and-exit --no-click %s' --orphan --confirm ''', desc = "Drap on Drop exit 1th" },
+	{ on = [ "\\", "D" ], run = ''' shell 'ripdrag --no-click %s' --orphan --confirm ''', desc = "Drap on Drop no-exit" },
 	{ on = [ "\\", "t" ], run = "plugin toggle-pane min-preview", desc = "Show or hide the preview pane" },
 	{ on = [ "\\", "T" ], run = "plugin toggle-pane max-preview", desc = "Maximize or restore the preview pane" },
 	{ on = [ "\\", "m" ], run = "plugin chmod", desc = "Chmod on selected files" },
