@@ -344,6 +344,11 @@ window#waybar > box {
   padding: 0 6px;
 }
 
+#language {
+  background-color: @neutral300;
+  padding: 0 6px;
+}
+
 #custom-weather {
   background-color: @neutral;
   padding: 0 6px;

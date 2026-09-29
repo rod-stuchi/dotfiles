@@ -21,7 +21,8 @@ input {
             // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
             // -- check combinations, possiblities --
             // rg 'ralt' /usr/share/X11/xkb/rules/evdev.lst
-            options "caps:escape,altwin:swap_ralt_rwin,compose:rctrl"
+            // options "caps:escape,altwin:swap_ralt_rwin,compose:rctrl"
+            options "caps:escape"
         }
 
         // Enable numlock on start up, omitting this setting disables it.
@@ -137,9 +138,23 @@ layout {
     gaps 16
 
     tab-indicator {
+        // Only draw the indicator when a column actually holds more than one window.
+        hide-when-single-tab
+
         width 8
-        active-color "#9b8afe"
-        inactive-color "#1f0054"
+
+        // Keep the bar clear of the focus ring instead of butting against it.
+        // The gap is measured from the window edge, so the 3px ring sits inside it:
+        // 7 here leaves 4px of actual space between the indicator and the ring.
+        gap 7
+        corner-radius 4
+
+        // Taken from the far end of the focus-ring gradient below, so the indicator
+        // reuses a colour the chrome already contains rather than adding a third hue.
+        active-color "#80c8ff"
+        // Same blue, darkened: a window behind reads as dimmed, not as a hole.
+        inactive-color "#1b3a52"
+        urgent-color "#9b0000"
     }
 
     // When to center a column when changing focus, options are:
@@ -194,11 +209,16 @@ layout {
         // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
 
         // Color of the ring on the active monitor.
+        // Note: active-gradient below always takes precedence over a solid
+        // active-color, so setting one here would have no effect.
         // active-color "#7fc8ff"
-        active-color "#4275d4"
 
         // Color of the ring on inactive monitors.
         inactive-color "#505050"
+
+        // Color of the ring around windows that request attention. The border block
+        // below is `off`, so its own urgent-color never applies.
+        urgent-color "#9b0000"
 
         // You can also use gradients. They take precedence over solid colors.
         // Gradients are rendered the same as CSS linear-gradient(angle, from, to).
@@ -220,6 +240,9 @@ layout {
     border {
         // The settings are the same as for the focus ring.
         // If you enable the border, you probably want to disable the focus ring.
+        //
+        // NOTE: this block is off, so nothing below it renders. urgent-color is set
+        // on focus-ring and tab-indicator above instead.
         off
 
         width 4
@@ -258,16 +281,18 @@ layout {
         // pixels and match the CSS box-shadow properties.
 
         // Softness controls the shadow blur radius.
-        softness 12
+        softness 18
 
         // Spread expands the shadow.
-        spread 10
+        spread 3
 
         // Offset moves the shadow relative to the window.
-        offset x=0 y=0
+        offset x=0 y=4
 
         // You can also change the shadow color and opacity.
-        color "#d2940d"
+        // Keep an alpha channel here: an opaque colour renders as a glow that tints
+        // the wallpaper rather than as a shadow.
+        color "#00000060"
     }
 
     // Struts shrink the area occupied by windows, similarly to layer-shell panels.
@@ -497,7 +522,7 @@ binds {
     Mod+T hotkey-overlay-title="Open a Terminal" { spawn "kitty"; }
     Mod+Return hotkey-overlay-title="Open a Terminal" { spawn "kitty"; }
     Mod+Shift+Return hotkey-overlay-title="Open a Terminal: Kitty (float)" { spawn "kitty" "--class=floating-kitty"; }
-    Mod+Alt+Space hotkey-overlay-title="Keyboard layout: next layout" { spawn "bash" "-c" "$HOME/.scripts/niri-keyboard-layout-switcher_waybar.sh --toggle; pkill -SIGRTMIN+19 waybar"; }
+    Mod+Alt+Space hotkey-overlay-title="Keyboard layout: next layout" { spawn "bash" "-c" "$HOME/.scripts/niri-keyboard-layout-switcher_waybar.sh --toggle"; }
     Mod+Alt+w hotkey-overlay-title="Change Wallpaper" { spawn "bash" "-c" "$HOME/.scripts/cycle-wallpaper-niri.sh"; }
     Mod+Alt+d hotkey-overlay-title="Dynamic Screen Cast" { spawn "bash" "-c" "niri msg action set-dynamic-cast-window --id \"$(niri msg --json pick-window | jq .id)\""; }
     Mod+Alt+o hotkey-overlay-title="Toggle Inactive Opacity" { spawn-sh "$HOME/.local/bin/uv run --script $HOME/.config/niri/toggle.py opacity"; }

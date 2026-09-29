@@ -8,7 +8,8 @@
         "modules-left": [
             "niri/workspaces",
             "custom/netusage",
-            "custom/bluetooth-monitor"
+            "custom/bluetooth-monitor",
+            "niri/language"
         ],
         "modules-center": [
             "niri/window"
@@ -33,8 +34,9 @@
             // "custom/power"
         ],
         "niri/language": {
-            "format": "Lang: {short}",
-            "signal": 19
+            "format": "<span size=\"11pt\">󰌌 </span>US {variant}",
+            "on-click": "niri msg action switch-layout next",
+            "tooltip": false
         },
         "niri/window": {
             "format": "{}",
@@ -252,7 +254,7 @@
         ],
         "modules-right": [
             "idle_inhibitor",
-            "custom/keyboard_battery",
+            "niri/language",
             "pulseaudio",
             "network",
             "temperature",
@@ -261,6 +263,11 @@
             "custom/notification",
             "custom/power"
         ],
+        "niri/language": {
+            "format": "<span size=\"11pt\">󰌌 </span>US {variant}",
+            "on-click": "niri msg action switch-layout next",
+            "tooltip": false
+        },
         "niri/window": {
             "format": "{}",
             "max-length": 50,
