@@ -16,6 +16,15 @@ case "$(uname)" in
     # Postgres (psql)
     export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
     export PATH="/opt/homebrew/opt/ffmpeg-full/bin:$PATH"
+
+    # SSH (ssh-agent)
+    if [[ ! -S $SSH_AUTH_SOCK ]]; then
+      export SSH_AUTH_SOCK="$(
+        launchctl print "gui/$(id -u)/com.openssh.ssh-agent" |
+          awk '$1 == "path" && $3 ~ /\/Listeners$/ { print $3; exit }'
+      )"
+    fi
+
     # }}}
     ;;
   "Linux")
@@ -70,7 +79,8 @@ case "$(uname)" in
     # }}}
 
     # {{{ SSH (ssh-agent)
-    if [ -z "$SSH_AUTH_SOCK" ]; then
+
+    if [[ ! -S "$SSH_AUTH_SOCK" ]]; then
         export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
     fi
     # }}}
